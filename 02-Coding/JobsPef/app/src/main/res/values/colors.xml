@@ -3,4 +3,9 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+    <color name="bg_ac_login">#4EA57E</color>
+    <color name="white">#fff</color>
+    <color name="black">#000</color>
+    <color name="shore">#FB9570</color>
+    <color name="facebook">#3A559F</color>
 </resources>
