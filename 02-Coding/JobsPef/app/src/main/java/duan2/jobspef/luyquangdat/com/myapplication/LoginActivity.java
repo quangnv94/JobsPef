@@ -8,6 +8,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import java.util.List;
+
+import duan2.jobspef.luyquangdat.com.myapplication.model.CategoryItem;
+import duan2.jobspef.luyquangdat.com.myapplication.uti.PasreJson;
+
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
     private Button btnLogin;
     private Button btnSignUp;
@@ -52,7 +57,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     }
 
     public void actionLogin() {
-
+        Intent intent =new Intent(this
+                ,MainActivity.class);
+        startActivity(intent);
     }
 
     public void actionLoginFacebook() {
