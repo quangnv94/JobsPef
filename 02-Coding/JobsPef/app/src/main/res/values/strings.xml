@@ -2,5 +2,27 @@
     <string name="app_name">JobPef</string>
     <string name="title_activity_main">MainActivity</string>
     <string name="facebook_app_id">285481351920787</string>
+    <string name="go_to_app">Go to app</string>
+    <string name="loading">Đang tải</string>
+    <string name="who_we_are">Thông tin về ứng dung</string>
+    <string name="email">Thư điện tử</string>
+    <string name="message">Ý kiến của bạn</string>
+    <string name="send">Gửi</string>
+    <string name="name">Tên của bạn</string>
+    <string name="create_new">Đăng tin tuyển dụng mới </string>
+    <string name="oops_something_gone_wrong">Bạn nhập thông tin chưa chính xác !</string>
+    <string name="please_fill_all_field">Vui lòng điền đẩy đủ thông tin !</string>
+    <string name="email_invalid">Email của bạn chưa chính xác !</string>
+    <string name="feedback">Phản Hồi - Góp Ý</string>
+    <string name="notification_settings">Bật/Tắt thông báo</string>
+    <string name="settings">Cài đặt</string>
+    <string name="notification_history">Thông báo</string>
+    <string name="message_send_success">Gửi thành công, chúng tôi ghi nhận ý kiến của bạn, và sẽ có phản hồi cần thiết !</string>
+    <string name="home">Trang Chủ</string>
+    <string name="developed_by">Developed by JobPef Team</string>
+    <string name="share">Chia sẻ</string>
+    <string name="ok">OK</string>
+    <string name="title_check"></string>
+    <string name="messager_check"></string>
 
 </resources>

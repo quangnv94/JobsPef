@@ -2,50 +2,45 @@
 <android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/toolbar"
     android:layout_width="match_parent"
-    android:layout_height="?android:attr/actionBarSize"
-    android:background="@color/colorPrimary">
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="-10dp"
+    android:background="@color/dark_blue"
+    android:gravity="top|start"
+    android:minHeight="?android:attr/actionBarSize">
+
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <LinearLayout
-            android:id="@+id/layoutBack"
-            android:layout_width="25dp"
-            android:layout_height="?android:attr/actionBarSize">
 
-            <ImageView
-                android:id="@+id/id_menu"
-                android:layout_width="15dp"
-                android:layout_height="20dp"
-                android:layout_gravity="center"
-                />
-        </LinearLayout>
+        <ImageView
+            android:id="@+id/imgMore"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/menuicon"
+            android:visibility="visible" />
 
-        <LinearLayout
-            android:id="@+id/layoutToolbarCenter"
+        <TextView
+            android:id="@+id/txtToolbarTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
+            android:layout_centerInParent="true"
             android:layout_gravity="center"
-            android:layout_marginLeft="10dp"
+            android:layout_weight="1"
             android:gravity="center"
-            android:orientation="horizontal">
+            android:textColor="@color/white"
+            android:textSize="18sp" />
 
-            <TextView
-                android:id="@+id/tvToolbar"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:ellipsize="end"
-                android:maxLines="1"
-                android:paddingRight="10dp"
-                android:textAlignment="center"
-                android:textColor="#ffffff"
-                android:textSize="18sp" />
-
-        </LinearLayout>
+        <ImageView
+            android:id="@+id/imgBack"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentRight="true"
+            android:layout_gravity="center_vertical"
+            android:padding="5dp"
+            android:src="@drawable/bell"
+            android:visibility="visible" />
     </RelativeLayout>
-
 </android.support.v7.widget.Toolbar>

@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="5dp"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:background="@color/white"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="80dp"
+            android:layout_weight="3"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_marginTop="5dp"
+                android:id="@+id/tvTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:ellipsize="end"
+                android:gravity="top|right"
+                android:lines="2"
+                android:maxLines="2"
+                android:paddingBottom="2dp"
+                android:paddingLeft="2dp"
+                android:paddingRight="5dp"
+                android:paddingTop="2dp"
+                android:text="Alibaba"
+                android:textColor="@color/dark_blue"
+                android:textSize="12sp" />
+
+
+            <TextView
+                android:id="@+id/tvShortDescription"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:ellipsize="end"
+                android:gravity="right|top"
+                android:maxLines="3"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                android:textColor="@color/blue_theme"
+                android:textSize="11sp"
+                android:visibility="gone" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+            <LinearLayout
+                android:layout_marginBottom="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="bottom"
+                android:orientation="horizontal"
+                android:paddingBottom="2dp"
+                android:paddingTop="2dp">
+
+                <TextView
+                    android:id="@+id/tvDate"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="start"
+                    android:layout_weight="1"
+                    android:ellipsize="end"
+                    android:gravity="center|left"
+                    android:paddingLeft="5dp"
+                    android:singleLine="true"
+                    android:text="date"
+                    android:textColor="@color/gray"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/tvCategoryName"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="end"
+                    android:layout_weight="1"
+                    android:ellipsize="end"
+                    android:gravity="center|right"
+                    android:paddingRight="5dp"
+                    android:singleLine="true"
+                    android:text="category"
+                    android:textColor="@color/light_blue"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/imgNews"
+            android:layout_width="120dp"
+            android:layout_height="match_parent"
+            android:scaleType="centerInside" />
+    </LinearLayout>
+
+</LinearLayout>
