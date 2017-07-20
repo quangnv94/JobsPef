@@ -56,7 +56,7 @@ public class FragmentOfferDetail extends Fragment implements View.OnClickListene
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_offer_detail, container, false);
-        toolbar = (Toolbar) rootView.findViewById(R.id.toolbar);
+        toolbar = rootView.findViewById(R.id.toolbar);
         context = rootView.getContext();
         drawer = ((MainActivity) getActivity()).getDrawer();
         initController(rootView);
@@ -66,18 +66,18 @@ public class FragmentOfferDetail extends Fragment implements View.OnClickListene
 
 
     private void initController(View v) {
-        layoutPreview = (RelativeLayout) v.findViewById(R.id.layoutPreview);
-        imgBanner = (ImageView) v.findViewById(R.id.imgBanner);
-        circlePageIndicator = (CirclePageIndicator) v.findViewById(R.id.circlePageIndicator);
-        tvDate = (TextView) v.findViewById(R.id.tvDate);
-        tvCategoryName = (TextView) v.findViewById(R.id.tvCategoryName);
-        tvTitle = (TextView) v.findViewById(R.id.tvTitle);
-        imgPreview = (ImageView) v.findViewById(R.id.imgPreview);
+        layoutPreview = v.findViewById(R.id.layoutPreview);
+        imgBanner = v.findViewById(R.id.imgBanner);
+        circlePageIndicator = v.findViewById(R.id.circlePageIndicator);
+        tvDate = v.findViewById(R.id.tvDate);
+        tvCategoryName = v.findViewById(R.id.tvCategoryName);
+        tvTitle = v.findViewById(R.id.tvTitle);
+        imgPreview = v.findViewById(R.id.imgPreview);
         imgPreview.setOnClickListener(this);
-        wvDescription = (WebView) v.findViewById(R.id.wvDescription);
-        pagerPreview = (ViewPager) v.findViewById(R.id.pagerPreview);
+        wvDescription = v.findViewById(R.id.wvDescription);
+        pagerPreview = v.findViewById(R.id.pagerPreview);
 //        toolbar = (Toolbar) v.findViewById(R.id.toolbar);
-        ImageView imgBack = (ImageView) toolbar.findViewById(R.id.imgBack);
+        ImageView imgBack = toolbar.findViewById(R.id.imgBack);
         imgBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -86,7 +86,7 @@ public class FragmentOfferDetail extends Fragment implements View.OnClickListene
         });
         imgBack.setImageResource(R.drawable.ic_back);
         tvTitle.setText("");
-        ImageView imgMore = (ImageView) toolbar.findViewById(R.id.imgMore);
+        ImageView imgMore = toolbar.findViewById(R.id.imgMore);
         imgMore.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -54,7 +54,7 @@ public class ViewPagerImagePreviewAdapter extends PagerAdapter {
         LayoutInflater inflater = (LayoutInflater) collection.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View view = inflater.inflate(R.layout.item_image_pager, null);
         ((ViewPager) collection).addView(view);
-        ImageView img = (ImageView) view.findViewById(R.id.img);
+        ImageView img = view.findViewById(R.id.img);
         Glide.with(context)
                 .load(Constants.HOST+"/lbmedia/"+IMAGES.get(position))
                 .into(img);

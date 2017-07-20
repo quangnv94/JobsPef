@@ -151,12 +151,7 @@ public class OfferResponse {
         @Override
         public boolean equals(Object obj) {
             if(obj instanceof Data){
-                if(this.getId() == ((Data)obj).getId()){
-                    return true;
-                }
-                else  {
-                    return false;
-                }
+                return this.getId() == ((Data) obj).getId();
             }
             else {
                 return  false;

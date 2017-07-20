@@ -28,8 +28,8 @@ public class TestAdapter extends RecyclerView.Adapter<TestAdapter.MyViewHolder> 
 
         public MyViewHolder(View view) {
             super(view);
-            tvCategoryName = (TextView) view.findViewById(R.id.tvCategoryName);
-            imgIcon = (ImageView) view.findViewById(R.id.imgIcon);
+            tvCategoryName = view.findViewById(R.id.tvCategoryName);
+            imgIcon = view.findViewById(R.id.imgIcon);
             this.view = view;
         }
     }

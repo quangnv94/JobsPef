@@ -49,7 +49,7 @@ public class FragmentFeedBack extends Fragment implements View.OnClickListener {
             }
         });
         context = rootView.getContext();
-        toolbar = (Toolbar)rootView.findViewById(R.id.toolbar);
+        toolbar = rootView.findViewById(R.id.toolbar);
         drawer = ((MainActivity) getActivity()).getDrawer();
         initController(rootView);
         setupData();
@@ -89,15 +89,15 @@ public class FragmentFeedBack extends Fragment implements View.OnClickListener {
     }
 
     private void initController(View v) {
-        edtName = (EditText) v.findViewById(R.id.edtName);
-        edtEmail = (EditText) v.findViewById(R.id.edtEmail);
-        edtMessage = (EditText) v.findViewById(R.id.edtMessage);
-        btnSend = (Button) v.findViewById(R.id.btnSend);
+        edtName = v.findViewById(R.id.edtName);
+        edtEmail = v.findViewById(R.id.edtEmail);
+        edtMessage = v.findViewById(R.id.edtMessage);
+        btnSend = v.findViewById(R.id.btnSend);
         btnSend.setOnClickListener(this);
 //        toolbar = (Toolbar) v.findViewById(R.id.toolbar);
-        TextView txtToolbarTitle = (TextView) toolbar.findViewById(R.id.txtToolbarTitle);
+        TextView txtToolbarTitle = toolbar.findViewById(R.id.txtToolbarTitle);
         txtToolbarTitle.setText(getString(R.string.feedback));
-        ImageView imgMore =(ImageView) toolbar.findViewById(R.id.imgMore);
+        ImageView imgMore = toolbar.findViewById(R.id.imgMore);
         imgMore.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -108,7 +108,7 @@ public class FragmentFeedBack extends Fragment implements View.OnClickListener {
                 }
             }
         });
-        ImageView imgBack = (ImageView) toolbar.findViewById(R.id.imgBack);
+        ImageView imgBack = toolbar.findViewById(R.id.imgBack);
         imgBack.setVisibility(View.VISIBLE);
         imgBack.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -42,7 +42,7 @@ public class FragmentCreateJobs extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment__document, container, false);
-        toolbar = (Toolbar)rootView.findViewById(R.id.toolbar);
+        toolbar = rootView.findViewById(R.id.toolbar);
         drawer = ((MainActivity) getActivity()).getDrawer();
         context = rootView.getContext();
         initController(rootView);
@@ -50,7 +50,7 @@ public class FragmentCreateJobs extends Fragment {
     }
 
     public void initController(View v) {
-        rcDocument = (RecyclerView) v.findViewById(R.id.rcDocument);
+        rcDocument = v.findViewById(R.id.rcDocument);
     }
 
     @Override

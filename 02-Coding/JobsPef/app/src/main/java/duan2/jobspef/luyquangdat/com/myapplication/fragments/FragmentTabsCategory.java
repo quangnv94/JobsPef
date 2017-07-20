@@ -30,7 +30,7 @@ public class FragmentTabsCategory extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_tab_category, container, false);
 //        toolbar = ((MainActivity)getActivity()).getToolbar();
-        toolbar = (Toolbar)rootView.findViewById(R.id.toolbar);
+        toolbar = rootView.findViewById(R.id.toolbar);
         initController(rootView);
         tabsLayoutBuilder();
         drawer = ((MainActivity) getActivity()).getDrawer();
@@ -39,18 +39,18 @@ public class FragmentTabsCategory extends Fragment {
 
 
     private void initController(View v) {
-        tabLayout = (TabLayout) v.findViewById(R.id.tabs);
-        viewPager = (ViewPager) v.findViewById(R.id.viewpager);
+        tabLayout = v.findViewById(R.id.tabs);
+        viewPager = v.findViewById(R.id.viewpager);
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        TextView txtToolbarTitle =(TextView) toolbar.findViewById(R.id.txtToolbarTitle);
+        TextView txtToolbarTitle = toolbar.findViewById(R.id.txtToolbarTitle);
         txtToolbarTitle.setText(getText(R.string.app_name));
-        ImageView imgBack =(ImageView) toolbar.findViewById(R.id.imgBack);
+        ImageView imgBack = toolbar.findViewById(R.id.imgBack);
         imgBack.setVisibility(View.VISIBLE);
-        ImageView imgMore =(ImageView) toolbar.findViewById(R.id.imgMore);
+        ImageView imgMore = toolbar.findViewById(R.id.imgMore);
         imgMore.setVisibility(View.VISIBLE);
         imgMore.setOnClickListener(new View.OnClickListener() {
             @Override

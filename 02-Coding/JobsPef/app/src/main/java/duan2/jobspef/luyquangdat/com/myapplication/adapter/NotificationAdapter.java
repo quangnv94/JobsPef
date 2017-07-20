@@ -35,7 +35,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
 
         public MyViewHolder(View view) {
             super(view);
-            tvShortDescription = (TextView) view.findViewById(R.id.tvShortDescription);
+            tvShortDescription = view.findViewById(R.id.tvShortDescription);
             this.view = view;
         }
     }

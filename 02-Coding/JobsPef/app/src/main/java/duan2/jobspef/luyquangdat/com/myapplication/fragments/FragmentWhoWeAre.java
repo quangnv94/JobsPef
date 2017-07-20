@@ -38,7 +38,7 @@ public class FragmentWhoWeAre extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_who_we_are, container, false);
-        toolbar = (Toolbar) rootView.findViewById(R.id.toolbar);
+        toolbar = rootView.findViewById(R.id.toolbar);
         drawer = ((MainActivity) getActivity()).getDrawer();
         context = rootView.getContext();
         initController(rootView);
@@ -50,14 +50,14 @@ public class FragmentWhoWeAre extends Fragment {
     private void initController(View v) {
 //        tvWhoWeAre = (TextView) v.findViewById(R.id.tvWhoWeAre);
 //        tvWhoWeAre.setMovementMethod(new ScrollingMovementMethod());
-        webView = (WebView) v.findViewById(R.id.my_webView);
+        webView = v.findViewById(R.id.my_webView);
         WebSettings webSettings = webView.getSettings();
         webSettings.setSupportZoom(true);
         webSettings.setJavaScriptEnabled(true);
-        toolbar = (Toolbar) v.findViewById(R.id.toolbar);
-        TextView txtToolbarTitle = (TextView) toolbar.findViewById(R.id.txtToolbarTitle);
+        toolbar = v.findViewById(R.id.toolbar);
+        TextView txtToolbarTitle = toolbar.findViewById(R.id.txtToolbarTitle);
         txtToolbarTitle.setText(getString(R.string.who_we_are));
-        ImageView imgBack = (ImageView) toolbar.findViewById(R.id.imgBack);
+        ImageView imgBack = toolbar.findViewById(R.id.imgBack);
         imgBack.setVisibility(View.VISIBLE);
         imgBack.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,7 +65,7 @@ public class FragmentWhoWeAre extends Fragment {
                 getFragmentManager().beginTransaction().replace(R.id.main_container, new FragmentNotification()).addToBackStack(null).commit();
             }
         });
-        ImageView imgMore = (ImageView) toolbar.findViewById(R.id.imgMore);
+        ImageView imgMore = toolbar.findViewById(R.id.imgMore);
         imgMore.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

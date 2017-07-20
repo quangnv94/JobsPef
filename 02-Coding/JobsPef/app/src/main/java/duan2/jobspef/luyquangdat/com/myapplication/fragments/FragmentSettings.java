@@ -33,7 +33,7 @@ public class FragmentSettings extends Fragment{
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_settings, container, false);
         context = rootView.getContext();
-        toolbar = (Toolbar)rootView.findViewById(R.id.toolbar);
+        toolbar = rootView.findViewById(R.id.toolbar);
         drawer = ((MainActivity) getActivity()).getDrawer();
         initController(rootView);
         return rootView;
@@ -42,12 +42,12 @@ public class FragmentSettings extends Fragment{
 
     private void initController(View v) {
 //        spnCity = (Spinner) v.findViewById(R.id.spnCity);
-        switchNotification = (Switch) v.findViewById(R.id.switch_notification);
+        switchNotification = v.findViewById(R.id.switch_notification);
         switchNotification.setChecked(JobsPef.getBooleanData(getContext(), Constants.NOTIFICATION_ON_FLAG));
 //        toolbar = (Toolbar) v.findViewById(R.id.toolbar);
-        TextView txtToolbarTitle = (TextView) toolbar.findViewById(R.id.txtToolbarTitle);
+        TextView txtToolbarTitle = toolbar.findViewById(R.id.txtToolbarTitle);
         txtToolbarTitle.setText(getString(R.string.settings));
-        ImageView imgBack = (ImageView) toolbar.findViewById(R.id.imgBack);
+        ImageView imgBack = toolbar.findViewById(R.id.imgBack);
         imgBack.setVisibility(View.VISIBLE);
         imgBack.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -55,7 +55,7 @@ public class FragmentSettings extends Fragment{
                 getFragmentManager().beginTransaction().replace(R.id.main_container,new FragmentNotification()).addToBackStack(null).commit();
             }
         });
-        ImageView imgMore = (ImageView) toolbar.findViewById(R.id.imgMore);
+        ImageView imgMore = toolbar.findViewById(R.id.imgMore);
         imgMore.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

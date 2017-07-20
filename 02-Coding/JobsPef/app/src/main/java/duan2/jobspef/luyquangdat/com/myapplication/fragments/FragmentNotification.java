@@ -41,7 +41,7 @@ public class FragmentNotification extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_notification_history, container, false);
-        toolbar = (Toolbar)rootView.findViewById(R.id.toolbar);
+        toolbar = rootView.findViewById(R.id.toolbar);
         drawer = ((MainActivity) getActivity()).getDrawer();
         context = rootView.getContext();
         initController(rootView);
@@ -51,7 +51,7 @@ public class FragmentNotification extends Fragment {
 
 
     private void initController(View v) {
-        rcOffer = (RecyclerView) v.findViewById(R.id.rcOffer);
+        rcOffer = v.findViewById(R.id.rcOffer);
 //        toolbar = (Toolbar) v.findViewById(R.id.toolbar);
 
     }
@@ -59,9 +59,9 @@ public class FragmentNotification extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        TextView txtToolbarTitle = (TextView) toolbar.findViewById(R.id.txtToolbarTitle);
+        TextView txtToolbarTitle = toolbar.findViewById(R.id.txtToolbarTitle);
         txtToolbarTitle.setText(getString(R.string.notification_history));
-        ImageView imgBack = (ImageView) toolbar.findViewById(R.id.imgBack);
+        ImageView imgBack = toolbar.findViewById(R.id.imgBack);
         imgBack.setVisibility(View.GONE);
         imgBack.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -69,7 +69,7 @@ public class FragmentNotification extends Fragment {
                 getActivity().onBackPressed();
             }
         });
-        ImageView imgMore = (ImageView) toolbar.findViewById(R.id.imgMore);
+        ImageView imgMore = toolbar.findViewById(R.id.imgMore);
         imgMore.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

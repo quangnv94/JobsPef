@@ -51,8 +51,8 @@ public class FragmentOfferByCategory extends Fragment {
 
 
     private void initController(View v) {
-        swipeRefreshLayout = (SwipyRefreshLayout) v.findViewById(R.id.swipeTefreshlayout);
-        rcOffer = (RecyclerView) v.findViewById(R.id.rcOffer);
+        swipeRefreshLayout = v.findViewById(R.id.swipeTefreshlayout);
+        rcOffer = v.findViewById(R.id.rcOffer);
     }
 
     @Override

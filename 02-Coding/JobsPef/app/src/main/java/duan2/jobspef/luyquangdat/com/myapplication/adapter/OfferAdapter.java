@@ -35,11 +35,11 @@ public class OfferAdapter extends RecyclerView.Adapter<OfferAdapter.MyViewHolder
         View view;
         public MyViewHolder(View view) {
             super(view);
-            imagePreview =(ImageView) view.findViewById(R.id.imgNews);
-            tvTitle =(TextView) view.findViewById(R.id.tvTitle);
-            tvDate =(TextView) view.findViewById(R.id.tvDate);
-            tvCategoryName =(TextView) view.findViewById(R.id.tvCategoryName);
-            tvShortDescription =(TextView) view.findViewById(R.id.tvShortDescription);
+            imagePreview = view.findViewById(R.id.imgNews);
+            tvTitle = view.findViewById(R.id.tvTitle);
+            tvDate = view.findViewById(R.id.tvDate);
+            tvCategoryName = view.findViewById(R.id.tvCategoryName);
+            tvShortDescription = view.findViewById(R.id.tvShortDescription);
             this.view =view;
         }
     }

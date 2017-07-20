@@ -51,11 +51,11 @@ public class FragmentTabsNews extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        TextView txtToolbarTitle =(TextView) toolbar.findViewById(R.id.txtToolbarTitle);
+        TextView txtToolbarTitle = toolbar.findViewById(R.id.txtToolbarTitle);
         txtToolbarTitle.setText(getText(R.string.app_name));
-        ImageView imgBack =(ImageView) toolbar.findViewById(R.id.imgBack);
+        ImageView imgBack = toolbar.findViewById(R.id.imgBack);
         imgBack.setVisibility(View.VISIBLE);
-        ImageView imgMore =(ImageView) toolbar.findViewById(R.id.imgMore);
+        ImageView imgMore = toolbar.findViewById(R.id.imgMore);
         imgMore.setVisibility(View.VISIBLE);
         imgMore.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -88,12 +88,12 @@ public class FragmentTabsNews extends Fragment {
     }
 
     private void initController(View v) {
-        toolbar = (Toolbar) v.findViewById(R.id.toolbar);
-        TextView txtToolbarTitle =(TextView) toolbar.findViewById(R.id.txtToolbarTitle);
+        toolbar = v.findViewById(R.id.toolbar);
+        TextView txtToolbarTitle = toolbar.findViewById(R.id.txtToolbarTitle);
         txtToolbarTitle.setText(getText(R.string.app_name));
-        ImageView imgBack =(ImageView) toolbar.findViewById(R.id.imgBack);
+        ImageView imgBack = toolbar.findViewById(R.id.imgBack);
         imgBack.setVisibility(View.VISIBLE);
-        ImageView imgMore =(ImageView) toolbar.findViewById(R.id.imgMore);
+        ImageView imgMore = toolbar.findViewById(R.id.imgMore);
         imgMore.setVisibility(View.VISIBLE);
         imgMore.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -103,8 +103,8 @@ public class FragmentTabsNews extends Fragment {
                 }
             }
         });
-        tabLayout = (TabLayout) v.findViewById(R.id.tabs);
-        viewPager = (ViewPager) v.findViewById(R.id.viewpager);
+        tabLayout = v.findViewById(R.id.tabs);
+        viewPager = v.findViewById(R.id.viewpager);
     }
 
     private void tabsLayoutBuilder() {
