@@ -5,6 +5,8 @@ package duan2.jobspef.luyquangdat.com.myapplication.service;
 import java.util.ArrayList;
 
 import duan2.jobspef.luyquangdat.com.myapplication.entity.CategoryResponse;
+import duan2.jobspef.luyquangdat.com.myapplication.entity.LoginResponse;
+import duan2.jobspef.luyquangdat.com.myapplication.entity.SimpleResponse;
 import duan2.jobspef.luyquangdat.com.myapplication.entity.TestResponse;
 import duan2.jobspef.luyquangdat.com.myapplication.entity.NotificationResponse;
 import duan2.jobspef.luyquangdat.com.myapplication.entity.OfferDetailResponse;
@@ -22,6 +24,17 @@ public interface ServerAPI {
 
     @POST("/api/subscriber")
     Call<Void> setSubscribe();
+
+    @FormUrlEncoded
+    @POST("api/newuser")
+    Call<SimpleResponse> register(@Field("name") String name,
+                                  @Field("email") String email,
+                                  @Field("pass") String password,
+                                  @Field("facebook_id") String facebookid);
+    @GET("/login")
+    Call<LoginResponse> login(@Query("email") String email,
+                              @Query("pass") String pass,
+                              @Query("facebook_id") String facebookid);
 
     @GET("/api/category")
     Call<ArrayList<CategoryResponse>> getCategory();

@@ -8,25 +8,17 @@
 
     <ImageView
         android:id="@+id/imgBack"
-        android:layout_width="25dp"
+        android:layout_width="50dp"
         android:layout_height="30dp"
         android:layout_marginRight="10dp"
         android:layout_marginTop="10dp"
         android:src="@drawable/left_arrow" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
-        android:text="@string/app_name"
-        android:textColor="@color/white"
-        android:textSize="50sp" />
-
     <ScrollView
+        android:layout_marginTop="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerVertical="true">
+        android:layout_alignParentTop="true">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -35,12 +27,32 @@
             android:paddingLeft="40dp"
             android:paddingRight="40dp">
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/app_name"
+                android:textColor="@color/white"
+                android:textSize="50sp" />
+
             <EditText
+                android:layout_marginTop="10dp"
+                android:id="@+id/edtName"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:background="@drawable/bg_white"
+                android:hint="Họ và Tên"
+                android:inputType="text"
+                android:maxLines="1"
+                android:paddingLeft="7dp" />
+
+            <EditText
+                android:layout_marginTop="10dp"
                 android:id="@+id/edtEmail"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:background="@drawable/bg_white"
-                android:hint="Email"
+                android:hint="Thư điện tử "
                 android:inputType="text"
                 android:maxLines="1"
                 android:paddingLeft="7dp" />
@@ -51,7 +63,7 @@
                 android:layout_height="40dp"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/bg_white"
-                android:hint="Password"
+                android:hint="Mật khẩu"
                 android:inputType="textPassword"
                 android:maxLines="1"
                 android:paddingLeft="7dp" />
@@ -62,7 +74,7 @@
                 android:layout_height="40dp"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/bg_white"
-                android:hint="ReEnter Password"
+                android:hint="Nhập lại mật khẩu "
                 android:inputType="textPassword"
                 android:maxLines="1"
                 android:paddingLeft="7dp" />
@@ -73,7 +85,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/bg_shore"
-                android:text="Sign up"
+                android:text="Đăng ký "
                 android:textAllCaps="false"
                 android:textColor="@color/white"
                 android:textSize="16sp" />
@@ -84,7 +96,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/bg_facebook"
-                android:text="Đăng  với Facebook"
+                android:text="Đăng ký với Facebook"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
                 android:textSize="16sp" />
@@ -95,7 +107,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:background="@drawable/bg_black"
-                android:text="Login"
+                android:text="Đăng nhập"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
                 android:textSize="16sp" />

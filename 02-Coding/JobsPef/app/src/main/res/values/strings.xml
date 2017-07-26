@@ -20,8 +20,14 @@
     <string name="home">Trang Chủ</string>
     <string name="developed_by">Developed by JobPef Team</string>
     <string name="share">Chia sẻ</string>
+    <string name="sign_out">Đăng xuất</string>
     <string name="ok">OK</string>
     <string name="title_check"></string>
     <string name="messager_check"></string>
     <string name="facebook_app_id">470407896667426</string>
-\</resources>
+    <string name="name_too_short">Tên của bạn phải dài hơn 8 ký tự !</string>
+    <string name="email_empty">Email của bạn đang trống !</string>
+    <string name="email_error">Email của bạn chưa đúng định dạng !</string>
+    <string name="password_empty">Mật khẩu của bạn phải lớn hơn 6 ký tự !</string>
+    <string name="password_erro">Mật khẩu nhập lại chưa khớp !</string>
+</resources>

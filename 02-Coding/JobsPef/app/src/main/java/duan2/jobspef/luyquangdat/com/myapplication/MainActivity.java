@@ -39,6 +39,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private LinearLayout layoutContactUs;
     private LinearLayout layoutWhoWeAre;
     private LinearLayout layoutShare;
+    private LinearLayout layoutSignout;
     private TextView tvDevelopedBy;
     private ProgressDialog progDialog;
 
@@ -122,12 +123,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         layoutContactUs = (LinearLayout) findViewById(R.id.layout_contact_us);
         layoutWhoWeAre = (LinearLayout) findViewById(R.id.layout_who_we_are);
         layoutShare = (LinearLayout) findViewById(R.id.layout_share);
+        layoutSignout = (LinearLayout) findViewById(R.id.layout_signout);
         layoutHome.setOnClickListener(this);
         layoutSetting.setOnClickListener(this);
         layoutContactUs.setOnClickListener(this);
         layoutWhoWeAre.setOnClickListener(this);
         layoutShare.setOnClickListener(this);
         tvDevelopedBy.setOnClickListener(this);
+        layoutSignout.setOnClickListener(this);
     }
 
     private void setUpToolbar() {
@@ -164,12 +167,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.layout_who_we_are:
                 drawer.closeDrawer();
-//                if (getSupportFragmentManager().findFragmentById(R.id.main_container) instanceof FragmentWhoWeAre) {
-//                    return;
-//                } else {
-//                    getSupportFragmentManager().beginTransaction().replace(R.id.main_container, new FragmentWhoWeAre()).commit();
-//                }
                 getSupportFragmentManager().beginTransaction().replace(R.id.main_container, new FragmentWhoWeAre()).commit();
+                break;
+            case R.id.layout_signout:
+                MyUtils.insertStringData(getApplicationContext(), Constants.TOKEN, "");
+                startActivity(new Intent(MainActivity.this, LoginActivity.class));
                 break;
             case R.id.layout_share:
                 Intent shareIntent = new Intent(Intent.ACTION_SEND);

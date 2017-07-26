@@ -6,15 +6,6 @@
     android:background="@color/bg_ac_login"
     tools:context="duan2.jobspef.luyquangdat.com.myapplication.LoginActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
-        android:text="@string/app_name"
-        android:textColor="@color/white"
-        android:textSize="50sp" />
-
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -27,7 +18,16 @@
             android:paddingLeft="40dp"
             android:paddingRight="40dp">
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/app_name"
+                android:textColor="@color/white"
+                android:textSize="50sp" />
+
             <EditText
+                android:layout_marginTop="50dp"
                 android:id="@+id/edtEmail"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
@@ -59,11 +59,12 @@
                 android:textColor="@color/white"
                 android:textSize="16sp" />
 
-            <com.facebook.login.widget.LoginButton
+            <Button
                 android:id="@+id/btnFacebook"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
+                android:background="@drawable/bg_facebook"
                 android:text="Đăng nhập với Facebook"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
