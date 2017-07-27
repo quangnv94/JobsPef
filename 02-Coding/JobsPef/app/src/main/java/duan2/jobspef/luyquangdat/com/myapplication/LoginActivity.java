@@ -75,8 +75,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     }
 
     public void checkLogined() {
-        if (MyUtils.getStringData(LoginActivity.this, Constants.TOKEN) != null ||
-                MyUtils.getStringData(LoginActivity.this, Constants.TOKEN) != "") {
+        Log.d("dulieulogout1", MyUtils.getStringData(getApplicationContext(), Constants.TOKEN));
+        if (MyUtils.getStringData(LoginActivity.this, Constants.TOKEN) == null ||
+                (MyUtils.getStringData(LoginActivity.this, Constants.TOKEN)).equals("")) {
+            return;
+        } else {
             startActivity(new Intent(LoginActivity.this, MainActivity.class));
         }
     }
@@ -122,6 +125,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                             "Thông tin tài khoản không chính xác", "Lỗi");
                 } else {
                     MyUtils.insertStringData(getApplicationContext(), Constants.TOKEN, response.body().getUser().getToken());
+                    MyUtils.insertStringData(getApplicationContext(), Constants.NAME, response.body().getProfile().getName());
+                    MyUtils.insertStringData(getApplicationContext(), Constants.IMAGE_ID, response.body().getProfile().getAvatar_id());
+                    MyUtils.insertStringData(getApplicationContext(), Constants.EMAIL_CONTACT, response.body().getProfile().getContact_emal());
+                    MyUtils.insertStringData(getApplicationContext(), Constants.PROFILE_ID, response.body().getUser().getProfile_id());
+                    MyUtils.insertStringData(getApplicationContext(), Constants.USER_ID, response.body().getUser().getUser_id());
                     startActivity(new Intent(LoginActivity.this, MainActivity.class));
                 }
 
@@ -203,6 +211,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     }
                 } else {
                     MyUtils.insertStringData(getApplicationContext(), Constants.TOKEN, response.body().getUser().getToken());
+                    MyUtils.insertStringData(getApplicationContext(), Constants.NAME, response.body().getProfile().getName());
+                    MyUtils.insertStringData(getApplicationContext(), Constants.IMAGE_ID, response.body().getProfile().getAvatar_id());
+                    MyUtils.insertStringData(getApplicationContext(), Constants.EMAIL_CONTACT, response.body().getProfile().getContact_emal());
+                    MyUtils.insertStringData(getApplicationContext(), Constants.PROFILE_ID, response.body().getUser().getProfile_id());
+                    MyUtils.insertStringData(getApplicationContext(), Constants.USER_ID, response.body().getUser().getUser_id());
                     startActivity(new Intent(LoginActivity.this, MainActivity.class));
                 }
 

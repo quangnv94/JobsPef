@@ -32,7 +32,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:background="@drawable/bg_white"
-                android:hint="Email"
+                android:hint="Thư điện tử"
                 android:inputType="text"
                 android:maxLines="1"
                 android:paddingLeft="7dp" />
@@ -43,7 +43,7 @@
                 android:layout_height="40dp"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/bg_white"
-                android:hint="Password"
+                android:hint="Mật khẩu"
                 android:inputType="textPassword"
                 android:maxLines="1"
                 android:paddingLeft="7dp" />
@@ -54,7 +54,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:background="@drawable/bg_shore"
-                android:text="Login"
+                android:text="Đăng nhập"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
                 android:textSize="16sp" />
@@ -76,7 +76,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/bg_black"
-                android:text="Sign up"
+                android:text="Đăng ký"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
                 android:textSize="16sp" />

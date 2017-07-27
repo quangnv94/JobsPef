@@ -5,11 +5,16 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,10 +23,19 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 
+import com.bumptech.glide.Glide;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.storage.FileDownloadTask;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 import com.libre.mylibs.MyUtils;
 import com.mikepenz.materialdrawer.Drawer;
 import com.mikepenz.materialdrawer.DrawerBuilder;
 
+
+import java.io.File;
+import java.io.IOException;
 
 import duan2.jobspef.luyquangdat.com.myapplication.common.Constants;
 import duan2.jobspef.luyquangdat.com.myapplication.fragments.FragmentCategory;
@@ -31,7 +45,7 @@ import duan2.jobspef.luyquangdat.com.myapplication.fragments.FragmentOfferDetail
 import duan2.jobspef.luyquangdat.com.myapplication.fragments.FragmentSettings;
 
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener, FragmentSettings.UpdateImage {
     public static Drawer drawer;
     private Toolbar toolbar;
     private LinearLayout layoutHome;
@@ -41,7 +55,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private LinearLayout layoutShare;
     private LinearLayout layoutSignout;
     private TextView tvDevelopedBy;
-    private ProgressDialog progDialog;
+    private TextView tvName;
+    private ImageView imgAva;
+
+    private FirebaseStorage storage = FirebaseStorage.getInstance();
+    private StorageReference storageRef;
+
+    private String image;
 
     public static Drawer getDrawer() {
         return drawer;
@@ -60,8 +80,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         getSupportFragmentManager().beginTransaction().replace(R.id.main_container, new FragmentCategory()).commit();
 
         initController();
-        NotificationManager nMgr = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-        nMgr.cancelAll();
+
+        getAva();
     }
 
     private void setupDrawerLayout() {
@@ -90,33 +110,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void initController() {
-//        toolbar = (Toolbar) findViewById(R.id.toolbar);
-//        TextView txtToolbarTitle = (TextView) toolbar.findViewById(R.id.txtToolbarTitle);
-//        txtToolbarTitle.setText(getText(R.string.app_name));
-//        ImageView imgBack = (ImageView) toolbar.findViewById(R.id.imgBack);
-//        imgBack.setVisibility(View.VISIBLE);
-//        ImageView imgMore = (ImageView) toolbar.findViewById(R.id.imgMore);
-//        imgMore.setVisibility(View.VISIBLE);
-//        imgMore.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                if (!drawer.isDrawerOpen()) {
-//                    drawer.openDrawer();
-//                }
-//            }
-//        });
-        Intent notificationIntent = getIntent();
-        Bundle extras = notificationIntent.getExtras();
-
-        if (extras != null && notificationIntent.getAction().equals("get_post_id")) {
-//            getSupportFragmentManager().beginTransaction().replace(R.id.login_container, new FragmentNews()).commit();
-            String postId = extras.getString("post_id");
-            Bundle data = new Bundle();
-            data.putString(Constants.OFFER_ID, postId);
-            FragmentOfferDetail fragmentOfferDetail = new FragmentOfferDetail();
-            fragmentOfferDetail.setArguments(data);
-            getSupportFragmentManager().beginTransaction().replace(R.id.main_container, fragmentOfferDetail).addToBackStack(null).commit();
-        }
         tvDevelopedBy = (TextView) findViewById(R.id.tvDevelopedBy);
         layoutHome = (LinearLayout) findViewById(R.id.layout_home);
         layoutSetting = (LinearLayout) findViewById(R.id.layout_setting);
@@ -124,6 +117,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         layoutWhoWeAre = (LinearLayout) findViewById(R.id.layout_who_we_are);
         layoutShare = (LinearLayout) findViewById(R.id.layout_share);
         layoutSignout = (LinearLayout) findViewById(R.id.layout_signout);
+        tvName = (TextView) findViewById(R.id.tvName);
+        imgAva = (ImageView) findViewById(R.id.imgAvatar);
+        imgAva.setOnClickListener(this);
         layoutHome.setOnClickListener(this);
         layoutSetting.setOnClickListener(this);
         layoutContactUs.setOnClickListener(this);
@@ -131,16 +127,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         layoutShare.setOnClickListener(this);
         tvDevelopedBy.setOnClickListener(this);
         layoutSignout.setOnClickListener(this);
-    }
 
-    private void setUpToolbar() {
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        tvName.setText(MyUtils.getStringData(MainActivity.this, Constants.NAME));
+        String image_link = MyUtils.getStringData(MainActivity.this, Constants.IMAGE_ID);
+        Glide.with(MainActivity.this).load(image_link).error(R.drawable.avatar).into(imgAva);
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
+            case R.id.imgAvatar:
+                break;
             case R.id.layout_home:
                 drawer.closeDrawer();
                 if (getSupportFragmentManager().findFragmentById(R.id.main_container) instanceof FragmentCategory) {
@@ -189,19 +186,37 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-    private void showProgressDialog() {
-        if (progDialog == null)
-            progDialog = new ProgressDialog(this);
-        progDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-        progDialog.setIndeterminate(false);
-        progDialog.setCancelable(false);
-        progDialog.setMessage(getString(R.string.loading));
-        progDialog.show();
+    public void getAva() {
+        try {
+            final File localFile = File.createTempFile("images", "jpg");
+            image = MyUtils.getStringData(getApplicationContext(), Constants.IMAGE_ID);
+            if (image == null || image.equals("")) {
+                return;
+            } else {
+
+                storageRef = storage.getReferenceFromUrl("gs://mchat-2a75e.appspot.com/userava").child(image);
+                storageRef.getFile(localFile).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
+                    @Override
+                    public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
+                        Bitmap bitmap = BitmapFactory.decodeFile(localFile.getAbsolutePath());
+                        imgAva.setImageBitmap(bitmap);
+
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception exception) {
+
+                    }
+                });
+            }
+        } catch (IOException e) {
+        }
+
     }
 
-    private void dismissProgressDialog() {
-        if (progDialog != null) {
-            progDialog.dismiss();
-        }
+    @Override
+    public void onDataPass(int data) {
+        getAva();
+        tvName.setText(MyUtils.getStringData(MainActivity.this, Constants.NAME));
     }
 }

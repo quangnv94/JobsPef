@@ -30,6 +30,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import duan2.jobspef.luyquangdat.com.myapplication.common.Constants;
+import duan2.jobspef.luyquangdat.com.myapplication.entity.LoginResponse;
 import duan2.jobspef.luyquangdat.com.myapplication.entity.SimpleResponse;
 import duan2.jobspef.luyquangdat.com.myapplication.service.ConnectServer;
 import retrofit2.Call;
@@ -115,20 +116,16 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                 new FacebookCallback<LoginResult>() {
                     @Override
                     public void onSuccess(final LoginResult loginResult) {
-                        Log.e("fb token", loginResult.getAccessToken().getToken());
                         GraphRequest request = GraphRequest.newMeRequest(loginResult.getAccessToken(),
                                 new GraphRequest.GraphJSONObjectCallback() {
                                     @Override
                                     public void onCompleted(JSONObject object, GraphResponse response) {
-                                        Log.e("allresult", object.toString());
                                         try {
                                             facebookId = object.getString("id");
-                                            edtName.setText(object.getString("name"));
-                                            edtEmail.setText(object.getString("email"));
+                                            checkFacebookIsReady(facebookId, object.getString("email"),object.getString("name"));
                                         } catch (JSONException e) {
 
                                         }
-
                                     }
 
                                 });
@@ -152,17 +149,56 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                 });
     }
 
+    public void checkFacebookIsReady(final String facebookId, final String emailface, final String nameFace) {
+        AppUtils.showProgressDialog(RegisterActivity.this, "Loading");
+        ConnectServer.getResponseAPI().login(emailface, nameFace, facebookId).enqueue(new Callback<LoginResponse>() {
+            @Override
+            public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
+                MyUtils.hideKeyboard(RegisterActivity.this);
+                AppUtils.hideProgressDialog(RegisterActivity.this);
+                if (!response.isSuccessful()) {
+                    if (facebookId != null) {
+                        edtName.setText(nameFace);
+                        edtEmail.setText(emailface);
+                    }
+                } else {
+                    MyUtils.insertStringData(getApplicationContext(), Constants.NAME, response.body().getProfile().getName());
+                    MyUtils.insertStringData(getApplicationContext(), Constants.TOKEN, response.body().getUser().getToken());
+                    MyUtils.insertStringData(getApplicationContext(), Constants.IMAGE_ID, response.body().getProfile().getAvatar_id());
+                    MyUtils.insertStringData(getApplicationContext(), Constants.EMAIL_CONTACT, response.body().getProfile().getContact_emal());
+                    MyUtils.insertStringData(getApplicationContext(), Constants.PROFILE_ID, response.body().getUser().getProfile_id());
+                    MyUtils.insertStringData(getApplicationContext(), Constants.USER_ID, response.body().getUser().getUser_id());
+                    startActivity(new Intent(RegisterActivity.this, MainActivity.class));
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<LoginResponse> call, Throwable t) {
+                MyUtils.hideKeyboard(RegisterActivity.this);
+                AppUtils.hideProgressDialog(RegisterActivity.this);
+                showDialogConfirm(R.drawable.warning, R.style.DialogAnimationBottom,
+                        "Thông tin tài khoản không chính xác, hoặc lỗi chưa rõ, vui lòng thử lại", "Lỗi");
+            }
+        });
+    }
+
     public boolean valiDateData(String name, String email, String password, String repassword) {
         if (name.length() == 0 || name.length() < 8) {
             edtName.setError(getResources().getString(R.string.name_too_short));
+            edtName.requestFocus();
         } else if (email.length() == 0) {
             edtEmail.setError(getResources().getString(R.string.email_empty));
+            edtEmail.requestFocus();
         } else if (emailValidator(email) != true) {
             edtEmail.setError(getResources().getString(R.string.email_error));
+            edtEmail.requestFocus();
         } else if (password.length() < 6) {
             edtPassword.setError(getResources().getString(R.string.password_empty));
+            edtPassword.requestFocus();
         } else if (!repassword.equals(password) || repassword.length() < 6) {
             edtRePassword.setError(getResources().getString(R.string.password_erro));
+            edtRePassword.requestFocus();
         } else {
             registerRequest(name, email, password, facebookId);
         }

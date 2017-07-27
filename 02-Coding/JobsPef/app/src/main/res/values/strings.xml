@@ -30,4 +30,6 @@
     <string name="email_error">Email của bạn chưa đúng định dạng !</string>
     <string name="password_empty">Mật khẩu của bạn phải lớn hơn 6 ký tự !</string>
     <string name="password_erro">Mật khẩu nhập lại chưa khớp !</string>
+    <string name="save">Lưu</string>
+    <string name="edit_info">Thay đổi thông tin</string>
 </resources>

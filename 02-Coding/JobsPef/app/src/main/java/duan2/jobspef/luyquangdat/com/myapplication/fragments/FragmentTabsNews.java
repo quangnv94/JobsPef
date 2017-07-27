@@ -113,9 +113,9 @@ public class FragmentTabsNews extends Fragment {
         for(CategoryResponse categoryResponse:categoryResponses){
             Log.e("size",""+categoryResponses.size());
             Bundle data = new Bundle();
-            data.putString(Constants.CATEGORY_ID,""+categoryResponse.getId());
+            data.putString(Constants.CATEGORY_ID,""+categoryResponse.getId_category());
             data.putString(Constants.CATEGORY_NAME,""+categoryResponse.getCategory_name());
-            FragmentOfferByCategory fragment_offerByCategory = new FragmentOfferByCategory();
+            FragmentPost fragment_offerByCategory = new FragmentPost();
             fragment_offerByCategory.setArguments(data);
             viewPagerTabsAdapter.addFrag(fragment_offerByCategory,"DashBoard");
             tabLayout.addTab(tabLayout.newTab().setText(categoryResponse.getCategory_name()), number);

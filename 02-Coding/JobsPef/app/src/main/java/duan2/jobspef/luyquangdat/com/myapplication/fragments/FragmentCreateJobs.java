@@ -10,6 +10,10 @@ import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.view.animation.ScaleAnimation;
+import android.widget.EditText;
 
 import com.libre.mylibs.MyUtils;
 import com.mikepenz.materialdrawer.Drawer;
@@ -35,13 +39,12 @@ public class FragmentCreateJobs extends Fragment {
     private Drawer drawer;
     private Context context;
     private ProgressDialog progDialog = null;
-    private RecyclerView rcDocument;
-    private ArrayList<TestResponse> listDocument = new ArrayList<>();
-    private TestAdapter documentAdapter;
+    private EditText edtPhone;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment__document, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_create_post, container, false);
         toolbar = rootView.findViewById(R.id.toolbar);
         drawer = ((MainActivity) getActivity()).getDrawer();
         context = rootView.getContext();
@@ -50,43 +53,13 @@ public class FragmentCreateJobs extends Fragment {
     }
 
     public void initController(View v) {
-        rcDocument = v.findViewById(R.id.rcDocument);
+        Animation anim = AnimationUtils.loadAnimation(getContext(), R.anim.scale);
+        edtPhone.startAnimation(anim);
     }
 
     @Override
     public void onResume() {
         super.onResume();
-//        toolbar.setVisibility(View.GONE);
-        if (listDocument == null || listDocument.isEmpty()) {
-            getDocument();
-        } else {
-            rcDocument.setLayoutManager(new GridLayoutManager(getActivity(), 2));
-            documentAdapter = new TestAdapter(getActivity(), listDocument);
-            rcDocument.setAdapter(documentAdapter);
-        }
-    }
-
-    private void getDocument() {
-        showProgressDialog();
-        ConnectServer.getResponseAPI().getDocument().enqueue(new Callback<ArrayList<TestResponse>>() {
-            @Override
-            public void onResponse(Call<ArrayList<TestResponse>> call, Response<ArrayList<TestResponse>> response) {
-                dismissProgressDialog();
-                if (response.isSuccessful()) {
-                    listDocument = response.body();
-                    rcDocument.setLayoutManager(new GridLayoutManager(getActivity(), 2));
-                    documentAdapter = new TestAdapter(getActivity(), listDocument);
-                    rcDocument.setAdapter(documentAdapter);
-                } else {
-                    MyUtils.showToast(getContext(), getString(R.string.oops_something_gone_wrong));
-                }
-            }
-
-            @Override
-            public void onFailure(Call<ArrayList<TestResponse>> call, Throwable t) {
-                dismissProgressDialog();
-            }
-        });
     }
 
     private void showProgressDialog() {

@@ -2,12 +2,16 @@ package duan2.jobspef.luyquangdat.com.myapplication.fragments;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,14 +19,22 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.storage.FileDownloadTask;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 import com.libre.mylibs.MyUtils;
 import com.mikepenz.materialdrawer.Drawer;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import duan2.jobspef.luyquangdat.com.myapplication.MainActivity;
 import duan2.jobspef.luyquangdat.com.myapplication.R;
 import duan2.jobspef.luyquangdat.com.myapplication.adapter.CategoryAdapter;
+import duan2.jobspef.luyquangdat.com.myapplication.common.Constants;
 import duan2.jobspef.luyquangdat.com.myapplication.entity.CategoryResponse;
 import duan2.jobspef.luyquangdat.com.myapplication.service.ConnectServer;
 import retrofit2.Call;
@@ -31,7 +43,7 @@ import retrofit2.Response;
 
 
 /**
- * Created by QuangNV on 7/14/2017.
+ * Created by quangnv on 7/14/2017.
  */
 public class FragmentCategory extends Fragment {
     private Context context;
@@ -43,7 +55,11 @@ public class FragmentCategory extends Fragment {
     private Drawer drawer;
     private ViewPager viewPager;
     private ImageView imgMenu, imgNotifi;
-    private TextView tvCategoryName;
+
+    private FirebaseStorage storage = FirebaseStorage.getInstance();
+    private StorageReference storageRef;
+
+    private ArrayList<CategoryResponse> listCategoryFinal = new ArrayList<CategoryResponse>();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -59,14 +75,7 @@ public class FragmentCategory extends Fragment {
     private void initController(View v) {
         imgMenu = (ImageView) v.findViewById(R.id.imgMenu);
         imgNotifi = (ImageView) v.findViewById(R.id.imgNotifi);
-        tvCategoryName = (TextView) v.findViewById(R.id.tvCategoryName);
-        tvCategoryName.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getFragmentManager().beginTransaction().replace(R.id.main_container, new FragmentCreateJobs()).addToBackStack(null).commit();
 
-            }
-        });
         imgNotifi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -140,7 +149,7 @@ public class FragmentCategory extends Fragment {
                 dismissProgressDialog();
                 if (response.isSuccessful()) {
                     listCategory = response.body();
-                    rcCategory.setLayoutManager(new GridLayoutManager(getActivity(), 2));
+                    rcCategory.setLayoutManager(new GridLayoutManager(getActivity(), 3));
                     categoryAdapter = new CategoryAdapter(getActivity(), listCategory);
                     rcCategory.setAdapter(categoryAdapter);
                 } else {
@@ -171,4 +180,5 @@ public class FragmentCategory extends Fragment {
             progDialog.dismiss();
         }
     }
+
 }

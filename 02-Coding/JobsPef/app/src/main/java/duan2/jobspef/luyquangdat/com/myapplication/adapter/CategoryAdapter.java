@@ -4,12 +4,15 @@ import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+
+import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 
@@ -31,11 +34,12 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.MyView
         TextView tvCategoryName;
         ImageView imgIcon;
         View view;
+
         public MyViewHolder(View view) {
             super(view);
             tvCategoryName = view.findViewById(R.id.tvCategoryName);
             imgIcon = view.findViewById(R.id.imgIcon);
-            this.view =view;
+            this.view = view;
         }
     }
 
@@ -54,29 +58,20 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.MyView
     @Override
     public void onBindViewHolder(final MyViewHolder holder, final int position) {
         final CategoryResponse entity = listItem.get(position);
-//        holder.imgIcon.post(new Runnable() {
-//            @Override
-//            public void run() {
-//               int width = holder.imgIcon.getWidth();
-//               int height = holder.imgIcon.getWidth()*3/4;
-//                holder.imgIcon.getLayoutParams().height =width*3/4;
-//                Picasso.with(context).load(Constants.HOST+"/lbmedia/"+entity.getIcon_id()+"?height="+height+"&width="+width+"&style=scale_to_fit").into(holder.imgIcon);
-//                Log.e("good man",Constants.HOST+"/lbmedia/"+entity.getIcon_id()+"?height="+height+"&width="+width+"&style=scale_to_fit");
-//            }
-//        });
+
         holder.tvCategoryName.setText(entity.getCategory_name());
+        String image = Constants.HOST_IMAGE + entity.getIcon_id();
+        Glide.with(context).load(image).error(R.drawable.landscape).into(holder.imgIcon);
         holder.view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Bundle data = new Bundle();
-                data.putSerializable(Constants.LIST_CATEGORY,listItem);
-                data.putInt(Constants.POSITION,position);
+                data.putSerializable(Constants.LIST_CATEGORY, listItem);
+                data.putInt(Constants.POSITION, position);
+                data.putString(Constants.CATEGORY_ID, listItem.get(position).getId_category());
                 FragmentTabsNews fragmentTabsNews = new FragmentTabsNews();
                 fragmentTabsNews.setArguments(data);
-                ((MainActivity) context).getSupportFragmentManager().beginTransaction().replace(R.id.main_container,fragmentTabsNews).addToBackStack(null).commit();
-//                Intent intent = new Intent(context, NewsTabsActivity.class);
-//                intent.putExtra(Constants.DATA,data);
-//                context.startActivity(intent);
+                ((MainActivity) context).getSupportFragmentManager().beginTransaction().replace(R.id.main_container, fragmentTabsNews).addToBackStack(null).commit();
             }
         });
     }

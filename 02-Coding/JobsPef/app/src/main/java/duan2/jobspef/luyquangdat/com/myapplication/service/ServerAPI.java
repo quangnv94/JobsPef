@@ -1,16 +1,16 @@
 package duan2.jobspef.luyquangdat.com.myapplication.service;
 
 
-
 import java.util.ArrayList;
 
 import duan2.jobspef.luyquangdat.com.myapplication.entity.CategoryResponse;
+import duan2.jobspef.luyquangdat.com.myapplication.entity.InfoMemberResponse;
 import duan2.jobspef.luyquangdat.com.myapplication.entity.LoginResponse;
 import duan2.jobspef.luyquangdat.com.myapplication.entity.SimpleResponse;
 import duan2.jobspef.luyquangdat.com.myapplication.entity.TestResponse;
 import duan2.jobspef.luyquangdat.com.myapplication.entity.NotificationResponse;
 import duan2.jobspef.luyquangdat.com.myapplication.entity.OfferDetailResponse;
-import duan2.jobspef.luyquangdat.com.myapplication.entity.OfferResponse;
+import duan2.jobspef.luyquangdat.com.myapplication.entity.PostResponse;
 import duan2.jobspef.luyquangdat.com.myapplication.entity.WhoWeAreResponse;
 import retrofit2.Call;
 import retrofit2.http.Field;
@@ -31,12 +31,27 @@ public interface ServerAPI {
                                   @Field("email") String email,
                                   @Field("pass") String password,
                                   @Field("facebook_id") String facebookid);
+
     @GET("/login")
     Call<LoginResponse> login(@Query("email") String email,
                               @Query("pass") String pass,
                               @Query("facebook_id") String facebookid);
 
-    @GET("/api/category")
+    @GET("/profile")
+    Call<InfoMemberResponse> getInfoMember(@Query("id") String id);
+
+    @FormUrlEncoded
+    @POST("/api/upprofile?")
+    Call<SimpleResponse> updateProfile(@Query("token") String token,
+                                       @Field("name") String name,
+                                       @Field("avatar_id") String avatar,
+                                       @Field("phone_number") String phone,
+                                       @Field("address") String address);
+
+    @GET("/list")
+    Call<ArrayList<PostResponse>> getPost(@Query("category_id") String category_id);
+
+    @GET("/categorys")
     Call<ArrayList<CategoryResponse>> getCategory();
 
     @GET("/api/pdfs")
@@ -60,13 +75,10 @@ public interface ServerAPI {
     Call<Void> sendNotificationToken(@Field("device_type") String device_type, @Field("device_token") String device_token);
 
     @GET("/api/offer")
-    Call<OfferResponse> getAllOfferInCategory(@Query("category_id") String category_id, @Query("page") int page);
+    Call<PostResponse> getAllOfferInCategory(@Query("category_id") String category_id, @Query("page") int page);
 
     @GET("/api/offer/{offer_id}")
     Call<OfferDetailResponse> getOfferDetail(@Path("offer_id") String offer_id);
-
-    @GET("/api/offer/{city}/best")
-    Call<ArrayList<OfferResponse.Data>> getBestOfferOfCity(@Path("city") String city, @Query("id") int id, @Query("limit") String limit);
 
 }
 
