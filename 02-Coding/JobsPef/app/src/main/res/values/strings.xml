@@ -32,4 +32,5 @@
     <string name="password_erro">Mật khẩu nhập lại chưa khớp !</string>
     <string name="save">Lưu</string>
     <string name="edit_info">Thay đổi thông tin</string>
+    <string name="lb_dangbai">ĐĂNG BÀI</string>
 </resources>
