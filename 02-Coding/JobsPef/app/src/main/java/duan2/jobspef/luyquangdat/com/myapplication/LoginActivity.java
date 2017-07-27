@@ -39,7 +39,6 @@ import retrofit2.Response;
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
     private Button btnLogin;
     private Button btnSignUp;
-    private Button btnFacebook;
     private EditText edtEmail;
     private EditText edtPassword;
     private Button btnfacebook;
