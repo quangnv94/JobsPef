@@ -11,7 +11,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.libre.mylibs.MyUtils;
 
 import java.util.ArrayList;
 
@@ -19,7 +18,7 @@ import duan2.jobspef.luyquangdat.com.myapplication.MainActivity;
 import duan2.jobspef.luyquangdat.com.myapplication.R;
 import duan2.jobspef.luyquangdat.com.myapplication.common.Constants;
 import duan2.jobspef.luyquangdat.com.myapplication.entity.PostResponse;
-import duan2.jobspef.luyquangdat.com.myapplication.fragments.FragmentOfferDetail;
+import duan2.jobspef.luyquangdat.com.myapplication.fragments.FragmentPostDetail;
 
 
 public class PostAdapter extends RecyclerView.Adapter<PostAdapter.MyViewHolder> {
@@ -73,8 +72,8 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.MyViewHolder> 
             @Override
             public void onClick(View v) {
                 Bundle data = new Bundle();
-                data.putString(Constants.OFFER_ID, "" + entity.getId());
-                FragmentOfferDetail fragmentOfferDetail = new FragmentOfferDetail();
+                data.putSerializable(Constants.POST, listItem.get(position));
+                FragmentPostDetail fragmentOfferDetail = new FragmentPostDetail();
                 fragmentOfferDetail.setArguments(data);
                 ((MainActivity) context).getSupportFragmentManager().beginTransaction().replace(R.id.main_container, fragmentOfferDetail).addToBackStack(null).commit();
             }

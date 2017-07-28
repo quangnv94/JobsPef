@@ -3,132 +3,47 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimaryLight"
     android:orientation="vertical">
 
-    <TextView
-    android:layout_width="match_parent"
-    android:layout_height="30dp"
-    android:gravity="center"
-    android:text="@string/lb_dangbai"
-    android:textStyle="bold"
-    android:textColor="@color/colorPrimary"
-    />
     <EditText
         android:id="@+id/edtTitle"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:layout_marginTop="15dp"
         android:hint="Nhâp tiêu đề"
-        android:inputType="text"
-        android:elevation="5dp"
-        android:maxLines="2"
+        android:inputType="phone"
+        android:maxLines="1"
         android:paddingLeft="7dp" />
     <EditText
-        android:id="@+id/edtPlace"
+        android:id="@+id/edtContent"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:layout_marginTop="15dp"
-        android:hint="Nhâp dia diem"
-        android:inputType="text"
-        android:maxLines="2"
-        android:paddingLeft="7dp"
-        android:elevation="5dp"
-        />
-
-    <EditText
-        android:id="@+id/edtDes"
-        android:layout_width="match_parent"
-        android:layout_height="65dp"
-        android:layout_marginTop="15dp"
-        android:hint="Mô tả công việc"
+        android:hint="Nội dung"
         android:inputType="phone"
-        android:maxLines="3"
-        android:paddingLeft="7dp"
-        android:elevation="5dp"
-        />
-
-    <EditText
-        android:id="@+id/edtRequi"
-        android:layout_width="match_parent"
-        android:layout_height="65dp"
-        android:layout_marginTop="15dp"
-        android:hint="Yêu cầu công việc"
-        android:inputType="phone"
-        android:maxLines="3"
-        android:paddingLeft="7dp"
-        android:elevation="5dp"
-        />
-
-    <EditText
-        android:id="@+id/edtBene"
-        android:layout_width="match_parent"
-        android:layout_height="65dp"
-        android:layout_marginTop="15dp"
-        android:hint="Quyền lợi"
-        android:inputType="phone"
-        android:maxLines="3"
+        android:maxLines="1"
         android:paddingLeft="7dp" />
+
     <EditText
-        android:id="@+id/edtTime"
+        android:id="@+id/edtRequei"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:layout_marginTop="15dp"
-        android:hint="Thời hạn"
+        android:hint="Nội dung"
         android:inputType="phone"
-        android:maxLines="3"
-        android:paddingLeft="7dp"
-        android:elevation="5dp"
-        />
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:weightSum="3"
-        android:layout_marginTop="10dp"
-        android:orientation="horizontal"
-        android:layout_height="160dp">
+        android:maxLines="1"
+        android:paddingLeft="7dp" />
+
+
+
     <ImageView
-        android:padding="3dp"
         android:id="@+id/imgContent"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
         android:layout_gravity="center"
         android:paddingBottom="5dp"
         android:paddingTop="5dp"
         android:scaleType="fitXY"
-        android:layout_weight="1"
-        android:src="@drawable/landscape"
-        android:elevation="5dp"
-        />
-        <ImageView
-            android:padding="3dp"
-            android:id="@+id/imgContentA"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:paddingBottom="5dp"
-            android:paddingTop="5dp"
-            android:scaleType="fitXY"
-            android:layout_weight="1"
-            android:src="@drawable/landscape" />
+        android:src="@drawable/landscape" />
 
-        <ImageView
-            android:padding="3dp"
-            android:id="@+id/imgContentB"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:paddingBottom="5dp"
-            android:paddingTop="5dp"
-            android:scaleType="fitXY"
-            android:layout_weight="1"
-            android:src="@drawable/landscape"
-            android:elevation="5dp"/>
-    </LinearLayout>
-    <Button
-        android:background="@drawable/button_go_to_app"
-        android:layout_gravity="center_horizontal"
-        android:layout_width="wrap_content"
-        android:text="Đăng tin"
-        android:layout_height="wrap_content"
-        android:elevation="5dp"/>
 </LinearLayout>

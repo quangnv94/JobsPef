@@ -2,7 +2,9 @@ package duan2.jobspef.luyquangdat.com.myapplication.entity;
 
 import com.google.gson.annotations.SerializedName;
 
-public class PostResponse {
+import java.io.Serializable;
+
+public class PostResponse implements Serializable {
 
 
     @SerializedName("id")

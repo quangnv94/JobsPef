@@ -1,20 +1,13 @@
 package duan2.jobspef.luyquangdat.com.myapplication;
 
-import android.app.NotificationManager;
-import android.app.ProgressDialog;
-import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -41,7 +34,6 @@ import duan2.jobspef.luyquangdat.com.myapplication.common.Constants;
 import duan2.jobspef.luyquangdat.com.myapplication.fragments.FragmentCategory;
 import duan2.jobspef.luyquangdat.com.myapplication.fragments.FragmentFeedBack;
 import duan2.jobspef.luyquangdat.com.myapplication.fragments.FragmentWhoWeAre;
-import duan2.jobspef.luyquangdat.com.myapplication.fragments.FragmentOfferDetail;
 import duan2.jobspef.luyquangdat.com.myapplication.fragments.FragmentSettings;
 
 

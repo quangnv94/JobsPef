@@ -64,7 +64,6 @@ public class FragmentCategory extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_category, container, false);
-//        toolbar = ((MainActivity) getActivity()).getToolbar();
         drawer = ((MainActivity) getActivity()).getDrawer();
         context = rootView.getContext();
         initController(rootView);
@@ -101,43 +100,18 @@ public class FragmentCategory extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-//        toolbar.setVisibility(View.GONE);
         if (listCategory == null || listCategory.isEmpty()) {
             getCategory();
         } else {
-            rcCategory.setLayoutManager(new GridLayoutManager(getActivity(), 2));
+            rcCategory.setLayoutManager(new GridLayoutManager(getActivity(), 3));
             categoryAdapter = new CategoryAdapter(getActivity(), listCategory);
             rcCategory.setAdapter(categoryAdapter);
         }
-//        TextView txtToolbarTitle = (TextView) toolbar.findViewById(R.id.txtToolbarTitle);
-//        txtToolbarTitle.setText(getText(R.string.home));
-//        ImageView imgBack = (ImageView) toolbar.findViewById(R.id.imgBack);
-//        imgBack.setVisibility(View.VISIBLE);
-//        ImageView imgMore = (ImageView) toolbar.findViewById(R.id.imgMore);
-//        imgMore.setVisibility(View.VISIBLE);
-//        imgMore.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                if (!drawer.isDrawerOpen()) {
-//                    drawer.openDrawer();
-//                } else {
-//                    drawer.closeDrawer();
-//                }
-//            }
-//        });
-//        imgBack.setImageResource(R.drawable.bell);
-//        imgBack.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                getFragmentManager().beginTransaction().replace(R.id.main_container, new FragmentNotification()).addToBackStack(null).commit();
-//            }
-//        });
     }
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-//        toolbar.setVisibility(View.VISIBLE);
     }
 
 

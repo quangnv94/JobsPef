@@ -19,7 +19,7 @@ import duan2.jobspef.luyquangdat.com.myapplication.MainActivity;
 import duan2.jobspef.luyquangdat.com.myapplication.R;
 import duan2.jobspef.luyquangdat.com.myapplication.common.Constants;
 import duan2.jobspef.luyquangdat.com.myapplication.entity.NotificationResponse;
-import duan2.jobspef.luyquangdat.com.myapplication.fragments.FragmentOfferDetail;
+import duan2.jobspef.luyquangdat.com.myapplication.fragments.FragmentPostDetail;
 
 /**
  * Created by nguye on 7/7/2017.
@@ -62,7 +62,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
             holder.view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    FragmentOfferDetail fragment_offerDetail = new FragmentOfferDetail();
+                    FragmentPostDetail fragment_offerDetail = new FragmentPostDetail();
                     Bundle data = new Bundle();
                     data.putSerializable(Constants.OFFER_ID, entity.getPost_id());
                     fragment_offerDetail.setArguments(data);

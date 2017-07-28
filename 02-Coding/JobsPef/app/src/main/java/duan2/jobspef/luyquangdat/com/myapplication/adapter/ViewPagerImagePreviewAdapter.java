@@ -21,7 +21,7 @@ import duan2.jobspef.luyquangdat.com.myapplication.common.Constants;
 public class ViewPagerImagePreviewAdapter extends PagerAdapter {
 
     private Context context;
-    private ArrayList<String> IMAGES = new ArrayList<>();
+    private ArrayList<String> IMAGES;
 
     public ViewPagerImagePreviewAdapter(Context context, ArrayList<String> IMAGES) {
         this.context = context;
@@ -56,9 +56,9 @@ public class ViewPagerImagePreviewAdapter extends PagerAdapter {
         ((ViewPager) collection).addView(view);
         ImageView img = view.findViewById(R.id.img);
         Glide.with(context)
-                .load(Constants.HOST+"/lbmedia/"+IMAGES.get(position))
+                .load(Constants.HOST_IMAGE + IMAGES.get(position))
                 .into(img);
-        Log.e("maike",Constants.HOST+IMAGES.get(position));
+
         return view;
     }
 

@@ -13,6 +13,7 @@ public class Constants {
     public static final String NOTIFICATION_ON_FLAG = "notification_on_flag";
     public static final String LIST_CATEGORY = "list category";
     public static final String POSITION = "position";
+    public static final String POST = "post";
 
     public static final String EMAIL = "email";
     public static final String NAME = "name";
