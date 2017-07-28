@@ -99,7 +99,7 @@ public class FragmentNotification extends Fragment {
                     rcOffer.setLayoutManager(new LinearLayoutManager(getActivity()));
                     rcOffer.setAdapter(notificationAdapter);
                 } else {
-                    MyUtils.showToast(getContext(), getString(R.string.oops_something_gone_wrong));
+                    MyUtils.showToast(getContext(), getString(R.string.msg_notif));
                 }
             }
 

@@ -32,5 +32,5 @@
     <string name="password_erro">Mật khẩu nhập lại chưa khớp !</string>
     <string name="save">Lưu</string>
     <string name="edit_info">Thay đổi thông tin</string>
-    <string name="msg_notifi_none">Bạn chưa có thông báo nào !</string>
+    <string name="msg_notif">Bạn chưa có thông báo !</string>
 </resources>
