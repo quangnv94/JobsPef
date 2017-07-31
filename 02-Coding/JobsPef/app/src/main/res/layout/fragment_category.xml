@@ -7,7 +7,8 @@
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:background="@color/dark_blue"
+        android:layout_height="@dimen/materialize_toolbar">
 
         <ImageView
             android:id="@+id/imgMenu"
@@ -37,7 +38,7 @@
             android:scaleType="centerInside"
             android:text="Danh mục việc làm"
             android:textAlignment="center"
-            android:textColor="@color/blue_theme"
+            android:textColor="@color/white"
             android:textSize="20sp" />
     </FrameLayout>
 
