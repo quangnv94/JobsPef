@@ -88,11 +88,10 @@ public class FragmentPostDetail extends Fragment implements View.OnClickListener
         imgBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getActivity().onBackPressed();
+                getFragmentManager().beginTransaction().replace(R.id.main_container, new FragmentNotification()).addToBackStack(null).commit();
+
             }
         });
-        imgBack.setImageResource(R.drawable.ic_back);
-
         ImageView imgMore = toolbar.findViewById(R.id.imgMore);
         imgMore.setOnClickListener(new View.OnClickListener() {
             @Override

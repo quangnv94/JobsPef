@@ -64,6 +64,8 @@ public class FragmentCategory extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_category, container, false);
+        toolbar = rootView.findViewById(R.id.toolbar);
+        initToolbar(toolbar);
         drawer = ((MainActivity) getActivity()).getDrawer();
         context = rootView.getContext();
         initController(rootView);
@@ -72,8 +74,8 @@ public class FragmentCategory extends Fragment {
 
 
     private void initController(View v) {
-        imgMenu = (ImageView) v.findViewById(R.id.imgMenu);
-        imgNotifi = (ImageView) v.findViewById(R.id.imgNotifi);
+       /* imgMenu = (ImageView) v.findViewById(R.id.imgMore);
+        imgNotifi = (ImageView) v.findViewById(R.id.imgBack);
 
         imgNotifi.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -91,12 +93,35 @@ public class FragmentCategory extends Fragment {
                     drawer.closeDrawer();
                 }
             }
-        });
+        });*/
         rcCategory = (RecyclerView) v.findViewById(R.id.rcCategory);
         viewPager = (ViewPager) v.findViewById(R.id.viewpager);
         viewPager.setVisibility(View.GONE);
     }
+private void initToolbar(View v){
+    imgMenu = (ImageView) v.findViewById(R.id.imgMore);
+    imgNotifi = (ImageView) v.findViewById(R.id.imgBack);
 
+    imgNotifi.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            getFragmentManager().beginTransaction().replace(R.id.main_container, new FragmentNotification()).addToBackStack(null).commit();
+
+        }
+    });
+    imgMenu.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            if (!drawer.isDrawerOpen()) {
+                drawer.openDrawer();
+            } else {
+                drawer.closeDrawer();
+            }
+        }
+    });
+    TextView tb=v.findViewById(R.id.txtToolbarTitle);
+    tb.setText(R.string.tbl_title);
+}
     @Override
     public void onResume() {
         super.onResume();

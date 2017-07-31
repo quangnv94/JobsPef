@@ -2,8 +2,8 @@
 <android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/toolbar"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginLeft="-10dp"
+    android:layout_height="45dp"
+    android:layout_margin="0dp"
     android:background="@color/dark_blue"
     android:gravity="top|start"
     android:minHeight="?android:attr/actionBarSize">
@@ -35,11 +35,11 @@
 
         <ImageView
             android:id="@+id/imgBack"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
             android:layout_alignParentRight="true"
             android:layout_gravity="center_vertical"
-            android:padding="5dp"
+            android:layout_margin="10dp"
             android:src="@drawable/bell"
             android:visibility="visible" />
     </RelativeLayout>
