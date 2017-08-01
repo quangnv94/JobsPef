@@ -234,7 +234,11 @@
                         android:text="@string/notification_settings"
                         android:textColor="@color/black"
                         android:textSize="16sp" />
-
+                    <Button
+                        android:layout_centerHorizontal="true"
+                        android:id="@+id/testBtn"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp" />
                     <Switch
                         android:id="@+id/switch_notification"
                         android:layout_width="wrap_content"

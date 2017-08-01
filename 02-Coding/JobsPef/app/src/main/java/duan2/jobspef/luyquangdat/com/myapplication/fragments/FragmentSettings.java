@@ -12,6 +12,7 @@ import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -32,6 +33,9 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.cloudinary.Cloudinary;
+import com.cloudinary.android.Utils;
+import com.cloudinary.utils.ObjectUtils;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.storage.FileDownloadTask;
@@ -45,7 +49,9 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import duan2.jobspef.luyquangdat.com.myapplication.AppUtils;
 import duan2.jobspef.luyquangdat.com.myapplication.MainActivity;
@@ -111,6 +117,7 @@ public class FragmentSettings extends Fragment implements View.OnClickListener {
         drawer = ((MainActivity) getActivity()).getDrawer();
         initController(rootView);
         initCompoment(rootView);
+        testUpload(rootView);
         checkPermission();
         return rootView;
     }
@@ -484,5 +491,39 @@ public class FragmentSettings extends Fragment implements View.OnClickListener {
 
     public interface UpdateImage {
         public void onDataPass(int data);
+    }
+
+    public void testUpload(View v){
+        Button btn=(Button)v.findViewById(R.id.testBtn);
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+              TestSync testSync=new TestSync();
+                //tham so la file path
+                testSync.execute("file path");
+            }
+        });
+    }
+
+    private class TestSync extends AsyncTask<String,Void,String>{
+
+        @Override
+        protected String doInBackground(String... params) {
+            File file=new File("/storage/emulated/legacy/picture.jpg");
+            Cloudinary cloudinary = new Cloudinary(Utils.cloudinaryUrlFromContext(getContext()));
+            String img_url="";
+            try {
+                Map result=cloudinary.uploader().upload(file, ObjectUtils.emptyMap());
+                img_url= (String) result.get("url");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return img_url;
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            super.onPostExecute(s);
+        }
     }
 }
