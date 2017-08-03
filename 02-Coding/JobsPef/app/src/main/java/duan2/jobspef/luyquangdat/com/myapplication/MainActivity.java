@@ -17,11 +17,6 @@ import android.widget.TextView;
 
 
 import com.bumptech.glide.Glide;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.storage.FileDownloadTask;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
 import com.libre.mylibs.MyUtils;
 import com.mikepenz.materialdrawer.Drawer;
 import com.mikepenz.materialdrawer.DrawerBuilder;
@@ -50,8 +45,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private TextView tvName;
     private ImageView imgAva;
 
-    private FirebaseStorage storage = FirebaseStorage.getInstance();
-    private StorageReference storageRef;
+
 
     private String image;
 
@@ -186,20 +180,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 return;
             } else {
 
-                storageRef = storage.getReferenceFromUrl("gs://mchat-2a75e.appspot.com/userava").child(image);
-                storageRef.getFile(localFile).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
-                    @Override
-                    public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
-                        Bitmap bitmap = BitmapFactory.decodeFile(localFile.getAbsolutePath());
-                        imgAva.setImageBitmap(bitmap);
-
-                    }
-                }).addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception exception) {
-
-                    }
-                });
             }
         } catch (IOException e) {
         }

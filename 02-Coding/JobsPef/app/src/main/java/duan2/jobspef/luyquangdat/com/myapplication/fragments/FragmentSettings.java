@@ -36,12 +36,7 @@ import android.widget.Toast;
 import com.cloudinary.Cloudinary;
 import com.cloudinary.android.Utils;
 import com.cloudinary.utils.ObjectUtils;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.storage.FileDownloadTask;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
-import com.google.firebase.storage.UploadTask;
+
 import com.libre.mylibs.MyUtils;
 import com.mikepenz.materialdrawer.Drawer;
 
@@ -95,10 +90,6 @@ public class FragmentSettings extends Fragment implements View.OnClickListener {
     private UpdateImage updateImage;
 
     private static int REQUEST_CODE_SOME_FEATURES_PERMISSIONS = 999;
-
-    private FirebaseStorage storage = FirebaseStorage.getInstance();
-    private StorageReference storageReference;
-
     private boolean isUploadSuccess;
 
     private String token;
@@ -111,7 +102,7 @@ public class FragmentSettings extends Fragment implements View.OnClickListener {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_settings, container, false);
         token = MyUtils.getStringData(getContext(), Constants.PROFILE_ID);
-        storageReference = storage.getReferenceFromUrl("gs://mchat-2a75e.appspot.com/userava").child(token + "ava.png");
+//        storageReference = storage.getReferenceFromUrl("gs://mchat-2a75e.appspot.com/userava").child(token + "ava.png");
         context = rootView.getContext();
         toolbar = rootView.findViewById(R.id.toolbar);
         drawer = ((MainActivity) getActivity()).getDrawer();
@@ -364,7 +355,7 @@ public class FragmentSettings extends Fragment implements View.OnClickListener {
     }
 
     public void updateProfile(String name, String ava, String phone, String address) {
-        storeImageToFirebase(name, ava, phone, address);
+//        storeImageToFirebase(name, ava, phone, address);
 
     }
 
@@ -383,31 +374,7 @@ public class FragmentSettings extends Fragment implements View.OnClickListener {
         });
     }
 
-    public void storeImageToFirebase(final String name, final String ava, final String phone, final String address) {
-        AppUtils.showProgressDialog(getContext(), "Loading");
-        imgAva.setDrawingCacheEnabled(true);
-        imgAva.measure(View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED), View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED));
-        imgAva.layout(0, 0, imgAva.getMeasuredWidth(), imgAva.getMeasuredHeight());
-        imgAva.buildDrawingCache();
-        Bitmap bitmap = Bitmap.createBitmap(imgAva.getDrawingCache());
 
-        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, outputStream);
-        byte[] data = outputStream.toByteArray();
-        UploadTask uploadTask = storageReference.putBytes(data);
-        uploadTask.addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception exception) {
-                AppUtils.hideProgressDialog(getContext());
-            }
-        }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-            @Override
-            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                updateImage.onDataPass(1);
-                updateProfileRequest(name, ava, phone, address);
-            }
-        });
-    }
 
     private void displayImageFromGallery(Intent data, ImageView imageView) {
         Uri selectedImage = data.getData();
@@ -440,8 +407,8 @@ public class FragmentSettings extends Fragment implements View.OnClickListener {
                     if (response.body().getMessage().getAvatar_id() == null || response.body().getMessage().getAvatar_id().equals("")) {
                         return;
                     } else {
-                        StorageReference storageReferencegetAva = storage.getReferenceFromUrl("gs://mchat-2a75e.appspot.com/userava").child(response.body().getMessage().getAvatar_id());
-                        getAva(storageReferencegetAva);
+//                        StorageReference storageReferencegetAva = storage.getReferenceFromUrl("gs://mchat-2a75e.appspot.com/userava").child(response.body().getMessage().getAvatar_id());
+//                        getAva(storageReferencegetAva);
                     }
                     MyUtils.insertStringData(getContext(), Constants.IMAGE_ID, response.body().getMessage().getAvatar_id());
                     MyUtils.insertStringData(getContext(), Constants.IMAGE_ID, response.body().getMessage().getName());
@@ -461,7 +428,7 @@ public class FragmentSettings extends Fragment implements View.OnClickListener {
         });
     }
 
-    public void getAva(StorageReference storageReferencegetAva) {
+   /* public void getAva(StorageReference storageReferencegetAva) {
         try {
             final File localFile = File.createTempFile("images", "jpg");
 
@@ -481,7 +448,7 @@ public class FragmentSettings extends Fragment implements View.OnClickListener {
         } catch (IOException e) {
         }
 
-    }
+    }*/
 
     @Override
     public void onAttach(Activity a) {

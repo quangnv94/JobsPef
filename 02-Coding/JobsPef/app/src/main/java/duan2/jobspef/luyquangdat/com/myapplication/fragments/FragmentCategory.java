@@ -18,12 +18,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.storage.FileDownloadTask;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
 import com.libre.mylibs.MyUtils;
 import com.mikepenz.materialdrawer.Drawer;
 
@@ -56,8 +50,7 @@ public class FragmentCategory extends Fragment {
     private ViewPager viewPager;
     private ImageView imgMenu, imgNotifi;
 
-    private FirebaseStorage storage = FirebaseStorage.getInstance();
-    private StorageReference storageRef;
+
 
     private ArrayList<CategoryResponse> listCategoryFinal = new ArrayList<CategoryResponse>();
 
