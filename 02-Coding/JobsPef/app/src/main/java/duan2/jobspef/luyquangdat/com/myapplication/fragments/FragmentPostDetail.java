@@ -1,28 +1,18 @@
 package duan2.jobspef.luyquangdat.com.myapplication.fragments;
 
-import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.google.gson.internal.bind.ArrayTypeAdapter;
-import com.libre.mylibs.MyUtils;
 import com.mikepenz.materialdrawer.Drawer;
-import com.squareup.picasso.Picasso;
 
 import com.viewpagerindicator.CirclePageIndicator;
 
@@ -33,12 +23,7 @@ import duan2.jobspef.luyquangdat.com.myapplication.MainActivity;
 import duan2.jobspef.luyquangdat.com.myapplication.R;
 import duan2.jobspef.luyquangdat.com.myapplication.adapter.ViewPagerImagePreviewAdapter;
 import duan2.jobspef.luyquangdat.com.myapplication.common.Constants;
-import duan2.jobspef.luyquangdat.com.myapplication.entity.OfferDetailResponse;
 import duan2.jobspef.luyquangdat.com.myapplication.entity.PostResponse;
-import duan2.jobspef.luyquangdat.com.myapplication.service.ConnectServer;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class FragmentPostDetail extends Fragment implements View.OnClickListener {
     private Context context;

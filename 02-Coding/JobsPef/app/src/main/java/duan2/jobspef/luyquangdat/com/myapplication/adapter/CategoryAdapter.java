@@ -16,6 +16,7 @@ import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 
+import de.hdodenhof.circleimageview.CircleImageView;
 import duan2.jobspef.luyquangdat.com.myapplication.MainActivity;
 import duan2.jobspef.luyquangdat.com.myapplication.R;
 import duan2.jobspef.luyquangdat.com.myapplication.common.Constants;
@@ -32,7 +33,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.MyView
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         TextView tvCategoryName;
-        ImageView imgIcon;
+        CircleImageView imgIcon;
         View view;
 
         public MyViewHolder(View view) {

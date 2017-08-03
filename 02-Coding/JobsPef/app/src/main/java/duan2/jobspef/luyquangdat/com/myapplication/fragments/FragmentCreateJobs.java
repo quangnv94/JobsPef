@@ -444,7 +444,7 @@ public class FragmentCreateJobs extends Fragment implements View.OnClickListener
     }
 
     public void requestCreatePost(String image) {
-        String token = MyUtils.getStringData(getContext(), Constants.PROFILE_ID);
+        String token = MyUtils.getStringData(getContext(), Constants.TOKEN);
         ConnectServer.getResponseAPI().updateCreatePost(token, title, categoryId, image, benifed, timeLimit, phone, address, requirment).enqueue(new Callback<SimpleResponse>() {
             @Override
             public void onResponse(Call<SimpleResponse> call, Response<SimpleResponse> response) {
