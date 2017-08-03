@@ -75,7 +75,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     }
 
     public void checkLogined() {
-        Log.d("dulieulogout1", MyUtils.getStringData(getApplicationContext(), Constants.TOKEN));
         if (MyUtils.getStringData(LoginActivity.this, Constants.TOKEN) == null ||
                 (MyUtils.getStringData(LoginActivity.this, Constants.TOKEN)).equals("")) {
             return;
@@ -114,7 +113,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     }
 
     public void actionLoginFinal(String email, String pass) {
-        AppUtils.showProgressDialog(LoginActivity.this, "Loading");
+        AppUtils.showProgressDialog(LoginActivity.this, getString(R.string.loading));
         ConnectServer.getResponseAPI().login(email, pass, "").enqueue(new Callback<LoginResponse>() {
             @Override
             public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
@@ -122,7 +121,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 AppUtils.hideProgressDialog(LoginActivity.this);
                 if (!response.isSuccessful()) {
                     showDialogConfirm(R.drawable.warning, R.style.DialogAnimationBottom,
-                            "Thông tin tài khoản không chính xác", "Lỗi");
+                            getString(R.string.error_account), getString(R.string.error));
                 } else {
                     MyUtils.insertStringData(getApplicationContext(), Constants.TOKEN, response.body().getUser().getToken());
                     MyUtils.insertStringData(getApplicationContext(), Constants.NAME, response.body().getProfile().getName());
@@ -140,7 +139,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 MyUtils.hideKeyboard(LoginActivity.this);
                 AppUtils.hideProgressDialog(LoginActivity.this);
                 showDialogConfirm(R.drawable.warning, R.style.DialogAnimationBottom,
-                        "Thông tin tài khoản không chính xác, hoặc lỗi chưa rõ, vui lòng thử lại", "Lỗi");
+                        getString(R.string.error_account), getString(R.string.error));
             }
         });
     }
@@ -179,12 +178,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
                     @Override
                     public void onCancel() {
-                        Log.e("facebook login error", "cancel");
                     }
 
                     @Override
                     public void onError(FacebookException error) {
-                        Log.e("facebook login error", error.toString());
                     }
                 });
     }
@@ -226,7 +223,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 MyUtils.hideKeyboard(LoginActivity.this);
                 AppUtils.hideProgressDialog(LoginActivity.this);
                 showDialogConfirm(R.drawable.warning, R.style.DialogAnimationBottom,
-                        "Thông tin tài khoản không chính xác, hoặc lỗi chưa rõ, vui lòng thử lại", "Lỗi");
+                        getString(R.string.error_account), getString(R.string.error));
             }
         });
     }
@@ -238,11 +235,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         pattern = Pattern.compile(EMAIL_PATTERN);
         matcher = pattern.matcher(email);
         return matcher.matches();
-    }
-
-    public boolean validateFourm() {
-
-        return true;
     }
 
     public void showDialogConfirm(int icon, int animationSource, String message, String title) {

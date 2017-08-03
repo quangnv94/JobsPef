@@ -2,6 +2,7 @@ package duan2.jobspef.luyquangdat.com.myapplication.fragments;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
@@ -35,6 +36,8 @@ public class FragmentTabsNews extends Fragment {
     private ViewPagerTabsAdapter viewPagerTabsAdapter;
     private ArrayList<CategoryResponse> categoryResponses = new ArrayList<>();
     private int position;
+    private FloatingActionButton lbtnCreatePost;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_tab_news, container, false);
@@ -53,7 +56,7 @@ public class FragmentTabsNews extends Fragment {
         super.onResume();
         TextView txtToolbarTitle = toolbar.findViewById(R.id.txtToolbarTitle);
         txtToolbarTitle.setText(getText(R.string.app_name));
-        ImageView imgBack = toolbar.findViewById(R.id.imgBack);
+        ImageView imgBack = toolbar.findViewById(R.id.imgCreatePost);
         imgBack.setVisibility(View.VISIBLE);
         ImageView imgMore = toolbar.findViewById(R.id.imgMore);
         imgMore.setVisibility(View.VISIBLE);
@@ -67,13 +70,14 @@ public class FragmentTabsNews extends Fragment {
                 }
             }
         });
-        imgBack.setImageResource(R.drawable.bell);
+        imgBack.setImageResource(R.drawable.create_white);
         imgBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getFragmentManager().beginTransaction().replace(R.id.main_container,new FragmentNotification()).addToBackStack(null).commit();
+                getFragmentManager().beginTransaction().replace(R.id.main_container,new FragmentCreateJobs()).addToBackStack(null).commit();
             }
         });
+
     }
 
     @Override
@@ -91,7 +95,7 @@ public class FragmentTabsNews extends Fragment {
         toolbar = v.findViewById(R.id.toolbar);
         TextView txtToolbarTitle = toolbar.findViewById(R.id.txtToolbarTitle);
         txtToolbarTitle.setText(getText(R.string.app_name));
-        ImageView imgBack = toolbar.findViewById(R.id.imgBack);
+        ImageView imgBack = toolbar.findViewById(R.id.imgCreatePost);
         imgBack.setVisibility(View.VISIBLE);
         ImageView imgMore = toolbar.findViewById(R.id.imgMore);
         imgMore.setVisibility(View.VISIBLE);
@@ -105,6 +109,14 @@ public class FragmentTabsNews extends Fragment {
         });
         tabLayout = v.findViewById(R.id.tabs);
         viewPager = v.findViewById(R.id.viewpager);
+
+        lbtnCreatePost = (FloatingActionButton) v.findViewById(R.id.lbtnCreatePost);
+        lbtnCreatePost.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getFragmentManager().beginTransaction().replace(R.id.main_container,new FragmentCreateJobs()).addToBackStack(null).commit();
+            }
+        });
     }
 
     private void tabsLayoutBuilder() {

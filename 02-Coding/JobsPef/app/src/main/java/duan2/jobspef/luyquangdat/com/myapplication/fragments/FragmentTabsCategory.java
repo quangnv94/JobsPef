@@ -66,7 +66,7 @@ public class FragmentTabsCategory extends Fragment {
         imgBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getFragmentManager().beginTransaction().replace(R.id.main_container,new FragmentNotification()).addToBackStack(null).commit();
+                getFragmentManager().beginTransaction().replace(R.id.main_container,new FragmentCreateJobs()).addToBackStack(null).commit();
             }
         });
     }

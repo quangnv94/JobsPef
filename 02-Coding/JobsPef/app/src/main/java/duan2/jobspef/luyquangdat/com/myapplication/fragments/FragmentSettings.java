@@ -33,6 +33,7 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.cloudinary.Cloudinary;
 import com.cloudinary.android.Utils;
 import com.cloudinary.utils.ObjectUtils;
@@ -97,12 +98,15 @@ public class FragmentSettings extends Fragment implements View.OnClickListener {
     private String email;
     private String address;
     private String phone;
+    private File file;
+    private String nameNew;
+    private String phoneNew;
+    private String addressNew;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_settings, container, false);
         token = MyUtils.getStringData(getContext(), Constants.PROFILE_ID);
-//        storageReference = storage.getReferenceFromUrl("gs://mchat-2a75e.appspot.com/userava").child(token + "ava.png");
         context = rootView.getContext();
         toolbar = rootView.findViewById(R.id.toolbar);
         drawer = ((MainActivity) getActivity()).getDrawer();
@@ -165,12 +169,12 @@ public class FragmentSettings extends Fragment implements View.OnClickListener {
         switchNotification.setChecked(JobsPef.getBooleanData(getContext(), Constants.NOTIFICATION_ON_FLAG));
         TextView txtToolbarTitle = toolbar.findViewById(R.id.txtToolbarTitle);
         txtToolbarTitle.setText(getString(R.string.settings));
-        ImageView imgBack = toolbar.findViewById(R.id.imgBack);
+        ImageView imgBack = toolbar.findViewById(R.id.imgCreatePost);
         imgBack.setVisibility(View.VISIBLE);
         imgBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getFragmentManager().beginTransaction().replace(R.id.main_container, new FragmentNotification()).addToBackStack(null).commit();
+                getFragmentManager().beginTransaction().replace(R.id.main_container, new FragmentCreateJobs()).addToBackStack(null).commit();
             }
         });
         ImageView imgMore = toolbar.findViewById(R.id.imgMore);
@@ -232,9 +236,9 @@ public class FragmentSettings extends Fragment implements View.OnClickListener {
     }
 
     public void validateFourm() {
-        String nameNew = edtName.getText().toString().trim();
-        String phoneNew = edtPhone.getText().toString().trim();
-        String addressNew = edtAddress.getText().toString().trim();
+        nameNew = edtName.getText().toString().trim();
+        phoneNew = edtPhone.getText().toString().trim();
+        addressNew = edtAddress.getText().toString().trim();
         if (nameNew.length() == 0) {
             nameNew = name;
         } else if (nameNew.length() < 8) {
@@ -244,17 +248,17 @@ public class FragmentSettings extends Fragment implements View.OnClickListener {
         } else if (phoneNew.length() == 0) {
             phoneNew = phone;
         } else if (phoneNew.length() < 10) {
-            edtPhone.setError("Số điện thoại không đúng ");
+            edtPhone.setError(getString(R.string.invail_phone));
             edtPhone.requestFocus();
             return;
         } else if (addressNew.length() == 0) {
             addressNew = address;
         } else if (addressNew.length() < 10) {
-            edtAddress.setError("Địa chỉ của bạn quá ngắn ");
+            edtAddress.setError(getString(R.string.invail_address));
             edtAddress.requestFocus();
             return;
         }
-        updateProfile(nameNew, token + "ava.png", phoneNew, addressNew);
+        updateProfile();
     }
 
     public void showEdittext() {
@@ -293,9 +297,9 @@ public class FragmentSettings extends Fragment implements View.OnClickListener {
     public void seletePhotoAction() {
         AlertDialog.Builder b = new AlertDialog.Builder(getContext());
 
-        b.setTitle("Chọn ảnh đại diện ");
-        b.setMessage("Hãy lựa chọn các cách dưới đây ");
-        b.setPositiveButton("Từ máy ảnh", new DialogInterface.OnClickListener() {
+        b.setTitle(getString(R.string.select_image));
+        b.setMessage(R.string.select_image);
+        b.setPositiveButton(getString(R.string.from_camera), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 try {
@@ -306,7 +310,7 @@ public class FragmentSettings extends Fragment implements View.OnClickListener {
 
             }
         });
-        b.setNegativeButton("Từ thư viện", new DialogInterface.OnClickListener() {
+        b.setNegativeButton(getString(R.string.from_galaxy), new DialogInterface.OnClickListener() {
 
             @Override
 
@@ -336,27 +340,30 @@ public class FragmentSettings extends Fragment implements View.OnClickListener {
                     if (resultCode == RESULT_OK) {
                         Bitmap photo = (Bitmap) imageReturnedIntent.getExtras().get("data");
                         imgAva.setImageBitmap(photo);
-                        File file = MyUtils.saveBitmapToFile(MyUtils.resize(photo, 800, 800), "picture" + ".jpg");
+                        file = MyUtils.saveBitmapToFile(MyUtils.resize(photo, 800, 800), "picture" + ".jpg");
                         //image_edit = new TypedFile("multipart/form-data", file);
+                        Log.d("nguyenvanquang", photo + "");
                     }
 
                     break;
                 case 1:
                     if (resultCode == RESULT_OK) {
+
                         displayImageFromGallery(imageReturnedIntent, imgAva);
                     }
                     break;
             }
         } catch (Exception e) {
-            Toast.makeText(getContext(), "Please try again", Toast.LENGTH_LONG)
+            Toast.makeText(getContext(), getString(R.string.error), Toast.LENGTH_LONG)
                     .show();
         }
 
     }
 
-    public void updateProfile(String name, String ava, String phone, String address) {
-//        storeImageToFirebase(name, ava, phone, address);
+    public void updateProfile() {
 
+        TestSync testSync = new TestSync();
+        testSync.execute(file);
     }
 
     public void updateProfileRequest(String name, final String ava, String phone, String address) {
@@ -375,7 +382,6 @@ public class FragmentSettings extends Fragment implements View.OnClickListener {
     }
 
 
-
     private void displayImageFromGallery(Intent data, ImageView imageView) {
         Uri selectedImage = data.getData();
         String[] filePathColumn = {MediaStore.Images.Media.DATA};
@@ -387,12 +393,11 @@ public class FragmentSettings extends Fragment implements View.OnClickListener {
         cursor.close();
         Bitmap bitmap = MyUtils.bitmapRotate(imgDecodableString);
         imageView.setImageBitmap(bitmap);
-        File file = MyUtils.saveBitmapToFile(MyUtils.resize(bitmap, 800, 800), "picture" + ".jpg");
-        // image_edit = new TypedFile("multipart/form-data", file);
+        file = MyUtils.saveBitmapToFile(MyUtils.resize(bitmap, 800, 800), "picture" + ".jpg");
     }
 
     public void getInfoMember() {
-        AppUtils.showProgressDialog(getContext(), "Loading");
+        AppUtils.showProgressDialog(getContext(), getString(R.string.load));
         String id = MyUtils.getStringData(getContext(), Constants.USER_ID);
         ConnectServer.getResponseAPI().getInfoMember(id).enqueue(new Callback<InfoMemberResponse>() {
             @Override
@@ -407,11 +412,11 @@ public class FragmentSettings extends Fragment implements View.OnClickListener {
                     if (response.body().getMessage().getAvatar_id() == null || response.body().getMessage().getAvatar_id().equals("")) {
                         return;
                     } else {
-//                        StorageReference storageReferencegetAva = storage.getReferenceFromUrl("gs://mchat-2a75e.appspot.com/userava").child(response.body().getMessage().getAvatar_id());
-//                        getAva(storageReferencegetAva);
+                        Glide.with(getContext()).load(avatar_id).error(R.drawable.avatar).into(imgAva);
                     }
                     MyUtils.insertStringData(getContext(), Constants.IMAGE_ID, response.body().getMessage().getAvatar_id());
-                    MyUtils.insertStringData(getContext(), Constants.IMAGE_ID, response.body().getMessage().getName());
+                    MyUtils.insertStringData(getContext(), Constants.NAME, response.body().getMessage().getName());
+                    ((MainActivity) context).onDataPass(1);
                 } else {
                     tvName.setText("Chưa có dữ liệu !");
                     tvEmail.setText("Chưa có dữ liệu !");
@@ -423,32 +428,10 @@ public class FragmentSettings extends Fragment implements View.OnClickListener {
             @Override
             public void onFailure(Call<InfoMemberResponse> call, Throwable t) {
                 AppUtils.hideProgressDialog(getContext());
-                Log.d("bisaodasy", call.toString());
             }
         });
     }
 
-   /* public void getAva(StorageReference storageReferencegetAva) {
-        try {
-            final File localFile = File.createTempFile("images", "jpg");
-
-            storageReferencegetAva.getFile(localFile).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
-                @Override
-                public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
-                    Bitmap bitmap = BitmapFactory.decodeFile(localFile.getAbsolutePath());
-                    imgAva.setImageBitmap(bitmap);
-
-                }
-            }).addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception exception) {
-
-                }
-            });
-        } catch (IOException e) {
-        }
-
-    }*/
 
     @Override
     public void onAttach(Activity a) {
@@ -460,28 +443,28 @@ public class FragmentSettings extends Fragment implements View.OnClickListener {
         public void onDataPass(int data);
     }
 
-    public void testUpload(View v){
-        Button btn=(Button)v.findViewById(R.id.testBtn);
+    public void testUpload(View v) {
+        Button btn = (Button) v.findViewById(R.id.testBtn);
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-              TestSync testSync=new TestSync();
+                TestSync testSync = new TestSync();
                 //tham so la file path
-                testSync.execute("file path");
+
             }
         });
     }
 
-    private class TestSync extends AsyncTask<String,Void,String>{
+    private class TestSync extends AsyncTask<File, Void, String> {
 
         @Override
-        protected String doInBackground(String... params) {
-            File file=new File("/storage/emulated/legacy/picture.jpg");
+        protected String doInBackground(File... params) {
+            File file = params[0];
             Cloudinary cloudinary = new Cloudinary(Utils.cloudinaryUrlFromContext(getContext()));
-            String img_url="";
+            String img_url = "";
             try {
-                Map result=cloudinary.uploader().upload(file, ObjectUtils.emptyMap());
-                img_url= (String) result.get("url");
+                Map result = cloudinary.uploader().upload(file, ObjectUtils.emptyMap());
+                img_url = (String) result.get("url");
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -489,8 +472,16 @@ public class FragmentSettings extends Fragment implements View.OnClickListener {
         }
 
         @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            AppUtils.showProgressDialog(getActivity(), getString(R.string.load));
+        }
+
+        @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
+            Log.d("nguyenvanquang", nameNew + phoneNew + addressNew);
+            updateProfileRequest(nameNew, s, phoneNew, addressNew);
         }
     }
 }

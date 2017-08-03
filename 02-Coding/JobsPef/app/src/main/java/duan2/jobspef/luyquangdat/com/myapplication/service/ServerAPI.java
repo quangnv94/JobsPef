@@ -48,6 +48,18 @@ public interface ServerAPI {
                                        @Field("phone_number") String phone,
                                        @Field("address") String address);
 
+    @FormUrlEncoded
+    @POST("/api/post?")
+    Call<SimpleResponse> updateCreatePost(@Query("token") String token,
+                                       @Field("title") String title,
+                                       @Field("category_id") String category_id,
+                                       @Field("images") String image,
+                                       @Field("benefits") String benefits,
+                                       @Field("time_limited") String time_limited,
+                                       @Field("contact") String contact,
+                                       @Field("place") String place,
+                                       @Field("requirement") String requirement);
+
     @GET("/list")
     Call<ArrayList<PostResponse>> getPost(@Query("category_id") String category_id);
 

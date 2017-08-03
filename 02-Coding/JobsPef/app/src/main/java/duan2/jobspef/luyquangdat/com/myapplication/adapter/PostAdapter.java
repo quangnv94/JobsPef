@@ -61,7 +61,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.MyViewHolder> 
         final PostResponse entity = listItem.get(position);
         String linkimage = "";
         if (!entity.getImages().equals("")) {
-            linkimage = Constants.HOST_IMAGE + entity.getImages().split(",")[0];
+            linkimage = entity.getImages().split(",")[0];
         }
         Glide.with(context).load(linkimage).error(R.drawable.landscape).error(R.drawable.landscape).into(holder.imagePreview);
         holder.tvTitle.setText(entity.getTitle());

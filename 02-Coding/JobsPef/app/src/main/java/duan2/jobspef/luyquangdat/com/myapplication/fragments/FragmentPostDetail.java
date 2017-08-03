@@ -43,9 +43,6 @@ import retrofit2.Response;
 public class FragmentPostDetail extends Fragment implements View.OnClickListener {
     private Context context;
     private Toolbar toolbar;
-    private ProgressDialog progDialog = null;
-    private WebView wvDescription;
-    private ImageView imgPreview;
     private TextView tvDate;
     private TextView tvAuthor;
     private TextView tvTitle;
@@ -55,11 +52,7 @@ public class FragmentPostDetail extends Fragment implements View.OnClickListener
     private TextView tvRequirement;
     private TextView tvBenefits;
     private ViewPager pagerPreview;
-    private String youtubeURL = "";
     private CirclePageIndicator circlePageIndicator;
-    private String type;
-    private String videoURL;
-    private RelativeLayout layoutPreview;
     private Drawer drawer;
 
     @Override
@@ -84,23 +77,20 @@ public class FragmentPostDetail extends Fragment implements View.OnClickListener
         tvDescription = v.findViewById(R.id.tvDescription);
         tvRequirement = v.findViewById(R.id.tvRequirement);
         tvBenefits = v.findViewById(R.id.tvBenefits);
-        ImageView imgBack = toolbar.findViewById(R.id.imgBack);
+        ImageView imgBack = toolbar.findViewById(R.id.imgCreatePost);
         imgBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getFragmentManager().beginTransaction().replace(R.id.main_container, new FragmentNotification()).addToBackStack(null).commit();
+                getFragmentManager().beginTransaction().replace(R.id.main_container, new FragmentCreateJobs()).addToBackStack(null).commit();
 
             }
         });
         ImageView imgMore = toolbar.findViewById(R.id.imgMore);
+        imgMore.setBackgroundResource(R.drawable.ic_back);
         imgMore.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!drawer.isDrawerOpen()) {
-                    drawer.openDrawer();
-                } else {
-                    drawer.closeDrawer();
-                }
+                getFragmentManager().popBackStack();
             }
         });
         getData();
@@ -111,17 +101,17 @@ public class FragmentPostDetail extends Fragment implements View.OnClickListener
         PostResponse postResponse = (PostResponse) bundle.getSerializable(Constants.POST);
 
         tvTitle.setText(postResponse.getTitle());
-        tvDate.setText("Đăng vào lúc : " + postResponse.getCreated_at());
-        tvDatelimit.setText("Hạn tuyển dụng : " + postResponse.getTime_limited());
-        tvAuthor.setText("Đăng bởi : " + postResponse.getCreated_by());
+        tvDate.setText(getString(R.string.create_at) + postResponse.getCreated_at());
+        tvDatelimit.setText(getString(R.string.time_limited) + postResponse.getTime_limited());
+        tvAuthor.setText(getString(R.string.create_by) + postResponse.getCreated_by());
 
-        tvPlace.setText("Địa chỉ : " + postResponse.getPlace());
-        tvDescription.setText("Nội dung : " + postResponse.getDescription());
-        tvRequirement.setText("Yêu cầu : " + postResponse.getRequirement());
-        tvBenefits.setText("Đãi ngộ : " + postResponse.getBenefits());
+        tvPlace.setText(getString(R.string.address) + postResponse.getPlace());
+        tvDescription.setText(getString(R.string.content) + postResponse.getDescription());
+        tvRequirement.setText(getString(R.string.content2) + postResponse.getRequirement());
+        tvBenefits.setText(getString(R.string.salary) + postResponse.getBenefits());
         if (postResponse.getImages().length() > 0) {
             String[] images = postResponse.getImages().split(",");
-            ArrayList<String> listImg=new ArrayList<>(Arrays.asList(images));
+            ArrayList<String> listImg = new ArrayList<>(Arrays.asList(images));
             ViewPagerImagePreviewAdapter previewAdapter = new ViewPagerImagePreviewAdapter(getActivity(), listImg);
             pagerPreview.setAdapter(previewAdapter);
             circlePageIndicator.setViewPager(pagerPreview);

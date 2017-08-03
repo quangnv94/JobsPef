@@ -138,13 +138,12 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
                     @Override
                     public void onCancel() {
-                        Log.e("facebook login error", "cancel");
                     }
 
                     @Override
                     public void onError(FacebookException error) {
                         showDialogConfirm(R.drawable.ic_back, R.style.DialogAnimationBottom,
-                                "Đã xảy ra lỗi, vui lòng thử lại sau ", "Lỗi");
+                                getString(R.string.error_unkonw), getString(R.string.error));
                     }
                 });
     }
@@ -178,7 +177,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                 MyUtils.hideKeyboard(RegisterActivity.this);
                 AppUtils.hideProgressDialog(RegisterActivity.this);
                 showDialogConfirm(R.drawable.warning, R.style.DialogAnimationBottom,
-                        "Thông tin tài khoản không chính xác, hoặc lỗi chưa rõ, vui lòng thử lại", "Lỗi");
+                        getString(R.string.error_account), getString(R.string.error));
             }
         });
     }
@@ -232,10 +231,10 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                 AppUtils.hideProgressDialog(RegisterActivity.this);
                 if (response.body().getStatus() == 404) {
                     showDialogConfirm(R.drawable.warning, R.style.DialogAnimationBottom,
-                            response.body().getMessage(), "Lỗi");
+                            response.body().getMessage(), getString(R.string.error));
                 } else {
                     showDialogConfirm(R.drawable.success, R.style.DialogAnimationBottom,
-                            "Bạn đã đăng ký thành công, bạn có thể thực hiện đăng nhập", "Thành Công");
+                            getString(R.string.register_success), getString(R.string.success));
                 }
             }
 
@@ -243,7 +242,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             public void onFailure(Call<SimpleResponse> call, Throwable t) {
                 AppUtils.hideProgressDialog(RegisterActivity.this);
                 showDialogConfirm(R.drawable.ic_back, R.style.DialogAnimationBottom,
-                        "Đã xảy ra lỗi, vui lòng thử lại sau ", "Lỗi");
+                        getString(R.string.error_account), getString(R.string.error));
             }
         });
     }

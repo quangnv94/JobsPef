@@ -2,7 +2,9 @@ package duan2.jobspef.luyquangdat.com.myapplication.fragments;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -11,10 +13,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.cloudinary.Cloudinary;
+import com.cloudinary.android.Utils;
+import com.cloudinary.utils.ObjectUtils;
 import com.libre.mylibs.MyUtils;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Map;
 
+import duan2.jobspef.luyquangdat.com.myapplication.AppUtils;
 import duan2.jobspef.luyquangdat.com.myapplication.R;
 import duan2.jobspef.luyquangdat.com.myapplication.adapter.PostAdapter;
 import duan2.jobspef.luyquangdat.com.myapplication.common.Constants;
@@ -33,9 +42,10 @@ public class FragmentPost extends Fragment {
     private PostAdapter postAdapter;
     private String categoryID = "";
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_offer_by_category, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_post, container, false);
         context = rootView.getContext();
         Bundle data = getArguments();
         categoryID = data.getString(Constants.CATEGORY_ID);
@@ -47,6 +57,7 @@ public class FragmentPost extends Fragment {
 
     private void initController(View v) {
         rcOffer = v.findViewById(R.id.rcOffer);
+
     }
 
     @Override
@@ -71,7 +82,6 @@ public class FragmentPost extends Fragment {
             public void onResponse(Call<ArrayList<PostResponse>> call, Response<ArrayList<PostResponse>> response) {
                 dismissProgressDialog();
                 if (response.isSuccessful()) {
-                    Log.d("nguyenvanquang", response.body().size() + "");
                     listPost = response.body();
                     postAdapter = new PostAdapter(getActivity(), listPost);
                     rcOffer.setAdapter(postAdapter);
@@ -103,4 +113,5 @@ public class FragmentPost extends Fragment {
             progDialog.dismiss();
         }
     }
+
 }

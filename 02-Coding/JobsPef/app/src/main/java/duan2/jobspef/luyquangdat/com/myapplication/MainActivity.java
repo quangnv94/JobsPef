@@ -46,7 +46,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private ImageView imgAva;
 
 
-
     private String image;
 
     public static Drawer getDrawer() {
@@ -179,7 +178,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             if (image == null || image.equals("")) {
                 return;
             } else {
-
+                Glide.with(getApplicationContext()).load(image).error(R.drawable.avatar).into(imgAva);
             }
         } catch (IOException e) {
         }

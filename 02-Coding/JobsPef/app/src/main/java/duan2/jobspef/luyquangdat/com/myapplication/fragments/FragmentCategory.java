@@ -51,7 +51,6 @@ public class FragmentCategory extends Fragment {
     private ImageView imgMenu, imgNotifi;
 
 
-
     private ArrayList<CategoryResponse> listCategoryFinal = new ArrayList<CategoryResponse>();
 
     @Override
@@ -67,13 +66,19 @@ public class FragmentCategory extends Fragment {
 
 
     private void initController(View v) {
-       /* imgMenu = (ImageView) v.findViewById(R.id.imgMore);
-        imgNotifi = (ImageView) v.findViewById(R.id.imgBack);
+        rcCategory = (RecyclerView) v.findViewById(R.id.rcCategory);
+        viewPager = (ViewPager) v.findViewById(R.id.viewpager);
+        viewPager.setVisibility(View.GONE);
+    }
+
+    private void initToolbar(View v) {
+        imgMenu = (ImageView) v.findViewById(R.id.imgMore);
+        imgNotifi = (ImageView) v.findViewById(R.id.imgCreatePost);
 
         imgNotifi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getFragmentManager().beginTransaction().replace(R.id.main_container, new FragmentNotification()).addToBackStack(null).commit();
+                getFragmentManager().beginTransaction().replace(R.id.main_container, new FragmentCreateJobs()).addToBackStack(null).commit();
 
             }
         });
@@ -86,35 +91,11 @@ public class FragmentCategory extends Fragment {
                     drawer.closeDrawer();
                 }
             }
-        });*/
-        rcCategory = (RecyclerView) v.findViewById(R.id.rcCategory);
-        viewPager = (ViewPager) v.findViewById(R.id.viewpager);
-        viewPager.setVisibility(View.GONE);
+        });
+        TextView tb = v.findViewById(R.id.txtToolbarTitle);
+        tb.setText(R.string.tbl_title);
     }
-private void initToolbar(View v){
-    imgMenu = (ImageView) v.findViewById(R.id.imgMore);
-    imgNotifi = (ImageView) v.findViewById(R.id.imgBack);
 
-    imgNotifi.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            getFragmentManager().beginTransaction().replace(R.id.main_container, new FragmentNotification()).addToBackStack(null).commit();
-
-        }
-    });
-    imgMenu.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            if (!drawer.isDrawerOpen()) {
-                drawer.openDrawer();
-            } else {
-                drawer.closeDrawer();
-            }
-        }
-    });
-    TextView tb=v.findViewById(R.id.txtToolbarTitle);
-    tb.setText(R.string.tbl_title);
-}
     @Override
     public void onResume() {
         super.onResume();
