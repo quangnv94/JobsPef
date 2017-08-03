@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:layout_marginTop="15dp"
-        android:hint="Nhâp tiêu đề"
+        android:hint="@string/hint_title"
         android:inputType="phone"
         android:maxLines="1"
         android:paddingLeft="7dp" />
@@ -19,7 +19,7 @@
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:layout_marginTop="15dp"
-        android:hint="Nội dung"
+        android:hint="@string/hint_say_right"
         android:inputType="phone"
         android:maxLines="1"
         android:paddingLeft="7dp" />
@@ -29,7 +29,7 @@
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:layout_marginTop="15dp"
-        android:hint="Nội dung"
+        android:hint="@string/hint_say_right"
         android:inputType="phone"
         android:maxLines="1"
         android:paddingLeft="7dp" />

@@ -1,4 +1,5 @@
 <resources>
+    <string name="hello_word">Hello World!</string>
     <string name="app_name">JobPef</string>
     <string name="title_activity_main">MainActivity</string>
     <string name="go_to_app">Go to app</string>
@@ -32,4 +33,26 @@
     <string name="edit_info">Thay đổi thông tin</string>
     <string name="msg_notif">Bạn chưa có thông báo !</string>
     <string name="tbl_title">Danh mục việc làm</string>
+    <string name="btn_Register">Đăng ký</string>
+    <string name="btn_Login">Đăng nhập</string>
+    <string name="btn_loginfacebook">Đăng nhập với Facebook</string>
+    <string name="hint_email">Thư điện tử</string>
+    <string name="hint_password">Mật Khẩu</string>
+    <string name="hint_retype_password">Nhập lại password</string>
+    <string name="hint_firstname_name">Họ và tên</string>
+    <string name="hint_title">Nhập tiêu đề</string>
+    <string name="hint_say_right">Nội dung</string>
+    <string name="hint_Enter_a_new_name">Nhập họ tên mới</string>
+    <string name="hint_Enter_a_new_phonenumber">Nhập số điện thoại mới</string>
+    <string name="hint_Enter_a_new_adress">Nhập địa chỉ mới</string>
+    <string name="day_month_year">12-12-1992</string>
+    <string name="number">1234</string>
+    <string name="title">Title</string>
+    <string name="first_and_last_name">Họ và tên:</string>
+    <string name="phone_number">Số điện thoại:</string>
+    <string name="adress">Địa chỉ :</string>
+    <string name="www">www</string>
+    <string name="f">f</string>
+    <string name="alibaba">Alibaba</string>
+    <string name="date">date</string>
 </resources>

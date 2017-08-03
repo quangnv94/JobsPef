@@ -84,7 +84,7 @@
                         android:paddingLeft="10dp"
                         android:paddingRight="10dp"
                         android:paddingTop="5dp"
-                        android:text="12-12-1992"
+                        android:text="@string/day_month_year"
                         android:textColor="@color/dark_blue"
                         android:textSize="12sp" />
 
@@ -95,7 +95,7 @@
                         android:paddingLeft="10dp"
                         android:paddingRight="10dp"
                         android:paddingTop="5dp"
-                        android:text="1234"
+                        android:text="@string/number"
                         android:textColor="@color/dark_blue"
                         android:textSize="12sp" />
 

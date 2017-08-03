@@ -32,7 +32,7 @@
                 android:paddingLeft="2dp"
                 android:paddingRight="5dp"
                 android:paddingTop="2dp"
-                android:text="Alibaba"
+                android:text="@string/alibaba"
                 android:textColor="@color/dark_blue"
                 android:textSize="12sp" />
 
@@ -55,7 +55,7 @@
                     android:gravity="center|left"
                     android:paddingLeft="5dp"
                     android:singleLine="true"
-                    android:text="date"
+                    android:text="@string/date"
                     android:textColor="@color/gray"
                     android:textSize="12sp" />
 
@@ -69,7 +69,7 @@
                     android:gravity="center|right"
                     android:paddingRight="5dp"
                     android:singleLine="true"
-                    android:text="category"
+                    android:text="@string/category"
                     android:textColor="@color/light_blue"
                     android:textSize="12sp" />
             </LinearLayout>
