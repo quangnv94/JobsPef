@@ -6,7 +6,9 @@
     android:layout_margin="0dp"
     android:background="@color/dark_blue"
     android:gravity="top|start"
-    android:minHeight="?android:attr/actionBarSize">
+    android:minHeight="?android:attr/actionBarSize"
+    android:elevation="3dp"
+    >
 
 
     <RelativeLayout

@@ -71,7 +71,7 @@ public class FragmentPostDetail extends Fragment implements View.OnClickListener
             }
         });
         ImageView imgMore = toolbar.findViewById(R.id.imgMore);
-        imgMore.setBackgroundResource(R.drawable.ic_back);
+        imgMore.setImageDrawable(getResources().getDrawable(R.drawable.ic_back));
         imgMore.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -79,6 +79,7 @@ public class FragmentPostDetail extends Fragment implements View.OnClickListener
             }
         });
         getData();
+
     }
 
     public void getData() {

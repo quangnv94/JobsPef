@@ -112,7 +112,6 @@ public class FragmentSettings extends Fragment implements View.OnClickListener {
         drawer = ((MainActivity) getActivity()).getDrawer();
         initController(rootView);
         initCompoment(rootView);
-        testUpload(rootView);
         checkPermission();
         return rootView;
     }
@@ -165,8 +164,6 @@ public class FragmentSettings extends Fragment implements View.OnClickListener {
 
 
     private void initController(View v) {
-        switchNotification = v.findViewById(R.id.switch_notification);
-        switchNotification.setChecked(JobsPef.getBooleanData(getContext(), Constants.NOTIFICATION_ON_FLAG));
         TextView txtToolbarTitle = toolbar.findViewById(R.id.txtToolbarTitle);
         txtToolbarTitle.setText(getString(R.string.settings));
         ImageView imgBack = toolbar.findViewById(R.id.imgCreatePost);
@@ -189,12 +186,7 @@ public class FragmentSettings extends Fragment implements View.OnClickListener {
             }
         });
 
-        switchNotification.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                MyUtils.insertBooleanData(getActivity(), Constants.NOTIFICATION_ON_FLAG, isChecked);
-            }
-        });
+
     }
 
     public void initCompoment(View v) {
@@ -443,17 +435,6 @@ public class FragmentSettings extends Fragment implements View.OnClickListener {
         public void onDataPass(int data);
     }
 
-    public void testUpload(View v) {
-        Button btn = (Button) v.findViewById(R.id.testBtn);
-        btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                TestSync testSync = new TestSync();
-                //tham so la file path
-
-            }
-        });
-    }
 
     private class TestSync extends AsyncTask<File, Void, String> {
 
@@ -462,11 +443,13 @@ public class FragmentSettings extends Fragment implements View.OnClickListener {
             File file = params[0];
             Cloudinary cloudinary = new Cloudinary(Utils.cloudinaryUrlFromContext(getContext()));
             String img_url = "";
-            try {
-                Map result = cloudinary.uploader().upload(file, ObjectUtils.emptyMap());
-                img_url = (String) result.get("url");
-            } catch (IOException e) {
-                e.printStackTrace();
+            if (file != null) {
+                try {
+                    Map result = cloudinary.uploader().upload(file, ObjectUtils.emptyMap());
+                    img_url = (String) result.get("url");
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
             return img_url;
         }
