@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/app_bg"
+    android:background="@drawable/bg2"
     android:orientation="vertical">
 
     <include layout="@layout/toolbar"/>
@@ -16,7 +16,6 @@
         android:id="@+id/rcCategory"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingBottom="5dp"
         android:paddingLeft="5dp"
        />
 </LinearLayout>

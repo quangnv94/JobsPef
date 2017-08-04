@@ -50,7 +50,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         FacebookSdk.sdkInitialize(getApplicationContext());
         setContentView(R.layout.activity_login);
         checkLogined();
-        MyUtils.hideKeyboard(LoginActivity.this);
         init();
     }
 
@@ -70,6 +69,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         if (intent != null) {
             edtEmail.setText(intent.getStringExtra(Constants.EMAIL));
         }
+        MyUtils.hideKeyboard(LoginActivity.this);
     }
 
     public void checkLogined() {

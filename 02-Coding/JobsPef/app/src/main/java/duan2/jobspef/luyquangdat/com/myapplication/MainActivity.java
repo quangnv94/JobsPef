@@ -5,6 +5,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -39,6 +40,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private TextView tvName;
     private ImageView imgAva;
 
+    private boolean isFragment = true;
+
 
     private String image;
 
@@ -56,9 +59,40 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
         setupDrawerLayout();
 
-        getSupportFragmentManager().beginTransaction().replace(R.id.main_container, new FragmentCategory()).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.main_container, new FragmentCategory()).addToBackStack("FragmentCategory").commit();
         initController();
         getAva();
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (drawer.isDrawerOpen()) {
+            drawer.closeDrawer();
+        } else {
+            if (isFragment == true) {
+                super.onBackPressed();
+            }
+        }
+        getActivityFragment();
+    }
+
+    public FragmentCategory getActivityFragment() {
+        if (getSupportFragmentManager().getBackStackEntryCount() == 0) {
+            return null;
+        }
+
+        String tag = getSupportFragmentManager().getBackStackEntryAt(getSupportFragmentManager().getBackStackEntryCount() - 1).getName();
+        if (tag != null) {
+            if (tag.equals("FragmentCategory")) {
+                isFragment = false;
+            } else {
+                isFragment = true;
+            }
+        } else {
+            isFragment = true;
+        }
+        return (FragmentCategory) getSupportFragmentManager().findFragmentByTag(tag);
+
     }
 
     private void setupDrawerLayout() {
@@ -94,7 +128,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         layoutWhoWeAre = (LinearLayout) findViewById(R.id.layout_who_we_are);
         layoutShare = (LinearLayout) findViewById(R.id.layout_share);
         layoutSignOut = (LinearLayout) findViewById(R.id.layoutSignOut);
-        imgAva= (ImageView) findViewById(R.id.imgAvatar);
+        imgAva = (ImageView) findViewById(R.id.imgAvatar);
         tvName = (TextView) findViewById(R.id.tvName);
         layoutHome.setOnClickListener(this);
         layoutSetting.setOnClickListener(this);
@@ -103,7 +137,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         layoutSignOut.setOnClickListener(this);
         layoutShare.setOnClickListener(this);
 
-        tvName.setText(getString(R.string.hello) + " " +MyUtils.getStringData(MainActivity.this, Constants.NAME) +"!");
+        tvName.setText(getString(R.string.hello) + " " + MyUtils.getStringData(MainActivity.this, Constants.NAME) + "!");
         getAva();
     }
 
@@ -163,6 +197,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onDataPass() {
         getAva();
-        tvName.setText(getString(R.string.hello) + " " +MyUtils.getStringData(MainActivity.this, Constants.NAME) +"!");
+        tvName.setText(getString(R.string.hello) + " " + MyUtils.getStringData(MainActivity.this, Constants.NAME) + "!");
     }
 }
