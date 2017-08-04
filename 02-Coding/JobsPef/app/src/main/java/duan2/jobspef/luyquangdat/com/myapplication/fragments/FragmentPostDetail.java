@@ -109,9 +109,9 @@ public class FragmentPostDetail extends Fragment implements View.OnClickListener
         txtToolbarTitle.setText(postResponse.getTitle());
 
         tvTitle.setText(postResponse.getTitle());
-        tvDate.setText(getResources().getString(R.string.create_at) + " " + postResponse.getCreated_at());
-        tvDatelimit.setText(getResources().getString(R.string.time_limited) + ": " + postResponse.getTime_limited());
-        tvAuthor.setText(getResources().getString(R.string.create_by) + " " + postResponse.getCreated_by());
+        tvDate.setText(getResources().getString(R.string.create_at) + postResponse.getCreated_at());
+        tvDatelimit.setText(getResources().getString(R.string.time_limited) + postResponse.getTime_limited());
+        tvAuthor.setText(getResources().getString(R.string.create_by) + postResponse.getCreated_by());
 
         tvPlace.setText(getResources().getString(R.string.address) + " " + postResponse.getPlace());
         tvDescription.setText(getResources().getString(R.string.content) + "\n" + postResponse.getDescription());
