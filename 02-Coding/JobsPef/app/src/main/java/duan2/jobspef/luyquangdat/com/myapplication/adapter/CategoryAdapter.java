@@ -2,6 +2,7 @@ package duan2.jobspef.luyquangdat.com.myapplication.adapter;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -11,6 +12,8 @@ import android.widget.TextView;
 
 
 import com.bumptech.glide.Glide;
+import com.github.ybq.android.spinkit.style.ChasingDots;
+import com.github.ybq.android.spinkit.style.DoubleBounce;
 
 import java.util.ArrayList;
 
@@ -57,6 +60,9 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.MyView
 
         holder.tvCategoryName.setText(entity.getCategory_name());
         String image = Constants.HOST_IMAGE + entity.getIcon_id();
+        ChasingDots  mChasingDotsDrawable = new ChasingDots();
+        mChasingDotsDrawable.setColor(Color.WHITE);
+        holder.imgIcon.setImageDrawable(mChasingDotsDrawable);
         Glide.with(context).load(image).error(R.drawable.landscape).into(holder.imgIcon);
         holder.view.setOnClickListener(new View.OnClickListener() {
             @Override

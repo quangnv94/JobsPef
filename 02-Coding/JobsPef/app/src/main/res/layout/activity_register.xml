@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/bg_ac_login">
+    android:background="@drawable/bg_login">
 
     <ImageView
         android:id="@+id/imgBack"
@@ -10,7 +10,7 @@
         android:layout_height="30dp"
         android:layout_marginRight="10dp"
         android:layout_marginTop="10dp"
-        android:src="@drawable/left_arrow" />
+        android:src="@drawable/ic_back" />
 
     <ScrollView
         android:layout_marginTop="20dp"
@@ -34,6 +34,7 @@
                 android:textSize="50sp" />
 
             <EditText
+                android:alpha="0.8"
                 android:layout_marginTop="10dp"
                 android:id="@+id/edtName"
                 android:layout_width="match_parent"
@@ -45,6 +46,7 @@
                 android:paddingLeft="7dp" />
 
             <EditText
+                android:alpha="0.8"
                 android:layout_marginTop="10dp"
                 android:id="@+id/edtEmail"
                 android:layout_width="match_parent"
@@ -56,6 +58,7 @@
                 android:paddingLeft="7dp" />
 
             <EditText
+                android:alpha="0.8"
                 android:id="@+id/edtPassword"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
@@ -67,6 +70,7 @@
                 android:paddingLeft="7dp" />
 
             <EditText
+                android:alpha="0.8"
                 android:id="@+id/edtRePassword"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
@@ -78,6 +82,7 @@
                 android:paddingLeft="7dp" />
 
             <Button
+                android:alpha="0.8"
                 android:id="@+id/btnSignUp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

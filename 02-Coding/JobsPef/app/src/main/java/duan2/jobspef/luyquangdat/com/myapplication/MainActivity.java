@@ -33,7 +33,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private LinearLayout layoutContactUs;
     private LinearLayout layoutWhoWeAre;
     private LinearLayout layoutShare;
-    private LinearLayout layoutSignout;
+    private LinearLayout layoutSignOut;
+    private ImageView imgSignOut;
     private TextView tvDevelopedBy;
     private TextView tvName;
     private ImageView imgAva;
@@ -87,27 +88,23 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void initController() {
-        tvDevelopedBy = (TextView) findViewById(R.id.tvDevelopedBy);
         layoutHome = (LinearLayout) findViewById(R.id.layout_home);
         layoutSetting = (LinearLayout) findViewById(R.id.layout_setting);
         layoutContactUs = (LinearLayout) findViewById(R.id.layout_contact_us);
         layoutWhoWeAre = (LinearLayout) findViewById(R.id.layout_who_we_are);
         layoutShare = (LinearLayout) findViewById(R.id.layout_share);
-        layoutSignout = (LinearLayout) findViewById(R.id.layout_signout);
+        layoutSignOut = (LinearLayout) findViewById(R.id.layoutSignOut);
+        imgAva= (ImageView) findViewById(R.id.imgAvatar);
         tvName = (TextView) findViewById(R.id.tvName);
-        imgAva = (ImageView) findViewById(R.id.imgAvatar);
-        imgAva.setOnClickListener(this);
         layoutHome.setOnClickListener(this);
         layoutSetting.setOnClickListener(this);
         layoutContactUs.setOnClickListener(this);
         layoutWhoWeAre.setOnClickListener(this);
+        layoutSignOut.setOnClickListener(this);
         layoutShare.setOnClickListener(this);
-        tvDevelopedBy.setOnClickListener(this);
-        layoutSignout.setOnClickListener(this);
 
-        tvName.setText(MyUtils.getStringData(MainActivity.this, Constants.NAME));
-        String image_link = MyUtils.getStringData(MainActivity.this, Constants.IMAGE_ID);
-        Glide.with(MainActivity.this).load(image_link).error(R.drawable.avatar).into(imgAva);
+        tvName.setText(getString(R.string.hello) + " " +MyUtils.getStringData(MainActivity.this, Constants.NAME) +"!");
+        getAva();
     }
 
     @Override
@@ -143,7 +140,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 drawer.closeDrawer();
                 getSupportFragmentManager().beginTransaction().replace(R.id.main_container, new FragmentWhoWeAre()).commit();
                 break;
-            case R.id.layout_signout:
+            case R.id.layoutSignOut:
                 MyUtils.insertStringData(getApplicationContext(), Constants.TOKEN, "");
                 startActivity(new Intent(MainActivity.this, LoginActivity.class));
                 break;
@@ -152,12 +149,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 shareIntent.setType("text/plain");
                 shareIntent.putExtra(Intent.EXTRA_TEXT, "Link share");
                 startActivity(shareIntent);
-                break;
-            case R.id.tvDevelopedBy:
-                String url3 = "http://facebook.com/neverloves94";
-                Intent i3 = new Intent(Intent.ACTION_VIEW);
-                i3.setData(Uri.parse(url3));
-                startActivity(i3);
                 break;
         }
     }
@@ -172,6 +163,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onDataPass() {
         getAva();
-        tvName.setText(MyUtils.getStringData(MainActivity.this, Constants.NAME));
+        tvName.setText(getString(R.string.hello) + " " +MyUtils.getStringData(MainActivity.this, Constants.NAME) +"!");
     }
 }

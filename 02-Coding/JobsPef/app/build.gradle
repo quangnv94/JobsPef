@@ -20,6 +20,7 @@ android {
 }
 repositories {
     mavenCentral()
+    maven { url "https://jitpack.io" }
 }
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
@@ -40,4 +41,5 @@ dependencies {
     compile 'com.github.JakeWharton:ViewPagerIndicator:2.4.1'
     compile 'com.cloudinary:cloudinary-android:1.14.0'
     compile 'de.hdodenhof:circleimageview:2.1.0'
+    compile 'com.github.ybq:Android-SpinKit:1.1.0'
 }

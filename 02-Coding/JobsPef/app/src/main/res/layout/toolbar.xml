@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="?android:attr/actionBarSize"
     android:layout_margin="0dp"
-    android:background="@color/dark_blue"
+    android:background="#1E2C4F"
     android:gravity="top|start"
     android:minHeight="?android:attr/actionBarSize">
 
@@ -18,7 +18,7 @@
         <ImageView
             android:layout_gravity="center"
             android:id="@+id/imgMore"
-            android:layout_width="wrap_content"
+            android:layout_width="30dp"
             android:layout_height="40dp"
             android:scaleType="fitCenter"
             android:src="@drawable/menuicon"

@@ -90,4 +90,5 @@
     <string name="register_facebook">Đăng ký với facebook </string>
     <string name="nodata">Chưa có dữ liệu !</string>
     <string name="create_post">Đăng tin</string>
+    <string name="hello">Xin chào,</string>
 </resources>

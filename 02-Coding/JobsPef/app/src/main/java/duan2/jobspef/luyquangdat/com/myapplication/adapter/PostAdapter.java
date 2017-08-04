@@ -3,6 +3,8 @@ package duan2.jobspef.luyquangdat.com.myapplication.adapter;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,8 +24,10 @@ import duan2.jobspef.luyquangdat.com.myapplication.fragments.FragmentPostDetail;
 
 
 public class PostAdapter extends RecyclerView.Adapter<PostAdapter.MyViewHolder> {
-    private Context context;
+    private MainActivity context;
     private ArrayList<PostResponse> listItem;
+    private FragmentManager manager;
+    private FragmentTransaction transaction;
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         ImageView imagePreview;
@@ -44,7 +48,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.MyViewHolder> 
 
 
     public PostAdapter(Activity activity, ArrayList<PostResponse> listItem) {
-        this.context = activity;
+        this.context =(MainActivity) activity;
         this.listItem = listItem;
     }
 
@@ -75,7 +79,12 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.MyViewHolder> 
                 data.putSerializable(Constants.POST, listItem.get(position));
                 FragmentPostDetail fragmentOfferDetail = new FragmentPostDetail();
                 fragmentOfferDetail.setArguments(data);
-                ((MainActivity) context).getSupportFragmentManager().beginTransaction().replace(R.id.main_container, fragmentOfferDetail).addToBackStack(null).commit();
+                manager = context.getSupportFragmentManager();
+                transaction = manager.beginTransaction();
+                transaction.setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left)
+                        .replace(R.id.main_container, fragmentOfferDetail)
+                        .addToBackStack(null)
+                        .commit();
             }
         });
     }
