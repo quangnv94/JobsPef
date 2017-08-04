@@ -28,6 +28,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.cloudinary.Cloudinary;
@@ -140,15 +141,11 @@ public class FragmentCreateJobs extends Fragment implements View.OnClickListener
                 categoryId = "";
             }
         });
+        TextView txtToolbarTitle = toolbar.findViewById(R.id.txtToolbarTitle);
+        txtToolbarTitle.setText(getString(R.string.create_post));
 
         ImageView imgBack = toolbar.findViewById(R.id.imgCreatePost);
-        imgBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getFragmentManager().beginTransaction().replace(R.id.main_container, new FragmentCreateJobs()).addToBackStack(null).commit();
-
-            }
-        });
+        imgBack.setVisibility(View.INVISIBLE);
         ImageView imgMore = toolbar.findViewById(R.id.imgMore);
         imgMore.setImageDrawable(getResources().getDrawable(R.drawable.ic_back));
         imgMore.setOnClickListener(new View.OnClickListener() {

@@ -107,7 +107,6 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     private void loginWithFaceBook() {
         callbackManager = CallbackManager.Factory.create();
         LoginManager.getInstance().logOut();
-        // Set permissions
         LoginManager.getInstance().logInWithReadPermissions(this, Arrays.asList("public_profile,email"));
 
         LoginManager.getInstance().registerCallback(callbackManager,
@@ -147,7 +146,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     }
 
     public void checkFacebookIsReady(final String facebookId, final String emailface, final String nameFace) {
-        AppUtils.showProgressDialog(RegisterActivity.this, "Loading");
+        AppUtils.showProgressDialog(RegisterActivity.this, getString(R.string.loading));
         ConnectServer.getResponseAPI().login(emailface, nameFace, facebookId).enqueue(new Callback<LoginResponse>() {
             @Override
             public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
@@ -261,10 +260,8 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                     }
                 });
 
-        // create alert dialog
         AlertDialog alertDialog = alertDialogBuilder.create();
         alertDialog.getWindow().getAttributes().windowAnimations = animationSource;
-        // show it
         alertDialog.show();
 
 

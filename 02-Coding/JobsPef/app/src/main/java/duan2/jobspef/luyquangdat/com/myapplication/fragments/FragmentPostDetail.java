@@ -85,6 +85,8 @@ public class FragmentPostDetail extends Fragment implements View.OnClickListener
     public void getData() {
         Bundle bundle = getArguments();
         PostResponse postResponse = (PostResponse) bundle.getSerializable(Constants.POST);
+        TextView txtToolbarTitle = toolbar.findViewById(R.id.txtToolbarTitle);
+        txtToolbarTitle.setText(postResponse.getTitle());
 
         tvTitle.setText(postResponse.getTitle());
         tvDate.setText(getResources().getString(R.string.create_at) + postResponse.getCreated_at());

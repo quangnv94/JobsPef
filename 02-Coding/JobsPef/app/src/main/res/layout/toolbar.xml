@@ -25,11 +25,11 @@
             android:visibility="visible" />
 
         <TextView
+            android:paddingBottom="10dp"
             android:id="@+id/txtToolbarTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:layout_gravity="center"
             android:gravity="center"
             android:textColor="@color/white"
             android:textSize="18sp" />

@@ -37,6 +37,7 @@ public class FragmentTabsNews extends Fragment {
     private ArrayList<CategoryResponse> categoryResponses = new ArrayList<>();
     private int position;
     private FloatingActionButton lbtnCreatePost;
+    private TextView txtToolbarTitle;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -93,7 +94,7 @@ public class FragmentTabsNews extends Fragment {
 
     private void initController(View v) {
         toolbar = v.findViewById(R.id.toolbar);
-        TextView txtToolbarTitle = toolbar.findViewById(R.id.txtToolbarTitle);
+        txtToolbarTitle = toolbar.findViewById(R.id.txtToolbarTitle);
         txtToolbarTitle.setText(getText(R.string.app_name));
         ImageView imgBack = toolbar.findViewById(R.id.imgCreatePost);
         imgBack.setVisibility(View.VISIBLE);
@@ -123,7 +124,6 @@ public class FragmentTabsNews extends Fragment {
         int number = 0;
         viewPagerTabsAdapter = new ViewPagerTabsAdapter(getChildFragmentManager());
         for (CategoryResponse categoryResponse : categoryResponses) {
-            Log.e("size", "" + categoryResponses.size());
             Bundle data = new Bundle();
             data.putString(Constants.CATEGORY_ID, "" + categoryResponse.getId_category());
             data.putString(Constants.CATEGORY_NAME, "" + categoryResponse.getCategory_name());
@@ -153,7 +153,6 @@ public class FragmentTabsNews extends Fragment {
                 viewPager.setCurrentItem(tab.getPosition());
             }
         });
-//        tabLayout.setTabTextColors(ContextCompat.getColorStateList(this, R.color.gray));
         tabLayout.setSelectedTabIndicatorColor(ContextCompat.getColor(getActivity(), R.color.dark_blue));
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
     }

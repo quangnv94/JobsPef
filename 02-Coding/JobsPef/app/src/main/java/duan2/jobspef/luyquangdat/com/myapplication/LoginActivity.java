@@ -37,7 +37,6 @@ import retrofit2.Response;
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
     private Button btnLogin;
     private Button btnSignUp;
-    private Button btnFacebook;
     private EditText edtEmail;
     private EditText edtPassword;
     private Button btnfacebook;
@@ -144,7 +143,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private void loginWithFaceBook() {
         callbackManager = CallbackManager.Factory.create();
         LoginManager.getInstance().logOut();
-        // Set permissions
         LoginManager.getInstance().logInWithReadPermissions(this, Arrays.asList("public_profile,email"));
 
         LoginManager.getInstance().registerCallback(callbackManager,
@@ -156,7 +154,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                                 new GraphRequest.GraphJSONObjectCallback() {
                                     @Override
                                     public void onCompleted(JSONObject object, GraphResponse response) {
-                                        Log.e("allresult", object.toString());
                                         try {
                                             checkFacebookIsReady("", "", object.getString("id"), object.getString("email"), object.getString("name"));
                                         } catch (JSONException e) {
@@ -189,7 +186,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     }
 
     public void checkFacebookIsReady(String email, String pass, final String facebookId, final String emailface, final String nameFace) {
-        AppUtils.showProgressDialog(LoginActivity.this, "Loading");
+        AppUtils.showProgressDialog(LoginActivity.this, getString(R.string.loading));
         ConnectServer.getResponseAPI().login(email, pass, facebookId).enqueue(new Callback<LoginResponse>() {
             @Override
             public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
@@ -250,10 +247,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     }
                 });
 
-        // create alert dialog
         AlertDialog alertDialog = alertDialogBuilder.create();
         alertDialog.getWindow().getAttributes().windowAnimations = animationSource;
-        // show it
         alertDialog.show();
 
 

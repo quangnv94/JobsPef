@@ -89,4 +89,5 @@
     <string name="create_post_success"> Bài đăng của bạn đã thành công !</string>
     <string name="register_facebook">Đăng ký với facebook </string>
     <string name="nodata">Chưa có dữ liệu !</string>
+    <string name="create_post">Đăng tin</string>
 </resources>

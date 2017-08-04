@@ -56,9 +56,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setupDrawerLayout();
 
         getSupportFragmentManager().beginTransaction().replace(R.id.main_container, new FragmentCategory()).commit();
-
         initController();
-
         getAva();
     }
 
@@ -68,6 +66,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 .withActivity(this)
                 .withRootView(R.id.drawer_container)
                 .withDrawerGravity(Gravity.LEFT)
+                .withDisplayBelowStatusBar(false)
                 .withDrawerWidthPx(Integer.parseInt(String.valueOf("" + MyUtils.getScreenWidth() * 3 / 4)))
                 .withCustomView(inflater.inflate(R.layout.navigator_drawer, null))
                 .withOnDrawerListener(new Drawer.OnDrawerListener() {

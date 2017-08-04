@@ -102,7 +102,7 @@ public class FragmentFeedBack extends Fragment implements View.OnClickListener {
                 }
             }
         });
-        ImageView imgBack = toolbar.findViewById(R.id.imgBack);
+        ImageView imgBack = toolbar.findViewById(R.id.imgCreatePost);
         imgBack.setVisibility(View.VISIBLE);
         imgBack.setOnClickListener(new View.OnClickListener() {
             @Override

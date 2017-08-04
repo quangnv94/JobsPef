@@ -63,7 +63,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.MyViewHolder> 
         if (!entity.getImages().equals("")) {
             linkimage = entity.getImages().split(",")[0];
         }
-        Glide.with(context).load(linkimage).error(R.drawable.landscape).error(R.drawable.landscape).into(holder.imagePreview);
+        Glide.with(context).load(linkimage).error(R.drawable.landscape).error(R.drawable.icon).into(holder.imagePreview);
         holder.tvTitle.setText(entity.getTitle());
         holder.tvDate.setText(entity.getCreated_at());
         holder.tvCategoryName.setText(entity.getPlace());

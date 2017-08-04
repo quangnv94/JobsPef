@@ -48,16 +48,16 @@ public class FragmentWhoWeAre extends Fragment {
 
 
     private void initController(View v) {
-//        tvWhoWeAre = (TextView) v.findViewById(R.id.tvWhoWeAre);
-//        tvWhoWeAre.setMovementMethod(new ScrollingMovementMethod());
-        webView = v.findViewById(R.id.my_webView);
-        WebSettings webSettings = webView.getSettings();
-        webSettings.setSupportZoom(true);
+////        tvWhoWeAre = (TextView) v.findViewById(R.id.tvWhoWeAre);
+////        tvWhoWeAre.setMovementMethod(new ScrollingMovementMethod());
+//        webView = v.findViewById(R.id.my_webView);
+//        WebSettings webSettings = webView.getSettings();
+//        webSettings.setSupportZoom(true);
 
         toolbar = v.findViewById(R.id.toolbar);
         TextView txtToolbarTitle = toolbar.findViewById(R.id.txtToolbarTitle);
         txtToolbarTitle.setText(getString(R.string.who_we_are));
-        ImageView imgBack = toolbar.findViewById(R.id.imgBack);
+        ImageView imgBack = toolbar.findViewById(R.id.imgCreatePost);
         imgBack.setVisibility(View.VISIBLE);
         imgBack.setOnClickListener(new View.OnClickListener() {
             @Override
