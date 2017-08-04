@@ -91,4 +91,5 @@
     <string name="nodata">Chưa có dữ liệu !</string>
     <string name="create_post">Đăng tin</string>
     <string name="hello">Xin chào,</string>
+    <string name="image_empty">Bạn phải chọn ảnh !</string>
 </resources>

@@ -90,6 +90,8 @@ public class FragmentCreateJobs extends Fragment implements View.OnClickListener
     private ImageView imgContent;
     private File file;
 
+    private boolean isHasImage;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -181,7 +183,9 @@ public class FragmentCreateJobs extends Fragment implements View.OnClickListener
         timeLimit = edtTimelimited.getText().toString().trim();
         address = edtAddress.getText().toString().trim();
 
-        if (title.equals("")) {
+        if (!isHasImage) {
+            MyUtils.showToast(getContext(), getString(R.string.image_empty));
+        } else if (title.equals("")) {
             edtTitle.setError(getString(R.string.title_empty));
             edtTitle.requestFocus();
         } else if (content.equals("")) {
@@ -349,12 +353,14 @@ public class FragmentCreateJobs extends Fragment implements View.OnClickListener
                         Bitmap photo = (Bitmap) imageReturnedIntent.getExtras().get("data");
                         imgContent.setImageBitmap(photo);
                         file = MyUtils.saveBitmapToFile(MyUtils.resize(photo, 800, 800), "picture" + ".jpg");
+                        isHasImage = true;
                         //image_edit = new TypedFile("multipart/form-data", file);
                     }
 
                     break;
                 case 1:
                     if (resultCode == RESULT_OK) {
+                        isHasImage = true;
                         displayImageFromGallery(imageReturnedIntent, imgContent);
                     }
                     break;
@@ -399,7 +405,7 @@ public class FragmentCreateJobs extends Fragment implements View.OnClickListener
 
     public void requestCreatePost(String image) {
         String token = MyUtils.getStringData(getContext(), Constants.TOKEN);
-        ConnectServer.getResponseAPI().updateCreatePost(token, title, categoryId, image, benifed, timeLimit, phone, address, requirment).enqueue(new Callback<SimpleResponse>() {
+        ConnectServer.getResponseAPI().updateCreatePost(token, title, categoryId, image, content, benifed, timeLimit, phone, address, requirment).enqueue(new Callback<SimpleResponse>() {
             @Override
             public void onResponse(Call<SimpleResponse> call, Response<SimpleResponse> response) {
                 AppUtils.hideProgressDialog(getActivity());

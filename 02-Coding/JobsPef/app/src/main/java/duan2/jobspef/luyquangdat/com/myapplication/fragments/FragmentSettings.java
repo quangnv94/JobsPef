@@ -97,6 +97,8 @@ public class FragmentSettings extends Fragment implements View.OnClickListener {
     private String phoneNew;
     private String addressNew;
 
+    private boolean isHasImages = false;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_settings, container, false);
@@ -227,7 +229,6 @@ public class FragmentSettings extends Fragment implements View.OnClickListener {
         } else if (phoneNew.length() < 10) {
             edtPhone.setError(getString(R.string.invail_phone));
             edtPhone.requestFocus();
-            return;
         } else if (addressNew.length() == 0) {
             addressNew = address;
         } else if (addressNew.length() < 10) {
@@ -294,14 +295,13 @@ public class FragmentSettings extends Fragment implements View.OnClickListener {
     public void onActivityResult(int requestCode, int resultCode, Intent imageReturnedIntent) {
         super.onActivityResult(requestCode, resultCode, imageReturnedIntent);
         try {
+            isHasImages = true;
             switch (requestCode) {
                 case 0:
                     if (resultCode == RESULT_OK) {
                         Bitmap photo = (Bitmap) imageReturnedIntent.getExtras().get("data");
                         imgAva.setImageBitmap(photo);
                         file = MyUtils.saveBitmapToFile(MyUtils.resize(photo, 800, 800), "picture" + ".jpg");
-                        //image_edit = new TypedFile("multipart/form-data", file);
-                        Log.d("nguyenvanquang", photo + "");
                     }
 
                     break;
@@ -320,9 +320,13 @@ public class FragmentSettings extends Fragment implements View.OnClickListener {
     }
 
     public void updateProfile() {
+        if (isHasImages) {
+            TestSync testSync = new TestSync();
+            testSync.execute(file);
+        } else {
+            updateProfileRequest(nameNew, MyUtils.getStringData(getContext(), Constants.IMAGE_ID), phoneNew, addressNew);
+        }
 
-        TestSync testSync = new TestSync();
-        testSync.execute(file);
     }
 
     public void updateProfileRequest(String name, final String ava, String phone, String address) {
@@ -330,6 +334,9 @@ public class FragmentSettings extends Fragment implements View.OnClickListener {
             @Override
             public void onResponse(Call<SimpleResponse> call, Response<SimpleResponse> response) {
                 AppUtils.hideProgressDialog(getContext());
+                edtName.setVisibility(View.GONE);
+                edtPhone.setVisibility(View.GONE);
+                edtAddress.setVisibility(View.GONE);
                 getInfoMember();
             }
 
@@ -363,6 +370,9 @@ public class FragmentSettings extends Fragment implements View.OnClickListener {
             public void onResponse(Call<InfoMemberResponse> call, Response<InfoMemberResponse> response) {
                 AppUtils.hideProgressDialog(getContext());
                 if (response.isSuccessful()) {
+                    name = response.body().getMessage().getName();
+                    phone = response.body().getMessage().getPhone_number();
+                    address = response.body().getMessage().getAddress();
                     tvName.setText(" " + response.body().getMessage().getName());
                     tvEmail.setText(" " + response.body().getMessage().getContact_email());
                     tvPhone.setText(" " + response.body().getMessage().getPhone_number());
@@ -430,7 +440,6 @@ public class FragmentSettings extends Fragment implements View.OnClickListener {
         @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
-            Log.d("nguyenvanquang", nameNew + phoneNew + addressNew);
             updateProfileRequest(nameNew, s, phoneNew, addressNew);
         }
     }

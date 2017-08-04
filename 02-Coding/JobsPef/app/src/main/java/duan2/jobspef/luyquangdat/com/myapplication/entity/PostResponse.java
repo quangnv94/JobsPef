@@ -6,7 +6,6 @@ import java.io.Serializable;
 
 public class PostResponse implements Serializable {
 
-
     @SerializedName("id")
     private String id;
     @SerializedName("title")
@@ -31,6 +30,8 @@ public class PostResponse implements Serializable {
     private String benefits;
     @SerializedName("time_limited")
     private String time_limited;
+    @SerializedName("contact")
+    private String contact;
 
     public String getId() {
         return id;
@@ -78,5 +79,9 @@ public class PostResponse implements Serializable {
 
     public String getTime_limited() {
         return time_limited;
+    }
+
+    public String getContact() {
+        return contact;
     }
 }
