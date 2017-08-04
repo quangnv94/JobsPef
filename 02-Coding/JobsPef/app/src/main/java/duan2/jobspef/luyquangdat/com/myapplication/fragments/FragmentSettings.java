@@ -3,14 +3,12 @@ package duan2.jobspef.luyquangdat.com.myapplication.fragments;
 import android.Manifest;
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
@@ -26,7 +24,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Switch;
@@ -41,11 +38,9 @@ import com.cloudinary.utils.ObjectUtils;
 import com.libre.mylibs.MyUtils;
 import com.mikepenz.materialdrawer.Drawer;
 
-import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -55,7 +50,6 @@ import duan2.jobspef.luyquangdat.com.myapplication.MainActivity;
 
 import duan2.jobspef.luyquangdat.com.myapplication.R;
 import duan2.jobspef.luyquangdat.com.myapplication.common.Constants;
-import duan2.jobspef.luyquangdat.com.myapplication.common.JobsPef;
 import duan2.jobspef.luyquangdat.com.myapplication.entity.InfoMemberResponse;
 import duan2.jobspef.luyquangdat.com.myapplication.entity.SimpleResponse;
 import duan2.jobspef.luyquangdat.com.myapplication.service.ConnectServer;
@@ -110,7 +104,7 @@ public class FragmentSettings extends Fragment implements View.OnClickListener {
         context = rootView.getContext();
         toolbar = rootView.findViewById(R.id.toolbar);
         drawer = ((MainActivity) getActivity()).getDrawer();
-        initController(rootView);
+        initController();
         initCompoment(rootView);
         checkPermission();
         return rootView;
@@ -122,26 +116,19 @@ public class FragmentSettings extends Fragment implements View.OnClickListener {
             int hasReadPermission = getActivity().checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE);
             int hasCameraPermission = getActivity().checkSelfPermission(Manifest.permission.CAMERA);
 
-            List<String> permissions = new ArrayList<String>();
+            List<String> permissions = new ArrayList<>();
             if (hasWritePermission != PackageManager.PERMISSION_GRANTED) {
                 permissions.add(Manifest.permission.WRITE_EXTERNAL_STORAGE);
-            } else {
-                // Toast.makeText(getContext(), getString(R.string.not_permission_galaxy), Toast.LENGTH_SHORT).show();
             }
 
             if (hasCameraPermission != PackageManager.PERMISSION_GRANTED) {
                 permissions.add(Manifest.permission.CAMERA);
-            } else {
-                //  Toast.makeText(getContext(), getString(R.string.not_permission_galaxy), Toast.LENGTH_SHORT).show();
             }
 
             if (hasReadPermission != PackageManager.PERMISSION_GRANTED) {
                 permissions.add(Manifest.permission.READ_EXTERNAL_STORAGE);
 
-            } else {
-                // Toast.makeText(getContext(), getString(R.string.not_permission_camera), Toast.LENGTH_SHORT).show();
             }
-
             if (!permissions.isEmpty()) {
                 requestPermissions(permissions.toArray(new String[permissions.size()]), REQUEST_CODE_SOME_FEATURES_PERMISSIONS);
             }
@@ -152,18 +139,16 @@ public class FragmentSettings extends Fragment implements View.OnClickListener {
         if (permissionCheck != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(
                     getActivity(), new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 999);
-        } else {
         }
         if (permissionCheck != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(
                     getActivity(), new String[]{Manifest.permission.CAMERA}, 998);
-        } else {
         }
 
     }
 
 
-    private void initController(View v) {
+    private void initController() {
         TextView txtToolbarTitle = toolbar.findViewById(R.id.txtToolbarTitle);
         txtToolbarTitle.setText(getString(R.string.settings));
         ImageView imgBack = toolbar.findViewById(R.id.imgCreatePost);
@@ -190,19 +175,19 @@ public class FragmentSettings extends Fragment implements View.OnClickListener {
     }
 
     public void initCompoment(View v) {
-        btnSave = (Button) v.findViewById(R.id.btnSave);
-        btnChange = (Button) v.findViewById(R.id.btnEditInfo);
+        btnSave = v.findViewById(R.id.btnSave);
+        btnChange = v.findViewById(R.id.btnEditInfo);
 
-        tvName = (TextView) v.findViewById(R.id.tvName);
-        tvEmail = (TextView) v.findViewById(R.id.tvEmail);
-        tvPhone = (TextView) v.findViewById(R.id.tvPhone);
-        tvAddress = (TextView) v.findViewById(R.id.tvAddress);
+        tvName = v.findViewById(R.id.tvName);
+        tvEmail = v.findViewById(R.id.tvEmail);
+        tvPhone = v.findViewById(R.id.tvPhone);
+        tvAddress = v.findViewById(R.id.tvAddress);
 
-        edtName = (EditText) v.findViewById(R.id.edtName);
-        edtPhone = (EditText) v.findViewById(R.id.edtPhone);
-        edtAddress = (EditText) v.findViewById(R.id.edtAddress);
+        edtName = v.findViewById(R.id.edtName);
+        edtPhone = v.findViewById(R.id.edtPhone);
+        edtAddress = v.findViewById(R.id.edtAddress);
 
-        imgAva = (ImageView) v.findViewById(R.id.imgAvatar);
+        imgAva = v.findViewById(R.id.imgAvatar);
 
         btnSave.setOnClickListener(this);
         btnChange.setOnClickListener(this);
@@ -267,25 +252,6 @@ public class FragmentSettings extends Fragment implements View.OnClickListener {
         }
     }
 
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        switch (requestCode) {
-
-            case 999:
-                if ((grantResults.length > 0) && (grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
-
-                }
-                break;
-            case 998:
-                if ((grantResults.length > 0) && (grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
-
-                }
-                break;
-            default:
-                break;
-        }
-    }
-
     public void seletePhotoAction() {
         AlertDialog.Builder b = new AlertDialog.Builder(getContext());
 
@@ -298,6 +264,7 @@ public class FragmentSettings extends Fragment implements View.OnClickListener {
                     Intent takePicture = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                     startActivityForResult(takePicture, 0);
                 } catch (SecurityException s) {
+                    s.toString();
                 }
 
             }
@@ -408,12 +375,12 @@ public class FragmentSettings extends Fragment implements View.OnClickListener {
                     }
                     MyUtils.insertStringData(getContext(), Constants.IMAGE_ID, response.body().getMessage().getAvatar_id());
                     MyUtils.insertStringData(getContext(), Constants.NAME, response.body().getMessage().getName());
-                    ((MainActivity) context).onDataPass(1);
+                    ((MainActivity) context).onDataPass();
                 } else {
-                    tvName.setText("Chưa có dữ liệu !");
-                    tvEmail.setText("Chưa có dữ liệu !");
-                    tvPhone.setText("Chưa có dữ liệu !");
-                    tvAddress.setText("Chưa có dữ liệu !");
+                    tvName.setText(getResources().getString(R.string.nodata));
+                    tvEmail.setText(getResources().getString(R.string.nodata));
+                    tvPhone.setText(getResources().getString(R.string.nodata));
+                    tvAddress.setText(getResources().getString(R.string.nodata));
                 }
             }
 
@@ -432,7 +399,7 @@ public class FragmentSettings extends Fragment implements View.OnClickListener {
     }
 
     public interface UpdateImage {
-        public void onDataPass(int data);
+        void onDataPass();
     }
 
 

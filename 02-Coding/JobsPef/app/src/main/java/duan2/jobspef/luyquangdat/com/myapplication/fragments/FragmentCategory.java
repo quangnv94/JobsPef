@@ -2,16 +2,12 @@ package duan2.jobspef.luyquangdat.com.myapplication.fragments;
 
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,24 +17,17 @@ import android.widget.TextView;
 import com.libre.mylibs.MyUtils;
 import com.mikepenz.materialdrawer.Drawer;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 
 import duan2.jobspef.luyquangdat.com.myapplication.MainActivity;
 import duan2.jobspef.luyquangdat.com.myapplication.R;
 import duan2.jobspef.luyquangdat.com.myapplication.adapter.CategoryAdapter;
-import duan2.jobspef.luyquangdat.com.myapplication.common.Constants;
 import duan2.jobspef.luyquangdat.com.myapplication.entity.CategoryResponse;
 import duan2.jobspef.luyquangdat.com.myapplication.service.ConnectServer;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-
-/**
- * Created by quangnv on 7/14/2017.
- */
 public class FragmentCategory extends Fragment {
     private Context context;
     private ProgressDialog progDialog = null;
@@ -50,8 +39,6 @@ public class FragmentCategory extends Fragment {
     private ViewPager viewPager;
     private ImageView imgMenu, imgNotifi;
 
-
-    private ArrayList<CategoryResponse> listCategoryFinal = new ArrayList<CategoryResponse>();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -66,14 +53,14 @@ public class FragmentCategory extends Fragment {
 
 
     private void initController(View v) {
-        rcCategory = (RecyclerView) v.findViewById(R.id.rcCategory);
-        viewPager = (ViewPager) v.findViewById(R.id.viewpager);
+        rcCategory = v.findViewById(R.id.rcCategory);
+        viewPager =  v.findViewById(R.id.viewpager);
         viewPager.setVisibility(View.GONE);
     }
 
     private void initToolbar(View v) {
-        imgMenu = (ImageView) v.findViewById(R.id.imgMore);
-        imgNotifi = (ImageView) v.findViewById(R.id.imgCreatePost);
+        imgMenu =  v.findViewById(R.id.imgMore);
+        imgNotifi =  v.findViewById(R.id.imgCreatePost);
 
         imgNotifi.setOnClickListener(new View.OnClickListener() {
             @Override

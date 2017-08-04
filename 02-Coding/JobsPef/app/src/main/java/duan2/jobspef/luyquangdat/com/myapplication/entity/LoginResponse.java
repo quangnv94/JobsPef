@@ -4,10 +4,6 @@ import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
 
-/**
- * Created by quangnv on 7/26/17.
- */
-
 public class LoginResponse implements Serializable{
 
     @SerializedName("profile")

@@ -1,12 +1,10 @@
 package duan2.jobspef.luyquangdat.com.myapplication;
 
 import android.app.AlertDialog;
-import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -124,7 +122,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                                             facebookId = object.getString("id");
                                             checkFacebookIsReady(facebookId, object.getString("email"),object.getString("name"));
                                         } catch (JSONException e) {
-
+                                            e.toString();
                                         }
                                     }
 
@@ -182,14 +180,14 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         });
     }
 
-    public boolean valiDateData(String name, String email, String password, String repassword) {
+    public void valiDateData(String name, String email, String password, String repassword) {
         if (name.length() == 0 || name.length() < 8) {
             edtName.setError(getResources().getString(R.string.name_too_short));
             edtName.requestFocus();
         } else if (email.length() == 0) {
             edtEmail.setError(getResources().getString(R.string.email_empty));
             edtEmail.requestFocus();
-        } else if (emailValidator(email) != true) {
+        } else if (!emailValidator(email)) {
             edtEmail.setError(getResources().getString(R.string.email_error));
             edtEmail.requestFocus();
         } else if (password.length() < 6) {
@@ -201,8 +199,6 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         } else {
             registerRequest(name, email, password, facebookId);
         }
-
-        return false;
     }
 
     public boolean emailValidator(String email) {

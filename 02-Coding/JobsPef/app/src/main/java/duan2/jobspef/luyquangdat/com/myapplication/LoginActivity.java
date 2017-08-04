@@ -9,7 +9,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
@@ -19,7 +18,6 @@ import com.facebook.GraphRequest;
 import com.facebook.GraphResponse;
 import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
-import com.facebook.login.widget.LoginButton;
 import com.libre.mylibs.MyUtils;
 
 import org.json.JSONException;
@@ -77,7 +75,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     public void checkLogined() {
         if (MyUtils.getStringData(LoginActivity.this, Constants.TOKEN) == null ||
                 (MyUtils.getStringData(LoginActivity.this, Constants.TOKEN)).equals("")) {
-            return;
         } else {
             startActivity(new Intent(LoginActivity.this, MainActivity.class));
         }
@@ -103,7 +100,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         String password = edtPassword.getText().toString().trim();
         if (email.length() == 0) {
             edtEmail.setError(getResources().getString(R.string.email_empty));
-        } else if (emailValidator(email) != true) {
+        } else if (!emailValidator(email)) {
             edtEmail.setError(getResources().getString(R.string.email_error));
         } else if (password.length() == 0) {
             edtPassword.setError(getResources().getString(R.string.password_empty));

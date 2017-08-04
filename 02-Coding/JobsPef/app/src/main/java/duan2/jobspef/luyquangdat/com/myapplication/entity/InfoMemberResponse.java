@@ -4,10 +4,6 @@ import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
 
-/**
- * Created by quangnv on 7/27/17.
- */
-
 public class InfoMemberResponse implements Serializable {
 
     @SerializedName("message")

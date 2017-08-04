@@ -7,10 +7,10 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <include layout="@layout/toolbar"></include>
+        <include layout="@layout/toolbar"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -34,7 +34,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
                 android:layout_marginTop="10dp"
-                ></Spinner>
+                />
 
             <EditText
                 android:id="@+id/edtContent"
@@ -134,6 +134,7 @@
                 android:weightSum="2">
 
                 <Button
+                    style="?android:attr/buttonBarButtonStyle"
                     android:id="@+id/btnReset"
                     android:layout_width="match_parent"
                     android:layout_height="50sp"
@@ -146,6 +147,7 @@
                     android:textSize="17sp" />
 
                 <Button
+                    style="?android:attr/buttonBarButtonStyle"
                     android:id="@+id/btnPost"
                     android:layout_width="match_parent"
                     android:layout_height="50sp"

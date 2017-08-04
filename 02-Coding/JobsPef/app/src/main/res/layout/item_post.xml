@@ -48,10 +48,9 @@
             android:layout_alignParentLeft="true"
             android:layout_below="@+id/tvCategoryName"
             android:layout_gravity="start"
-            android:layout_weight="1"
             android:ellipsize="end"
             android:gravity="center|left"
-            android:singleLine="true"
+            android:maxLines="1"
             android:text="@string/date"
             android:textColor="@color/gray"
             android:textSize="12sp" />

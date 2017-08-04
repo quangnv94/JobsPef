@@ -25,16 +25,6 @@ public class CategoryResponse implements Serializable {
     @SerializedName("icon_id")
     private String icon_id;
 
-    public CategoryResponse(String id_category, String category_name, Bitmap bitmap) {
-        this.id_category = id_category;
-        this.category_name = category_name;
-        this.bitmap = bitmap;
-    }
-
-    public CategoryResponse(String id_category, String category_name) {
-        this.id_category = id_category;
-        this.category_name = category_name;
-    }
 
     private Bitmap bitmap;
 

@@ -50,7 +50,7 @@
     <string name="hint_Enter_a_new_name">Nhập họ tên mới</string>
     <string name="hint_Enter_a_new_phonenumber">Nhập số điện thoại mới</string>
     <string name="hint_Enter_a_new_adress">Nhập địa chỉ mới</string>
-    <string name="day_month_year">12-12-1992</string>
+    <string name="day_month_year">12&#8211;12&#8211;1992</string>
     <string name="number">1234</string>
     <string name="title">Title</string>
     <string name="first_and_last_name">Họ và tên:</string>
@@ -87,4 +87,6 @@
     <string name="benifed_empty">Quyền lợi không được bỏ trống !</string>
     <string name="time_empty">Thời hạn tin không được bỏ trống !</string>
     <string name="create_post_success"> Bài đăng của bạn đã thành công !</string>
+    <string name="register_facebook">Đăng ký với facebook </string>
+    <string name="nodata">Chưa có dữ liệu !</string>
 </resources>

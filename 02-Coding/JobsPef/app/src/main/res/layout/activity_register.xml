@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/bg_ac_login"
-    tools:context="duan2.jobspef.luyquangdat.com.myapplication.LoginActivity">
+    android:background="@color/bg_ac_login">
 
     <ImageView
         android:id="@+id/imgBack"
@@ -52,8 +50,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:background="@drawable/bg_white"
-                android:hint="Thư điện tử "
-                android:inputType="text"
+                android:hint="@string/hint_email"
+                android:inputType="textEmailAddress"
                 android:maxLines="1"
                 android:paddingLeft="7dp" />
 
@@ -96,7 +94,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/bg_facebook"
-                android:text="Đăng ký với Facebook"
+                android:text="@string/register_facebook"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
                 android:textSize="16sp" />
@@ -111,7 +109,6 @@
                 android:textAllCaps="false"
                 android:textColor="@color/white"
                 android:textSize="16sp" />
-
 
         </LinearLayout>
     </ScrollView>

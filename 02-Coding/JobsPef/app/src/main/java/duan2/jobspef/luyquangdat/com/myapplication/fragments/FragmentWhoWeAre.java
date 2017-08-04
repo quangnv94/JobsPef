@@ -53,7 +53,7 @@ public class FragmentWhoWeAre extends Fragment {
         webView = v.findViewById(R.id.my_webView);
         WebSettings webSettings = webView.getSettings();
         webSettings.setSupportZoom(true);
-        webSettings.setJavaScriptEnabled(true);
+
         toolbar = v.findViewById(R.id.toolbar);
         TextView txtToolbarTitle = toolbar.findViewById(R.id.txtToolbarTitle);
         txtToolbarTitle.setText(getString(R.string.who_we_are));

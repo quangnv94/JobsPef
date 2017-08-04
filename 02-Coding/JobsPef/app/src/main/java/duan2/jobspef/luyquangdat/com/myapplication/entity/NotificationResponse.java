@@ -4,10 +4,6 @@ import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
 
-/**
- * Created by Dr.Cuong on 3/8/2017.
- */
-
 public class NotificationResponse implements Serializable {
     @SerializedName("id")
     private int id;

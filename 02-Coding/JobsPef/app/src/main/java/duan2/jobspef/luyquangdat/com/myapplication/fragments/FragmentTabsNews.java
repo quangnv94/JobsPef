@@ -41,7 +41,7 @@ public class FragmentTabsNews extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_tab_news, container, false);
-        toolbar = ((MainActivity)getActivity()).getToolbar();
+        toolbar = ((MainActivity) getActivity()).getToolbar();
         initController(rootView);
         Bundle data = getArguments();
         categoryResponses = (ArrayList<CategoryResponse>) data.getSerializable(Constants.LIST_CATEGORY);
@@ -63,9 +63,9 @@ public class FragmentTabsNews extends Fragment {
         imgMore.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(!drawer.isDrawerOpen()) {
+                if (!drawer.isDrawerOpen()) {
                     drawer.openDrawer();
-                }else {
+                } else {
                     drawer.closeDrawer();
                 }
             }
@@ -74,7 +74,7 @@ public class FragmentTabsNews extends Fragment {
         imgBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getFragmentManager().beginTransaction().replace(R.id.main_container,new FragmentCreateJobs()).addToBackStack(null).commit();
+                getFragmentManager().beginTransaction().replace(R.id.main_container, new FragmentCreateJobs()).addToBackStack(null).commit();
             }
         });
 
@@ -102,7 +102,7 @@ public class FragmentTabsNews extends Fragment {
         imgMore.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(!drawer.isDrawerOpen()) {
+                if (!drawer.isDrawerOpen()) {
                     drawer.openDrawer();
                 }
             }
@@ -110,28 +110,28 @@ public class FragmentTabsNews extends Fragment {
         tabLayout = v.findViewById(R.id.tabs);
         viewPager = v.findViewById(R.id.viewpager);
 
-        lbtnCreatePost = (FloatingActionButton) v.findViewById(R.id.lbtnCreatePost);
+        lbtnCreatePost = v.findViewById(R.id.lbtnCreatePost);
         lbtnCreatePost.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getFragmentManager().beginTransaction().replace(R.id.main_container,new FragmentCreateJobs()).addToBackStack(null).commit();
+                getFragmentManager().beginTransaction().replace(R.id.main_container, new FragmentCreateJobs()).addToBackStack(null).commit();
             }
         });
     }
 
     private void tabsLayoutBuilder() {
-        int number=0;
+        int number = 0;
         viewPagerTabsAdapter = new ViewPagerTabsAdapter(getChildFragmentManager());
-        for(CategoryResponse categoryResponse:categoryResponses){
-            Log.e("size",""+categoryResponses.size());
+        for (CategoryResponse categoryResponse : categoryResponses) {
+            Log.e("size", "" + categoryResponses.size());
             Bundle data = new Bundle();
-            data.putString(Constants.CATEGORY_ID,""+categoryResponse.getId_category());
-            data.putString(Constants.CATEGORY_NAME,""+categoryResponse.getCategory_name());
+            data.putString(Constants.CATEGORY_ID, "" + categoryResponse.getId_category());
+            data.putString(Constants.CATEGORY_NAME, "" + categoryResponse.getCategory_name());
             FragmentPost fragment_offerByCategory = new FragmentPost();
             fragment_offerByCategory.setArguments(data);
-            viewPagerTabsAdapter.addFrag(fragment_offerByCategory,"DashBoard");
+            viewPagerTabsAdapter.addFrag(fragment_offerByCategory, "DashBoard");
             tabLayout.addTab(tabLayout.newTab().setText(categoryResponse.getCategory_name()), number);
-            number = number+1;
+            number = number + 1;
         }
         viewPager.setAdapter(viewPagerTabsAdapter);
         viewPager.setCurrentItem(position);

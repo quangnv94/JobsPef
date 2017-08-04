@@ -18,16 +18,10 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
-import android.view.animation.ScaleAnimation;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -49,25 +43,17 @@ import java.util.List;
 import java.util.Map;
 
 import duan2.jobspef.luyquangdat.com.myapplication.AppUtils;
-import duan2.jobspef.luyquangdat.com.myapplication.LoginActivity;
 import duan2.jobspef.luyquangdat.com.myapplication.MainActivity;
 import duan2.jobspef.luyquangdat.com.myapplication.R;
-import duan2.jobspef.luyquangdat.com.myapplication.adapter.CategoryAdapter;
-import duan2.jobspef.luyquangdat.com.myapplication.adapter.TestAdapter;
 import duan2.jobspef.luyquangdat.com.myapplication.common.Constants;
 import duan2.jobspef.luyquangdat.com.myapplication.entity.CategoryResponse;
 import duan2.jobspef.luyquangdat.com.myapplication.entity.SimpleResponse;
-import duan2.jobspef.luyquangdat.com.myapplication.entity.TestResponse;
 import duan2.jobspef.luyquangdat.com.myapplication.service.ConnectServer;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 import static android.app.Activity.RESULT_OK;
-
-/**
- * Created by QuangNV on 7/14/2017.
- */
 
 
 public class FragmentCreateJobs extends Fragment implements View.OnClickListener {
@@ -116,27 +102,27 @@ public class FragmentCreateJobs extends Fragment implements View.OnClickListener
     }
 
     public void initController(View v) {
-        edtPhone = (EditText) v.findViewById(R.id.edtContact);
-        edtTitle = (EditText) v.findViewById(R.id.edtTitle);
-        edtContent = (EditText) v.findViewById(R.id.edtContent);
-        edtBenefeed = (EditText) v.findViewById(R.id.edtBenifed);
-        edtRequiment = (EditText) v.findViewById(R.id.edtRequei);
-        edtTimelimited = (EditText) v.findViewById(R.id.edtTime);
-        edtAddress = (EditText) v.findViewById(R.id.edtAddress);
+        edtPhone = v.findViewById(R.id.edtContact);
+        edtTitle = v.findViewById(R.id.edtTitle);
+        edtContent = v.findViewById(R.id.edtContent);
+        edtBenefeed = v.findViewById(R.id.edtBenifed);
+        edtRequiment = v.findViewById(R.id.edtRequei);
+        edtTimelimited = v.findViewById(R.id.edtTime);
+        edtAddress = v.findViewById(R.id.edtAddress);
 
-        btnClear = (Button) v.findViewById(R.id.btnReset);
-        btnPost = (Button) v.findViewById(R.id.btnPost);
+        btnClear = v.findViewById(R.id.btnReset);
+        btnPost = v.findViewById(R.id.btnPost);
         btnClear.setOnClickListener(this);
         btnPost.setOnClickListener(this);
 
-        imgContent = (ImageView) v.findViewById(R.id.imgContent);
+        imgContent = v.findViewById(R.id.imgContent);
         imgContent.setOnClickListener(this);
 
-        spCategory = (Spinner) v.findViewById(R.id.spCategory);
+        spCategory = v.findViewById(R.id.spCategory);
 
         getCategory();
         listNameCategory.add(0, getString(R.string.category_select));
-        karant_adapter = new ArrayAdapter<String>(getContext(),
+        karant_adapter = new ArrayAdapter<>(getContext(),
                 android.R.layout.simple_spinner_item, listNameCategory);
         spCategory.setAdapter(karant_adapter);
         spCategory.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -151,7 +137,7 @@ public class FragmentCreateJobs extends Fragment implements View.OnClickListener
 
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
-
+                categoryId = "";
             }
         });
 
@@ -164,7 +150,7 @@ public class FragmentCreateJobs extends Fragment implements View.OnClickListener
             }
         });
         ImageView imgMore = toolbar.findViewById(R.id.imgMore);
-       imgMore.setImageDrawable(getResources().getDrawable(R.drawable.ic_back));
+        imgMore.setImageDrawable(getResources().getDrawable(R.drawable.ic_back));
         imgMore.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -289,24 +275,17 @@ public class FragmentCreateJobs extends Fragment implements View.OnClickListener
             int hasReadPermission = getActivity().checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE);
             int hasCameraPermission = getActivity().checkSelfPermission(Manifest.permission.CAMERA);
 
-            List<String> permissions = new ArrayList<String>();
+            List<String> permissions = new ArrayList<>();
             if (hasWritePermission != PackageManager.PERMISSION_GRANTED) {
                 permissions.add(Manifest.permission.WRITE_EXTERNAL_STORAGE);
-            } else {
-                // Toast.makeText(getContext(), getString(R.string.not_permission_galaxy), Toast.LENGTH_SHORT).show();
             }
-
             if (hasCameraPermission != PackageManager.PERMISSION_GRANTED) {
                 permissions.add(Manifest.permission.CAMERA);
-            } else {
-                //  Toast.makeText(getContext(), getString(R.string.not_permission_galaxy), Toast.LENGTH_SHORT).show();
             }
 
             if (hasReadPermission != PackageManager.PERMISSION_GRANTED) {
                 permissions.add(Manifest.permission.READ_EXTERNAL_STORAGE);
 
-            } else {
-                // Toast.makeText(getContext(), getString(R.string.not_permission_camera), Toast.LENGTH_SHORT).show();
             }
 
             if (!permissions.isEmpty()) {
@@ -319,32 +298,10 @@ public class FragmentCreateJobs extends Fragment implements View.OnClickListener
         if (permissionCheck != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(
                     getActivity(), new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 999);
-        } else {
         }
         if (permissionCheck != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(
                     getActivity(), new String[]{Manifest.permission.CAMERA}, 998);
-        } else {
-        }
-
-    }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        switch (requestCode) {
-
-            case 999:
-                if ((grantResults.length > 0) && (grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
-
-                }
-                break;
-            case 998:
-                if ((grantResults.length > 0) && (grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
-
-                }
-                break;
-            default:
-                break;
         }
     }
 
@@ -360,6 +317,7 @@ public class FragmentCreateJobs extends Fragment implements View.OnClickListener
                     Intent takePicture = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                     startActivityForResult(takePicture, 0);
                 } catch (SecurityException s) {
+                    s.toString();
                 }
 
             }
@@ -380,7 +338,6 @@ public class FragmentCreateJobs extends Fragment implements View.OnClickListener
 
         android.app.AlertDialog alertDialog = b.create();
         alertDialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimationBottom;
-        // show it
         alertDialog.show();
     }
 
@@ -493,12 +450,9 @@ public class FragmentCreateJobs extends Fragment implements View.OnClickListener
                     }
                 });
 
-        // create alert dialog
         AlertDialog alertDialog = alertDialogBuilder.create();
         alertDialog.getWindow().getAttributes().windowAnimations = animationSource;
-        // show it
         alertDialog.show();
-
 
     }
 }

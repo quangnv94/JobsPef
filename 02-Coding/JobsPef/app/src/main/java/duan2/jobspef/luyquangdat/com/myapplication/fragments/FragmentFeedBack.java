@@ -25,10 +25,6 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-
-/**
- * Created by QuangNV on 7/14/2017.
- */
 public class FragmentFeedBack extends Fragment implements View.OnClickListener {
     private Context context;
     private Toolbar toolbar;
@@ -59,10 +55,8 @@ public class FragmentFeedBack extends Fragment implements View.OnClickListener {
     private void sendMessage() {
         if (edtEmail.getText().toString().equals("") || edtMessage.getText().toString().equals("") || edtName.getText().toString().equals("")) {
             MyUtils.showToast(getContext(), getString(R.string.please_fill_all_field));
-            return;
         } else if(!MyUtils.isEmailValid(edtEmail.getText().toString().trim())) {
             MyUtils.showToast(getContext(), getString(R.string.email_invalid));
-            return;
         }
         else{
             showProgressDialog();

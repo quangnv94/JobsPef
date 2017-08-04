@@ -87,14 +87,14 @@ public class FragmentPostDetail extends Fragment implements View.OnClickListener
         PostResponse postResponse = (PostResponse) bundle.getSerializable(Constants.POST);
 
         tvTitle.setText(postResponse.getTitle());
-        tvDate.setText(getString(R.string.create_at) + postResponse.getCreated_at());
-        tvDatelimit.setText(getString(R.string.time_limited) + postResponse.getTime_limited());
-        tvAuthor.setText(getString(R.string.create_by) + postResponse.getCreated_by());
+        tvDate.setText(getResources().getString(R.string.create_at) + postResponse.getCreated_at());
+        tvDatelimit.setText(getResources().getString(R.string.time_limited) + postResponse.getTime_limited());
+        tvAuthor.setText(getResources().getString(R.string.create_by) + postResponse.getCreated_by());
 
-        tvPlace.setText(getString(R.string.address) + postResponse.getPlace());
-        tvDescription.setText(getString(R.string.content) + postResponse.getDescription());
-        tvRequirement.setText(getString(R.string.content2) + postResponse.getRequirement());
-        tvBenefits.setText(getString(R.string.salary) + postResponse.getBenefits());
+        tvPlace.setText(getResources().getString(R.string.address) + postResponse.getPlace());
+        tvDescription.setText(getResources().getString(R.string.content) + postResponse.getDescription());
+        tvRequirement.setText(getResources().getString(R.string.content2) + postResponse.getRequirement());
+        tvBenefits.setText(getResources().getString(R.string.salary) + postResponse.getBenefits());
         if (postResponse.getImages().length() > 0) {
             String[] images = postResponse.getImages().split(",");
             ArrayList<String> listImg = new ArrayList<>(Arrays.asList(images));

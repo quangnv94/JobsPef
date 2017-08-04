@@ -1,11 +1,8 @@
 package duan2.jobspef.luyquangdat.com.myapplication;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
@@ -20,10 +17,6 @@ import com.bumptech.glide.Glide;
 import com.libre.mylibs.MyUtils;
 import com.mikepenz.materialdrawer.Drawer;
 import com.mikepenz.materialdrawer.DrawerBuilder;
-
-
-import java.io.File;
-import java.io.IOException;
 
 import duan2.jobspef.luyquangdat.com.myapplication.common.Constants;
 import duan2.jobspef.luyquangdat.com.myapplication.fragments.FragmentCategory;
@@ -157,7 +150,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.layout_share:
                 Intent shareIntent = new Intent(Intent.ACTION_SEND);
-                shareIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_DOCUMENT);
                 shareIntent.setType("text/plain");
                 shareIntent.putExtra(Intent.EXTRA_TEXT, "Link share");
                 startActivity(shareIntent);
@@ -172,21 +164,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     public void getAva() {
-        try {
-            final File localFile = File.createTempFile("images", "jpg");
-            image = MyUtils.getStringData(getApplicationContext(), Constants.IMAGE_ID);
-            if (image == null || image.equals("")) {
-                return;
-            } else {
-                Glide.with(getApplicationContext()).load(image).error(R.drawable.avatar).into(imgAva);
-            }
-        } catch (IOException e) {
+        image = MyUtils.getStringData(getApplicationContext(), Constants.IMAGE_ID);
+        if (image != null || !image.equals("")) {
+            Glide.with(getApplicationContext()).load(image).error(R.drawable.avatar).into(imgAva);
         }
-
     }
 
     @Override
-    public void onDataPass(int data) {
+    public void onDataPass() {
         getAva();
         tvName.setText(MyUtils.getStringData(MainActivity.this, Constants.NAME));
     }

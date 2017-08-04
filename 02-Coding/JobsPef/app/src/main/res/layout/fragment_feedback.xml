@@ -2,71 +2,76 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    >
+    android:orientation="vertical">
 
-    <include
-        layout="@layout/toolbar" />
+    <include layout="@layout/toolbar" />
 
     <LinearLayout
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:layout_below="@+id/toolbar">
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="?attr/actionBarSize"
+        android:orientation="vertical">
+
         <TextView
-            android:textSize="15sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:text="@string/name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:textSize="15sp" />
+
         <EditText
-            android:textSize="15sp"
-            android:singleLine="true"
+            android:inputType="text"
             android:id="@+id/edtName"
             style="@style/edtTextStyle"
             android:layout_marginBottom="10dp"
-            />
+            android:maxLines="1"
+            android:textSize="15sp" />
+
         <TextView
-            android:textSize="15sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:text="@string/email"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:textSize="15sp" />
+
         <EditText
-            android:textSize="15sp"
-            android:singleLine="true"
+            android:inputType="textEmailAddress"
             android:id="@+id/edtEmail"
             style="@style/edtTextStyle"
             android:layout_marginBottom="10dp"
-            />
+            android:maxLines="1"
+            android:textSize="15sp" />
+
         <TextView
-            android:textSize="15sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:text="@string/message"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:textSize="15sp" />
+
         <EditText
-            android:textSize="15sp"
-            android:gravity="top|"
+            android:inputType="text"
+            android:id="@+id/edtMessage"
+            style="@style/edtTextStyle"
             android:layout_marginBottom="20dp"
             android:layout_weight="1"
-            android:id="@+id/edtMessage"
-            style="@style/edtTextStyle"  />
+            android:gravity="top|"
+            android:textSize="15sp" />
+
         <Button
-            android:layout_marginBottom="5dp"
-            android:textSize="15sp"
-            android:background="@color/side_menu_bg"
-            android:textColor="@color/white"
-            android:text="@string/send"
             android:id="@+id/btnSend"
             android:layout_width="match_parent"
-            android:layout_height="40dp" />
+            android:layout_height="40dp"
+            android:layout_marginBottom="5dp"
+            android:background="@color/side_menu_bg"
+            android:text="@string/send"
+            android:textColor="@color/white"
+            android:textSize="15sp" />
     </LinearLayout>
 
 </RelativeLayout>

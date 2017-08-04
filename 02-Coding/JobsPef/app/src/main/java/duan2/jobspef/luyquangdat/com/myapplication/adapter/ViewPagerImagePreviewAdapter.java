@@ -4,7 +4,6 @@ import android.content.Context;
 import android.os.Parcelable;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
@@ -15,8 +14,6 @@ import com.bumptech.glide.Glide;
 import java.util.ArrayList;
 
 import duan2.jobspef.luyquangdat.com.myapplication.R;
-import duan2.jobspef.luyquangdat.com.myapplication.common.Constants;
-
 
 public class ViewPagerImagePreviewAdapter extends PagerAdapter {
 

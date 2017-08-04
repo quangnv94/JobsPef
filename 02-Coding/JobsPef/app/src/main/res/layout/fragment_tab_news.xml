@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/light_blue"
-        android:layout_below="@+id/toolbar"
+        android:layout_marginTop="?attr/actionBarSize"
         app:tabTextAppearance="@style/TabsTextStyle"
         app:tabSelectedTextColor="@color/dark_blue"
         app:tabTextColor="@color/gray"
