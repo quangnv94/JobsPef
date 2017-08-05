@@ -10,9 +10,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.facebook.internal.CollectionMapper;
 import com.libre.mylibs.MyUtils;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 
 import duan2.jobspef.luyquangdat.com.myapplication.R;
 import duan2.jobspef.luyquangdat.com.myapplication.adapter.PostAdapter;
@@ -74,6 +77,7 @@ public class FragmentPost extends Fragment {
                 if (response.isSuccessful()) {
                     listPost = response.body();
                     postAdapter = new PostAdapter(getActivity(), listPost);
+                    Collections.reverse(listPost);
                     rcOffer.setAdapter(postAdapter);
                 } else {
                     MyUtils.showToast(getContext(), getString(R.string.oops_something_gone_wrong));
