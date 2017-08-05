@@ -164,7 +164,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                                     }
 
                                 });
-                        //get avatar http:// graph.facebook.com/{facebook-Id}/picture?width=160&height=160
                         Bundle parameters = new Bundle();
                         parameters.putString("fields", "id,name,email,first_name,last_name,gender,location{location}");
                         request.setParameters(parameters);
@@ -173,11 +172,13 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
                     @Override
                     public void onCancel() {
+                        
                     }
 
                     @Override
                     public void onError(FacebookException error) {
-                        Log.d("checkloi", error.toString());
+                        showDialogConfirm(R.drawable.ic_back, R.style.DialogAnimationBottom,
+                                getString(R.string.error_unkonw), getString(R.string.error));
                     }
                 });
     }
