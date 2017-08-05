@@ -8,6 +8,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -54,13 +55,13 @@ public class FragmentCategory extends Fragment {
 
     private void initController(View v) {
         rcCategory = v.findViewById(R.id.rcCategory);
-        viewPager =  v.findViewById(R.id.viewpager);
+        viewPager = v.findViewById(R.id.viewpager);
         viewPager.setVisibility(View.GONE);
     }
 
     private void initToolbar(View v) {
-        imgMenu =  v.findViewById(R.id.imgMore);
-        imgNotifi =  v.findViewById(R.id.imgCreatePost);
+        imgMenu = v.findViewById(R.id.imgMore);
+        imgNotifi = v.findViewById(R.id.imgCreatePost);
 
         imgNotifi.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -119,6 +120,7 @@ public class FragmentCategory extends Fragment {
 
             @Override
             public void onFailure(Call<ArrayList<CategoryResponse>> call, Throwable t) {
+                Log.d("chuyengidasy", t.toString());
                 dismissProgressDialog();
 
             }

@@ -59,26 +59,26 @@ public class FragmentFeedBack extends Fragment implements View.OnClickListener {
             MyUtils.showToast(getContext(), getString(R.string.email_invalid));
         }
         else{
-            showProgressDialog();
-            ConnectServer.getResponseAPI().sendFeedback(edtEmail.getText().toString(), edtName.getText().toString(), edtMessage.getText().toString()).enqueue(new Callback<Void>() {
-                @Override
-                public void onResponse(Call<Void> call, Response<Void> response) {
-                    dismissProgressDialog();
-                    if (response.isSuccessful()) {
-                        MyUtils.showToast(getContext(), getString(R.string.message_send_success));
-                        Log.e("good","success");
-                    } else {
-                        MyUtils.showToast(getContext(), getString(R.string.oops_something_gone_wrong));
-                        Log.e("fail","oops");
-                    }
-                }
-
-                @Override
-                public void onFailure(Call<Void> call, Throwable t) {
-                    dismissProgressDialog();
-
-                }
-            });
+//            showProgressDialog();
+//            ConnectServer.getResponseAPI().sendFeedback(edtEmail.getText().toString(), edtName.getText().toString(), edtMessage.getText().toString()).enqueue(new Callback<Void>() {
+//                @Override
+//                public void onResponse(Call<Void> call, Response<Void> response) {
+//                    dismissProgressDialog();
+//                    if (response.isSuccessful()) {
+//                        MyUtils.showToast(getContext(), getString(R.string.message_send_success));
+//                        Log.e("good","success");
+//                    } else {
+//                        MyUtils.showToast(getContext(), getString(R.string.oops_something_gone_wrong));
+//                        Log.e("fail","oops");
+//                    }
+//                }
+//
+//                @Override
+//                public void onFailure(Call<Void> call, Throwable t) {
+//                    dismissProgressDialog();
+//
+//                }
+//            });
         }
     }
 

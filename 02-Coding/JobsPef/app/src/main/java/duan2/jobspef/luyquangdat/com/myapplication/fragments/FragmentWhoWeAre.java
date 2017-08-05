@@ -84,24 +84,24 @@ public class FragmentWhoWeAre extends Fragment {
 
 
     private void getWhoWeAre() {
-        showProgressDialog();
-        ConnectServer.getResponseAPI().getWhoWeAre().enqueue(new Callback<WhoWeAreResponse>() {
-            @Override
-            public void onResponse(Call<WhoWeAreResponse> call, Response<WhoWeAreResponse> response) {
-                dismissProgressDialog();
-                if (response.isSuccessful()) {
-//                    tvWhoWeAre.setText(response.body().getContent());
-                    webView.loadDataWithBaseURL("", response.body().getContent(), "text/html", "UTF-8", "");
-                } else {
-                    MyUtils.showToast(getContext(), getString(R.string.oops_something_gone_wrong));
-                }
-            }
-
-            @Override
-            public void onFailure(Call<WhoWeAreResponse> call, Throwable t) {
-                dismissProgressDialog();
-            }
-        });
+  //      showProgressDialog();
+//        ConnectServer.getResponseAPI().getWhoWeAre().enqueue(new Callback<WhoWeAreResponse>() {
+//            @Override
+//            public void onResponse(Call<WhoWeAreResponse> call, Response<WhoWeAreResponse> response) {
+//                dismissProgressDialog();
+//                if (response.isSuccessful()) {
+////                    tvWhoWeAre.setText(response.body().getContent());
+//                    webView.loadDataWithBaseURL("", response.body().getContent(), "text/html", "UTF-8", "");
+//                } else {
+//                    MyUtils.showToast(getContext(), getString(R.string.oops_something_gone_wrong));
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(Call<WhoWeAreResponse> call, Throwable t) {
+//                dismissProgressDialog();
+//            }
+//        });
     }
 
     @Override
