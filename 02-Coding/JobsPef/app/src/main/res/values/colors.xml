@@ -5,7 +5,7 @@
     <color name="colorAccent">#FF4081</color>
     <color name="bg_ac_login">#4EA57E</color>
     <color name="shore">#FB9570</color>
-    <color name="facebook">#3A559F</color>
+    <color name="facebook">#3B5995</color>
     <color name="blue_theme">#302e93</color>
     <color name="yellow_theme">#fdf001</color>
     <color name="white">#ffffff</color>
@@ -20,4 +20,5 @@
     <color name="light_blue">#79d5fb </color>
     <color name="dark_blue">#0473bc </color>
     <color name="ultra_dark_gray">#0473bc</color>
+    <color name="bg_text_logo">#8BC34A</color>
 </resources>

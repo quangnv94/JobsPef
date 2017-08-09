@@ -46,7 +46,7 @@ public interface ServerAPI {
                                           @Field("title") String title,
                                           @Field("category_id") String category_id,
                                           @Field("images") String image,
-                                          @Field("description")String description,
+                                          @Field("description") String description,
                                           @Field("benefits") String benefits,
                                           @Field("time_limited") String time_limited,
                                           @Field("contact") String contact,
@@ -58,5 +58,8 @@ public interface ServerAPI {
 
     @GET("/categorys")
     Call<ArrayList<CategoryResponse>> getCategory();
+
+    @GET("/find")
+    Call<ArrayList<PostResponse>> findPost(@Query("title") String title);
 }
 

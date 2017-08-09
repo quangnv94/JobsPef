@@ -144,13 +144,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private void loginWithFaceBook() {
         callbackManager = CallbackManager.Factory.create();
         LoginManager.getInstance().logOut();
-        LoginManager.getInstance().logInWithReadPermissions(this, Arrays.asList("public_profile,email"));
+        LoginManager.getInstance().logInWithReadPermissions(this, Arrays.asList("public_profile, email"));
 
         LoginManager.getInstance().registerCallback(callbackManager,
                 new FacebookCallback<LoginResult>() {
                     @Override
                     public void onSuccess(final LoginResult loginResult) {
-                        Log.e("fb token", loginResult.getAccessToken().getToken());
                         GraphRequest request = GraphRequest.newMeRequest(loginResult.getAccessToken(),
                                 new GraphRequest.GraphJSONObjectCallback() {
                                     @Override
@@ -172,11 +171,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
                     @Override
                     public void onCancel() {
-                        
+
                     }
 
                     @Override
                     public void onError(FacebookException error) {
+                        Log.d("chuyengiday", error.toString());
                         showDialogConfirm(R.drawable.ic_back, R.style.DialogAnimationBottom,
                                 getString(R.string.error_unkonw), getString(R.string.error));
                     }

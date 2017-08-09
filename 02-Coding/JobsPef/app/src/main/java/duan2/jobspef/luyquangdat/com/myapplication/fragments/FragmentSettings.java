@@ -152,13 +152,7 @@ public class FragmentSettings extends Fragment implements View.OnClickListener {
         TextView txtToolbarTitle = toolbar.findViewById(R.id.txtToolbarTitle);
         txtToolbarTitle.setText(getString(R.string.settings));
         ImageView imgBack = toolbar.findViewById(R.id.imgCreatePost);
-        imgBack.setVisibility(View.VISIBLE);
-        imgBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getFragmentManager().beginTransaction().replace(R.id.main_container, new FragmentCreateJobs()).addToBackStack(null).commit();
-            }
-        });
+        imgBack.setVisibility(View.INVISIBLE);
         ImageView imgMore = toolbar.findViewById(R.id.imgMore);
         imgMore.setOnClickListener(new View.OnClickListener() {
             @Override

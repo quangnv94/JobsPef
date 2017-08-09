@@ -119,7 +119,6 @@ public class FragmentPostDetail extends Fragment implements View.OnClickListener
         tvBenefits.setText(getResources().getString(R.string.salary) + "\n" + postResponse.getBenefits());
 
         numberPhone = postResponse.getContact();
-        Log.d("chuyengidasy", numberPhone);
         if (postResponse.getImages().length() > 0) {
             String[] images = postResponse.getImages().split(",");
             ArrayList<String> listImg = new ArrayList<>(Arrays.asList(images));

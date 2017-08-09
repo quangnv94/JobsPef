@@ -63,10 +63,11 @@ public class FragmentCategory extends Fragment {
         imgMenu = v.findViewById(R.id.imgMore);
         imgNotifi = v.findViewById(R.id.imgCreatePost);
 
+        imgNotifi.setImageDrawable(getResources().getDrawable(R.drawable.loupe));
         imgNotifi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getFragmentManager().beginTransaction().replace(R.id.main_container, new FragmentCreateJobs()).addToBackStack(null).commit();
+                getFragmentManager().beginTransaction().replace(R.id.main_container, new FragmentSearch()).addToBackStack(null).commit();
 
             }
         });
@@ -120,7 +121,6 @@ public class FragmentCategory extends Fragment {
 
             @Override
             public void onFailure(Call<ArrayList<CategoryResponse>> call, Throwable t) {
-                Log.d("chuyengidasy", t.toString());
                 dismissProgressDialog();
 
             }

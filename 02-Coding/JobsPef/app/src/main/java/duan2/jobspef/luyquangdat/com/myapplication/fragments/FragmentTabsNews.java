@@ -71,11 +71,12 @@ public class FragmentTabsNews extends Fragment {
                 }
             }
         });
-        imgBack.setImageResource(R.drawable.create_white);
+        imgBack.setImageDrawable(getResources().getDrawable(R.drawable.loupe));
         imgBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getFragmentManager().beginTransaction().replace(R.id.main_container, new FragmentCreateJobs()).addToBackStack(null).commit();
+                getFragmentManager().beginTransaction().replace(R.id.main_container, new FragmentSearch()).addToBackStack(null).commit();
+
             }
         });
 

@@ -50,7 +50,6 @@ public class FragmentPost extends Fragment {
 
     private void initController(View v) {
         rcOffer = v.findViewById(R.id.rcOffer);
-
     }
 
     @Override

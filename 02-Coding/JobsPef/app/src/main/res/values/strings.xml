@@ -92,4 +92,8 @@
     <string name="create_post">Đăng tin</string>
     <string name="hello">Xin chào,</string>
     <string name="image_empty">Bạn phải chọn ảnh !</string>
+    <string name="search">Tìm kiếm</string>
+    <string name="search_hint">Nhập công việc bạn muốn tìm kiếm </string>
+    <string name="search_to">Từ khoá bạn nhập phải bằng tiếng việt có dấu , không chứa ký tự đặc biệt như !, @, # ...</string>
+    <string name="find_error">Không tìm thấy công việc bạn muốn tìm kiếm, thử với từ khoá khác !</string>
 </resources>

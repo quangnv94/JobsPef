@@ -35,13 +35,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private LinearLayout layoutWhoWeAre;
     private LinearLayout layoutShare;
     private LinearLayout layoutSignOut;
-    private ImageView imgSignOut;
-    private TextView tvDevelopedBy;
     private TextView tvName;
     private ImageView imgAva;
 
     private boolean isFragment = true;
-
 
     private String image;
 
@@ -62,6 +59,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         getSupportFragmentManager().beginTransaction().replace(R.id.main_container, new FragmentCategory()).addToBackStack("FragmentCategory").commit();
         initController();
         getAva();
+
     }
 
     @Override
@@ -139,6 +137,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         tvName.setText(getString(R.string.hello) + " " + MyUtils.getStringData(MainActivity.this, Constants.NAME) + "!");
         getAva();
+
+
     }
 
     @Override
