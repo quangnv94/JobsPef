@@ -30,13 +30,14 @@
     <string name="password_empty">Mật khẩu của bạn phải lớn hơn 6 ký tự !</string>
     <string name="password_erro">Mật khẩu nhập lại chưa khớp !</string>
     <string name="save">Lưu</string>
-    <string name="edit_info">Thay đổi thông tin</string>
+    <string name="cancle_edit_info">Thay đổi thông tin</string>
     <string name="msg_notif">Bạn chưa có thông báo !</string>
     <string name="tbl_title">Danh mục việc làm</string>
     <string name="btn_Register">Đăng ký</string>
     <string name="btn_Login">Đăng nhập</string>
     <string name="btn_loginfacebook">Đăng nhập với Facebook</string>
     <string name="hint_email">Thư điện tử</string>
+    <string name="hint_email_2">Thư điện tử : </string>
     <string name="hint_password">Mật Khẩu</string>
     <string name="hint_retype_password">Nhập lại password</string>
     <string name="hint_firstname_name">Họ và tên</string>
@@ -96,4 +97,5 @@
     <string name="search_hint">Nhập công việc bạn muốn tìm kiếm </string>
     <string name="search_to">Từ khoá bạn nhập phải bằng tiếng việt có dấu , không chứa ký tự đặc biệt như !, @, # ...</string>
     <string name="find_error">Không tìm thấy công việc bạn muốn tìm kiếm, thử với từ khoá khác !</string>
+    <string name="info_app">Ứng dụng đăng tin, tìm việc hoàn toàn miễn phí trên thiết bị Android được xây dựng bởi JobPef TEAM , môn Dự Án 2</string>
 </resources>

@@ -7,27 +7,14 @@
     <include
         layout="@layout/toolbar"/>
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <!--<WebView-->
-            <!--android:id="@+id/my_webView"-->
-            <!--android:background="@android:color/transparent"-->
-            <!--android:textDirection="rtl"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content">-->
-
-        <!--</WebView>-->
-    </ScrollView>
-
-    <!--<TextView
+    <TextView
         android:id="@+id/tvWhoWeAre"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="top|right"
+        android:gravity="top|left"
         android:padding="10dp"
+        android:text="@string/info_app"
         android:scrollbars="vertical"
-        android:textSize="14sp" />-->
+        android:textSize="14sp" />
 
 </LinearLayout>

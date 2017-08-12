@@ -63,7 +63,7 @@ public class FragmentPostDetail extends Fragment implements View.OnClickListener
         context = rootView.getContext();
         drawer = ((MainActivity) getActivity()).getDrawer();
         initController(rootView);
-        checkPermission();
+       // checkPermission();
         return rootView;
     }
 
@@ -145,12 +145,10 @@ public class FragmentPostDetail extends Fragment implements View.OnClickListener
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.lbtnCall:
-                Log.d("davaodast", "dasdsad");
                 Intent mIntent = new Intent(Intent.ACTION_CALL);
                 String number = ("tel:" + numberPhone);
                 mIntent = new Intent(Intent.ACTION_CALL);
                 mIntent.setData(Uri.parse(number));
-// Here, thisActivity is the current activity
                 if (ContextCompat.checkSelfPermission(getContext(),
                         Manifest.permission.CALL_PHONE)
                         != PackageManager.PERMISSION_GRANTED) {
@@ -158,12 +156,7 @@ public class FragmentPostDetail extends Fragment implements View.OnClickListener
                     ActivityCompat.requestPermissions(getActivity(),
                             new String[]{Manifest.permission.CALL_PHONE},
                             REQUEST_CODE_SOME_FEATURES_PERMISSIONS);
-
-                    // MY_PERMISSIONS_REQUEST_CALL_PHONE is an
-                    // app-defined int constant. The callback method gets the
-                    // result of the request.
                 } else {
-                    //You already have permission
                     try {
                         startActivity(mIntent);
                     } catch (SecurityException e) {

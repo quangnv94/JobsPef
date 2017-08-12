@@ -38,10 +38,10 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.MyViewHolder> 
 
         public MyViewHolder(View view) {
             super(view);
-            imagePreview = view.findViewById(R.id.imgNews);
-            tvTitle = view.findViewById(R.id.tvTitle);
-            tvDate = view.findViewById(R.id.tvDate);
-            tvCategoryName = view.findViewById(R.id.tvCategoryName);
+            imagePreview =(ImageView) view.findViewById(R.id.imgNews);
+            tvTitle =(TextView) view.findViewById(R.id.tvTitle);
+            tvDate = (TextView) view.findViewById(R.id.tvDate);
+            tvCategoryName =(TextView) view.findViewById(R.id.tvCategoryName);
             this.view = view;
         }
     }

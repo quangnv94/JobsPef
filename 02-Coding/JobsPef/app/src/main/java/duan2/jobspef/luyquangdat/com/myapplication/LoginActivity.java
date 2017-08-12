@@ -158,6 +158,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                                             checkFacebookIsReady("", "", object.getString("id"), object.getString("email"), object.getString("name"));
                                         } catch (JSONException e) {
                                             e.printStackTrace();
+                                            try {
+                                                checkFacebookIsReady("", "", object.getString("id"), "", object.getString("name"));
+                                            } catch (JSONException e1) {
+                                                e1.printStackTrace();
+                                            }
                                         }
 
                                     }
@@ -176,7 +181,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
                     @Override
                     public void onError(FacebookException error) {
-                        Log.d("chuyengiday", error.toString());
+                        Log.d("chuyengidasdas1", error.toString());
                         showDialogConfirm(R.drawable.ic_back, R.style.DialogAnimationBottom,
                                 getString(R.string.error_unkonw), getString(R.string.error));
                     }
@@ -185,7 +190,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     protected void onActivityResult(int requestCode, int resultdata, Intent data) {
         callbackManager.onActivityResult(requestCode, resultdata, data);
-
     }
 
     public void checkFacebookIsReady(String email, String pass, final String facebookId, final String emailface, final String nameFace) {
@@ -217,6 +221,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
             @Override
             public void onFailure(Call<LoginResponse> call, Throwable t) {
+                Log.d("chuyengidasdas11", t.toString());
                 MyUtils.hideKeyboard(LoginActivity.this);
                 AppUtils.hideProgressDialog(LoginActivity.this);
                 showDialogConfirm(R.drawable.warning, R.style.DialogAnimationBottom,

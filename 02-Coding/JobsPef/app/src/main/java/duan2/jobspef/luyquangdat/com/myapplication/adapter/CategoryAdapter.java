@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 
@@ -36,8 +37,8 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.MyView
 
         public MyViewHolder(View view) {
             super(view);
-            tvCategoryName = view.findViewById(R.id.tvCategoryName);
-            imgIcon = view.findViewById(R.id.imgIcon);
+            tvCategoryName =(TextView) view.findViewById(R.id.tvCategoryName);
+            imgIcon =(CircleImageView) view.findViewById(R.id.imgIcon);
             this.view = view;
         }
     }

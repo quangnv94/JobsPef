@@ -122,6 +122,11 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                                             checkFacebookIsReady(facebookId, object.getString("email"),object.getString("name"));
                                         } catch (JSONException e) {
                                             e.toString();
+                                            try {
+                                                checkFacebookIsReady(object.getString("id"), "", object.getString("name"));
+                                            } catch (JSONException e1) {
+                                                e1.printStackTrace();
+                                            }
                                         }
                                     }
 

@@ -5,7 +5,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -37,6 +36,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private LinearLayout layoutSignOut;
     private TextView tvName;
     private ImageView imgAva;
+
+    private ImageView imgFacebook;
+    private ImageView imgYoutube;
+    private ImageView imgInstagram;
+    private ImageView imgSlack;
 
     private boolean isFragment = true;
 
@@ -101,7 +105,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 .withDrawerGravity(Gravity.LEFT)
                 .withDisplayBelowStatusBar(false)
                 .withDrawerWidthPx(Integer.parseInt(String.valueOf("" + MyUtils.getScreenWidth() * 3 / 4)))
-                .withCustomView(inflater.inflate(R.layout.navigator_drawer, null))
+                .withCustomView(inflater.inflate(R.layout.side_menu, null))
                 .withOnDrawerListener(new Drawer.OnDrawerListener() {
                     @Override
                     public void onDrawerOpened(View drawerView) {
@@ -135,16 +139,45 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         layoutSignOut.setOnClickListener(this);
         layoutShare.setOnClickListener(this);
 
+        imgFacebook = (ImageView) findViewById(R.id.imgFacebook);
+        imgYoutube = (ImageView) findViewById(R.id.imgYoutube);
+        imgInstagram = (ImageView) findViewById(R.id.imgInstagram);
+        imgSlack = (ImageView) findViewById(R.id.imgSlack);
+
+        imgFacebook.setOnClickListener(this);
+        imgYoutube.setOnClickListener(this);
+        imgInstagram.setOnClickListener(this);
+        imgSlack.setOnClickListener(this);
+
         tvName.setText(getString(R.string.hello) + " " + MyUtils.getStringData(MainActivity.this, Constants.NAME) + "!");
         getAva();
-
-
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
+            case R.id.imgFacebook:
+                Intent browserFacebook = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.facebook.com/neverloves94"));
+                startActivity(browserFacebook);
+                break;
+            case R.id.imgYoutube:
+                Intent browserYoutube = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.youtube.com"));
+                startActivity(browserYoutube);
+                break;
+            case R.id.imgInstagram:
+                Intent browserIntergram = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.instagram.com"));
+                startActivity(browserIntergram);
+                break;
+            case R.id.imgSlack:
+                Intent browserSlack = new Intent(Intent.ACTION_VIEW, Uri.parse("https://jobpef.slack.com/"));
+                startActivity(browserSlack);
+                break;
             case R.id.imgAvatar:
+                if (getSupportFragmentManager().findFragmentById(R.id.main_container) instanceof FragmentSettings) {
+                    return;
+                } else {
+                    getSupportFragmentManager().beginTransaction().replace(R.id.main_container, new FragmentSettings()).commit();
+                }
                 break;
             case R.id.layout_home:
                 drawer.closeDrawer();
@@ -181,7 +214,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.layout_share:
                 Intent shareIntent = new Intent(Intent.ACTION_SEND);
                 shareIntent.setType("text/plain");
-                shareIntent.putExtra(Intent.EXTRA_TEXT, "Link share");
+                shareIntent.putExtra(Intent.EXTRA_TEXT, "Ứng dụng đăng tin, tìm kiếm việc làm trên thiết bị Android");
                 startActivity(shareIntent);
                 break;
         }

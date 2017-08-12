@@ -170,12 +170,8 @@ public class FragmentSettings extends Fragment implements View.OnClickListener {
 
     public void initCompoment(View v) {
         btnSave = v.findViewById(R.id.btnSave);
-        btnChange = v.findViewById(R.id.btnEditInfo);
 
-        tvName = v.findViewById(R.id.tvName);
         tvEmail = v.findViewById(R.id.tvEmail);
-        tvPhone = v.findViewById(R.id.tvPhone);
-        tvAddress = v.findViewById(R.id.tvAddress);
 
         edtName = v.findViewById(R.id.edtName);
         edtPhone = v.findViewById(R.id.edtPhone);
@@ -196,9 +192,6 @@ public class FragmentSettings extends Fragment implements View.OnClickListener {
         switch (view.getId()) {
             case R.id.btnSave:
                 validateFourm();
-                break;
-            case R.id.btnEditInfo:
-                showEdittext();
                 break;
             case R.id.imgAvatar:
                 seletePhotoAction();
@@ -229,20 +222,6 @@ public class FragmentSettings extends Fragment implements View.OnClickListener {
             return;
         }
         updateProfile();
-    }
-
-    public void showEdittext() {
-        if (!isVisible) {
-            isVisible = true;
-            edtName.setVisibility(View.VISIBLE);
-            edtPhone.setVisibility(View.VISIBLE);
-            edtAddress.setVisibility(View.VISIBLE);
-        } else {
-            isVisible = false;
-            edtName.setVisibility(View.GONE);
-            edtPhone.setVisibility(View.GONE);
-            edtAddress.setVisibility(View.GONE);
-        }
     }
 
     public void seletePhotoAction() {
@@ -326,9 +305,6 @@ public class FragmentSettings extends Fragment implements View.OnClickListener {
             @Override
             public void onResponse(Call<SimpleResponse> call, Response<SimpleResponse> response) {
                 AppUtils.hideProgressDialog(getContext());
-                edtName.setVisibility(View.GONE);
-                edtPhone.setVisibility(View.GONE);
-                edtAddress.setVisibility(View.GONE);
                 getInfoMember();
             }
 
@@ -365,10 +341,19 @@ public class FragmentSettings extends Fragment implements View.OnClickListener {
                     name = response.body().getMessage().getName();
                     phone = response.body().getMessage().getPhone_number();
                     address = response.body().getMessage().getAddress();
-                    tvName.setText(" " + response.body().getMessage().getName());
                     tvEmail.setText(" " + response.body().getMessage().getContact_email());
-                    tvPhone.setText(" " + response.body().getMessage().getPhone_number());
-                    tvAddress.setText(" " + response.body().getMessage().getAddress());
+                    if(!response.body().getMessage().getName().equals("")){
+                        edtName.setText(" " + response.body().getMessage().getName());
+                    }
+
+                    if(!response.body().getMessage().getPhone_number().equals("")){
+                        edtPhone.setText(" " + response.body().getMessage().getPhone_number());
+                    }
+
+                    if(!response.body().getMessage().getAddress().equals("")){
+                        edtAddress.setText(" " + response.body().getMessage().getAddress());
+                    }
+
                     String avatar_id = response.body().getMessage().getAvatar_id();
                     if (response.body().getMessage().getAvatar_id() == null || response.body().getMessage().getAvatar_id().equals("")) {
                         return;
@@ -379,10 +364,10 @@ public class FragmentSettings extends Fragment implements View.OnClickListener {
                     MyUtils.insertStringData(getContext(), Constants.NAME, response.body().getMessage().getName());
                     ((MainActivity) context).onDataPass();
                 } else {
-                    tvName.setText(getResources().getString(R.string.nodata));
+                    edtName.setText(getResources().getString(R.string.nodata));
                     tvEmail.setText(getResources().getString(R.string.nodata));
-                    tvPhone.setText(getResources().getString(R.string.nodata));
-                    tvAddress.setText(getResources().getString(R.string.nodata));
+                    edtPhone.setText(getResources().getString(R.string.nodata));
+                    edtAddress.setText(getResources().getString(R.string.nodata));
                 }
             }
 
