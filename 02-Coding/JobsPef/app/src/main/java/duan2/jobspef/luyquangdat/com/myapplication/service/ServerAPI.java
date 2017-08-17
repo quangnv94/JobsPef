@@ -53,6 +53,12 @@ public interface ServerAPI {
                                           @Field("place") String place,
                                           @Field("requirement") String requirement);
 
+    @FormUrlEncoded
+    @POST("/api/post?")
+    Call<SimpleResponse> sendFeedBack(@Field("name") String name,
+                                          @Field("email") String email,
+                                          @Field("message") String message);
+
     @GET("/list")
     Call<ArrayList<PostResponse>> getPost(@Query("category_id") String category_id);
 

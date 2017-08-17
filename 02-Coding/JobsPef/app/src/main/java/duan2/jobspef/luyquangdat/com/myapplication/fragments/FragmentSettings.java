@@ -180,7 +180,6 @@ public class FragmentSettings extends Fragment implements View.OnClickListener {
         imgAva = v.findViewById(R.id.imgAvatar);
 
         btnSave.setOnClickListener(this);
-        btnChange.setOnClickListener(this);
         imgAva.setOnClickListener(this);
 
         getInfoMember();

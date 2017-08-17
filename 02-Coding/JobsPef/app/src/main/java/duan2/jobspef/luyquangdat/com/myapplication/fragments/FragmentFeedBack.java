@@ -20,6 +20,7 @@ import com.mikepenz.materialdrawer.Drawer;
 
 import duan2.jobspef.luyquangdat.com.myapplication.MainActivity;
 import duan2.jobspef.luyquangdat.com.myapplication.R;
+import duan2.jobspef.luyquangdat.com.myapplication.entity.SimpleResponse;
 import duan2.jobspef.luyquangdat.com.myapplication.service.ConnectServer;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -59,26 +60,24 @@ public class FragmentFeedBack extends Fragment implements View.OnClickListener {
             MyUtils.showToast(getContext(), getString(R.string.email_invalid));
         }
         else{
-//            showProgressDialog();
-//            ConnectServer.getResponseAPI().sendFeedback(edtEmail.getText().toString(), edtName.getText().toString(), edtMessage.getText().toString()).enqueue(new Callback<Void>() {
-//                @Override
-//                public void onResponse(Call<Void> call, Response<Void> response) {
-//                    dismissProgressDialog();
-//                    if (response.isSuccessful()) {
-//                        MyUtils.showToast(getContext(), getString(R.string.message_send_success));
-//                        Log.e("good","success");
-//                    } else {
-//                        MyUtils.showToast(getContext(), getString(R.string.oops_something_gone_wrong));
-//                        Log.e("fail","oops");
-//                    }
-//                }
-//
-//                @Override
-//                public void onFailure(Call<Void> call, Throwable t) {
-//                    dismissProgressDialog();
-//
-//                }
-//            });
+            showProgressDialog();
+            ConnectServer.getResponseAPI().sendFeedBack(edtEmail.getText().toString(), edtName.getText().toString(), edtMessage.getText().toString()).enqueue(new Callback<SimpleResponse>() {
+                @Override
+                public void onResponse(Call<SimpleResponse> call, Response<SimpleResponse> response) {
+                    dismissProgressDialog();
+                    if (response.isSuccessful()) {
+                        MyUtils.showToast(getContext(), getString(R.string.message_send_success));
+                    } else {
+                        MyUtils.showToast(getContext(), getString(R.string.oops_something_gone_wrong));
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<SimpleResponse> call, Throwable t) {
+                    dismissProgressDialog();
+
+                }
+            });
         }
     }
 
@@ -88,7 +87,6 @@ public class FragmentFeedBack extends Fragment implements View.OnClickListener {
         edtMessage = v.findViewById(R.id.edtMessage);
         btnSend = v.findViewById(R.id.btnSend);
         btnSend.setOnClickListener(this);
-//        toolbar = (Toolbar) v.findViewById(R.id.toolbar);
         TextView txtToolbarTitle = toolbar.findViewById(R.id.txtToolbarTitle);
         txtToolbarTitle.setText(getString(R.string.feedback));
         ImageView imgMore = toolbar.findViewById(R.id.imgMore);
@@ -103,13 +101,7 @@ public class FragmentFeedBack extends Fragment implements View.OnClickListener {
             }
         });
         ImageView imgBack = toolbar.findViewById(R.id.imgCreatePost);
-        imgBack.setVisibility(View.VISIBLE);
-        imgBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getFragmentManager().beginTransaction().replace(R.id.main_container,new FragmentCreateJobs()).addToBackStack(null).commit();
-            }
-        });
+        imgBack.setVisibility(View.INVISIBLE);
     }
 
     private void setupData() {

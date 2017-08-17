@@ -223,7 +223,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void getAva() {
         image = MyUtils.getStringData(getApplicationContext(), Constants.IMAGE_ID);
         if (image != null || !image.equals("")) {
-            Glide.with(getApplicationContext()).load(image).error(R.drawable.avatar).into(imgAva);
+            Glide.with(getApplicationContext()).load(image).error(R.drawable.user).into(imgAva);
         }
     }
 
