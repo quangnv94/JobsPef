@@ -30,6 +30,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import duan2.jobspef.luyquangdat.com.myapplication.AppUtils;
 import duan2.jobspef.luyquangdat.com.myapplication.MainActivity;
 import duan2.jobspef.luyquangdat.com.myapplication.R;
 import duan2.jobspef.luyquangdat.com.myapplication.adapter.ViewPagerImagePreviewAdapter;
@@ -109,7 +110,7 @@ public class FragmentPostDetail extends Fragment implements View.OnClickListener
         txtToolbarTitle.setText(postResponse.getTitle());
 
         tvTitle.setText(postResponse.getTitle());
-        tvDate.setText(getResources().getString(R.string.create_at) + postResponse.getCreated_at());
+        tvDate.setText(getResources().getString(R.string.create_at) + AppUtils.formatDateStringTwo(postResponse.getCreated_at()));
         tvDatelimit.setText(getResources().getString(R.string.time_limited) + postResponse.getTime_limited());
         tvAuthor.setText(getResources().getString(R.string.create_by) + postResponse.getCreated_by());
 

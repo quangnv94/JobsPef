@@ -16,6 +16,7 @@ import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 
+import duan2.jobspef.luyquangdat.com.myapplication.AppUtils;
 import duan2.jobspef.luyquangdat.com.myapplication.MainActivity;
 import duan2.jobspef.luyquangdat.com.myapplication.R;
 import duan2.jobspef.luyquangdat.com.myapplication.common.Constants;
@@ -69,7 +70,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.MyViewHolder> 
         }
         Glide.with(context).load(linkimage).error(R.drawable.landscape).error(R.drawable.icon).into(holder.imagePreview);
         holder.tvTitle.setText(entity.getTitle());
-        holder.tvDate.setText(entity.getCreated_at());
+        holder.tvDate.setText(AppUtils.formatDateString(entity.getCreated_at()));
         holder.tvCategoryName.setText(entity.getPlace());
 
         holder.view.setOnClickListener(new View.OnClickListener() {
