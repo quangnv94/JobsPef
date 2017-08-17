@@ -1,17 +1,21 @@
 package duan2.jobspef.luyquangdat.com.myapplication.fragments;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebSettings;
@@ -19,6 +23,7 @@ import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.libre.mylibs.MyUtils;
@@ -47,6 +52,7 @@ public class FragmentSearch extends Fragment implements View.OnClickListener {
     private ArrayList<PostResponse> listPost = new ArrayList<>();
     private PostAdapter postAdapter;
     private TextView tvResult;
+    private LinearLayout layoutTop;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -59,6 +65,7 @@ public class FragmentSearch extends Fragment implements View.OnClickListener {
 
 
     private void initController(View v) {
+
         edtSearch = v.findViewById(R.id.edtSearch);
         btnSearch = v.findViewById(R.id.btnSearch);
         tvResult = v.findViewById(R.id.tvResult);
@@ -66,7 +73,7 @@ public class FragmentSearch extends Fragment implements View.OnClickListener {
         rcSearch = v.findViewById(R.id.rcSearch);
         toolbar = v.findViewById(R.id.toolbar);
         TextView txtToolbarTitle = toolbar.findViewById(R.id.txtToolbarTitle);
-        txtToolbarTitle.setText(getString(R.string.who_we_are));
+        txtToolbarTitle.setText(getString(R.string.search));
         ImageView imgBack = toolbar.findViewById(R.id.imgCreatePost);
         imgBack.setVisibility(View.INVISIBLE);
         ImageView imgMore = toolbar.findViewById(R.id.imgMore);
@@ -77,6 +84,9 @@ public class FragmentSearch extends Fragment implements View.OnClickListener {
                 getFragmentManager().popBackStack();
             }
         });
+        final LinearLayoutManager mLayoutManager;
+        mLayoutManager = new LinearLayoutManager(getContext());
+        rcSearch.setLayoutManager(mLayoutManager);
     }
 
     private void getData(final String title) {
@@ -84,6 +94,7 @@ public class FragmentSearch extends Fragment implements View.OnClickListener {
         ConnectServer.getResponseAPI().findPost(title).enqueue(new Callback<ArrayList<PostResponse>>() {
             @Override
             public void onResponse(Call<ArrayList<PostResponse>> call, Response<ArrayList<PostResponse>> response) {
+                MyUtils.hideKeyboard(getActivity());
                 dismissProgressDialog();
                 if (response.isSuccessful()) {
                     listPost = response.body();
@@ -105,6 +116,7 @@ public class FragmentSearch extends Fragment implements View.OnClickListener {
             }
         });
     }
+
 
     @Override
     public void onResume() {

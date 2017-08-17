@@ -57,8 +57,6 @@
     <string name="first_and_last_name">Họ và tên:</string>
     <string name="phone_number">Số điện thoại:</string>
     <string name="adress">Địa chỉ :</string>
-    <string name="www">www</string>
-    <string name="f">f</string>
     <string name="alibaba">Alibaba</string>
     <string name="date">date</string>
     <string name="error_account">"Thông tin tài khoản không chính xác, hoặc lỗi chưa rõ, vui lòng thử lại"</string>
