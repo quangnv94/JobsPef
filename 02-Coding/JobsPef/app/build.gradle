@@ -9,6 +9,7 @@ android {
         targetSdkVersion 26
         versionCode 2
         versionName "1.1"
+        multiDexEnabled true
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         manifestPlaceholders = [onesignal_app_id: "f457b1bc-5e8c-4f82-a35e-3e030101c405",
                                 // Project number pulled from dashboard, local value is ignored.
@@ -27,6 +28,7 @@ repositories {
 }
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
+    compile 'com.android.support:multidex:1.0.1'
     compile 'com.android.support:appcompat-v7:25.3.1'
     compile 'com.android.support:design:25.3.1'
     compile 'com.google.code.gson:gson:2.8.1'
