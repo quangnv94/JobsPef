@@ -181,7 +181,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
                     @Override
                     public void onError(FacebookException error) {
-                        Log.d("chuyengidasdas1", error.toString());
                         showDialogConfirm(R.drawable.ic_back, R.style.DialogAnimationBottom,
                                 getString(R.string.error_unkonw), getString(R.string.error));
                     }
@@ -221,7 +220,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
             @Override
             public void onFailure(Call<LoginResponse> call, Throwable t) {
-                Log.d("chuyengidasdas11", t.toString());
                 MyUtils.hideKeyboard(LoginActivity.this);
                 AppUtils.hideProgressDialog(LoginActivity.this);
                 showDialogConfirm(R.drawable.warning, R.style.DialogAnimationBottom,
