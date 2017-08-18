@@ -56,7 +56,8 @@
                 android:textSize="16sp" />
 
             <Button
-                android:drawableLeft="@drawable/facebook"
+                android:paddingLeft="5dp"
+                android:drawableLeft="@drawable/icface"
                 android:id="@+id/btnFacebook"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
